@@ -24,7 +24,35 @@ Make sure to load the data and use inline code for some of this information.
 
 ## Questions
 
-The two questions you want to answer.
+Eeshaan Reddy - 
+Here are 2 questions I was able to find form the dataset with some help online.
+
+1. The Twilight from day_parts_map.csv: 
+Analysis Goal: To investigate whether UFO sightings are correlated with twilight times.
+
+Hypothesis: UFO sightings are more likely to occur during twilight periods due to unique lighting conditions.
+
+Method:
+
+-> Divide the dataset into time intervals corresponding to different twilight phases.
+-> Count the number of UFO sightings within each twilight interval.
+-> Compare the frequency of sightings across different twilight phases.
+
+In simpler terms, we're checking if UFO sightings happen more often during twilight and if there's a connection between them. We'll split the data based on twilight phases, count sightings for each phase, and then see if there's a pattern using statistical tests.
+
+2. The Places/Details from places.csv:
+
+Analysis Goal: To investigate if there's a connection between UFO sightings and place and population density.
+
+Hypothesis: UFO sightings are more frequent in densely populated areas due to increased human activity and reporting or does this depend on the place (lat/long).
+
+Method:
+
+-> Merge the UFO sightings dataset with city population data and places details.
+-> Use statistical methods like correlation analysis or regression to explore the relationship between population density and UFO sighting frequency.
+
+In simpler terms, we're checking if more UFO sightings happen in places with more people. We'll compare UFO reports with population data from different cities and it details to see if there's a link. Then, we'll use graphs to understand if the number of sightings goes up or down as population density changes and use filters of place details.
+
 
 ## Analysis plan
 
