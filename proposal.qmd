@@ -1,7 +1,10 @@
 ---
 title: "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings"
 subtitle: "Decoding the Mysteries: Analyzing Temporal, Spatial, and Descriptive Patterns in Over 80,000 UFO Sightings"
-format: html
+format: 
+  html:
+    embed-resources: true
+toc: true
 editor: visual
 execute:
   echo: false
@@ -16,7 +19,7 @@ The fascination with unidentified flying objects (UFOs) has captured the imagina
 
 **Reasons for Choosing the Dataset:**
 
-The dataset under consideration contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.
+The dataset under consideration comes originally from [NUFORC](http://www.nuforc.org/) contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.
 
 ```{r}
 
@@ -49,11 +52,27 @@ head(ufo_sightings)
 
 **Question 1: Global Distribution Analysis**
 
-**Plan:** Utilize latitude and longitude data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities. Variables Involved: Latitude, Longitude
+**Plan:** Utilize latitude and longitude data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
+
+**Variables Involved:** Latitude, Longitude
 
 **Question 2: Temporal Patterns and Predictions**
 
-**Plan:** Analyze dates and times of UFO sightings to uncover temporal patterns in their arrival. Investigate the duration of UFO stays and discern any recurring patterns or anomalies. Utilize predictive modeling to forecast potential future UFO sightings based on historical patterns. Variables Involved: Date, Time, Duration Variables to be Created: New variables for temporal patterns and duration analysis External Data: None for now, but additional celestial events data may enhance predictive modeling.
+**Plan:** Analyze dates and times of UFO sightings to uncover temporal patterns in their arrival. Investigate the duration of UFO stays and discern any recurring patterns or anomalies.
+
+**Variables Involved:** Encounter Length, Date and Time (to be extracted from existing Date_Time variable)
+
+**Question 3: Temporal Trends by Time of Day**
+
+**Plan:** Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.
+
+**Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable)
+
+**Question 4:** **Duration and Craft Type Correlation**
+
+**Plan:** Explore if there is a correlation between the reported duration of UFO sightings and the type of craft described. Utilize the encounter length and ufo shape variables from the dataset. Analyze if certain types of crafts are associated with longer or shorter durations.
+
+**Variables Involved:** Encounter_Length, Ufo_Shape
 
 # Expected Outcomes
 
