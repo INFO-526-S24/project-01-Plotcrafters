@@ -57,23 +57,11 @@ head(ufo_sightings)
 
 **Variables Involved:** Latitude, Longitude & State
 
-**Question 2: Temporal Patterns and Predictions**
-
-**Plan:** Analyze dates and times of UFO sightings to uncover temporal patterns in their arrival. Investigate the duration of UFO stays and discern any recurring patterns or anomalies.
-
-**Variables Involved:** Encounter Length, Date and Time (to be extracted from existing Date_Time variable)
-
-**Question 3: Temporal Trends by Time of Day**
+**Question 2: Temporal Trends by Time of Day**
 
 **Plan:** Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.
 
 **Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable)
-
-**Question 4:** **Duration and Craft Type Correlation**
-
-**Plan:** Explore if there is a correlation between the reported duration of UFO sightings and the type of craft described. Utilize the encounter length and ufo shape variables from the dataset. Analyze if certain types of crafts are associated with longer or shorter durations.
-
-**Variables Involved:** Encounter_Length, Ufo_Shape
 
 # Expected Outcomes
 
@@ -87,60 +75,6 @@ head(ufo_sightings)
 
     -   Uncovering patterns in the timing and duration of UFO sightings.
 
-    -   Predictive models for potential future sightings.
-
-3.  **Day-of-Week Analysis:**
-
-    -   Insights into whether extraterrestrial activities follow a weekly pattern.
-
-4.  **Craft Classifications:**
-
-    -   Categorization of UFO sightings based on craft descriptions.
-
-    -   Identification of common characteristics among reported sightings.
-
 # Conclusion
 
 This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.
-
-```{r}
-#| label: load-pkgs
-#| message: false
-library(tidyverse)
-```
-
-## Dataset
-
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
-
-Make sure to load the data and use inline code for some of this information.
-
-## Questions
-
-Eeshaan Reddy - Here are 2 questions I was able to find form the dataset with some help online.
-
-1.  The Twilight from day_parts_map.csv: Analysis Goal: To investigate whether UFO sightings are correlated with twilight times.
-
-Hypothesis: UFO sightings are more likely to occur during twilight periods due to unique lighting conditions.
-
-Method:
-
--\> Divide the dataset into time intervals corresponding to different twilight phases. -\> Count the number of UFO sightings within each twilight interval. -\> Compare the frequency of sightings across different twilight phases.
-
-In simpler terms, we're checking if UFO sightings happen more often during twilight and if there's a connection between them. We'll split the data based on twilight phases, count sightings for each phase, and then see if there's a pattern using statistical tests.
-
-2.  The Places/Details from places.csv:
-
-Analysis Goal: To investigate if there's a connection between UFO sightings and place and population density.
-
-Hypothesis: UFO sightings are more frequent in densely populated areas due to increased human activity and reporting or does this depend on the place (lat/long).
-
-Method:
-
--\> Merge the UFO sightings dataset with city population data and places details. -\> Use statistical methods like correlation analysis or regression to explore the relationship between population density and UFO sighting frequency.
-
-In simpler terms, we're checking if more UFO sightings happen in places with more people. We'll compare UFO reports with population data from different cities and it details to see if there's a link. Then, we'll use graphs to understand if the number of sightings goes up or down as population density changes and use filters of place details.
-
-## Analysis plan
-
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
