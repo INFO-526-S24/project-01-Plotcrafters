@@ -11,7 +11,45 @@ The fascination with unidentified flying objects (UFOs) has captured the imagina
 
 # Dataset Overview
 
+**Reasons for Choosing the Dataset:**
+
+The dataset under consideration contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
+```
+
+```{r}
+
+# Display basic information about the dataset
+cat("Dataset Information:\n")
+str(ufo_sightings)
+
+# Display summary statistics
+cat("\nSummary Statistics:\n")
+summary(ufo_sightings)
+
+# Display the dimensions of the dataset
+cat("\nDimensions of the Dataset:\n")
+dim(ufo_sightings)
+
+# Display the first few rows of the dataset
+cat("\nFirst Few Rows of the Dataset:\n")
+head(ufo_sightings)
+```
+
 # Questions to Answer
+
+**Question 1: Global Distribution Analysis**
+
+**Plan:** Utilize latitude and longitude data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities. Variables Involved: Latitude, Longitude
+
+**Question 2: Temporal Patterns and Predictions**
+
+**Plan:** Analyze dates and times of UFO sightings to uncover temporal patterns in their arrival. Investigate the duration of UFO stays and discern any recurring patterns or anomalies. Utilize predictive modeling to forecast potential future UFO sightings based on historical patterns. Variables Involved: Date, Time, Duration Variables to be Created: New variables for temporal patterns and duration analysis External Data: None for now, but additional celestial events data may enhance predictive modeling.
 
 # Expected Outcomes
 
@@ -48,7 +86,6 @@ library(tidyverse)
 ```
 
 ## Dataset
-
 
 A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
 
