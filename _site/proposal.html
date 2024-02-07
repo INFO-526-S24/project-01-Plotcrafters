@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project Title - Proposal title</title>
+<title>Project Title - Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,9 +153,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link active" data-scroll-target="#dataset">Dataset</a></li>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview">Dataset Overview</a></li>
+  <li><a href="#questions-to-answer" id="toc-questions-to-answer" class="nav-link" data-scroll-target="#questions-to-answer">Questions to Answer</a></li>
+  <li><a href="#expected-outcomes" id="toc-expected-outcomes" class="nav-link" data-scroll-target="#expected-outcomes">Expected Outcomes</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
   <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -164,8 +171,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Proposal title</h1>
-<p class="subtitle lead">Proposal</p>
+<h1 class="title">Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings</h1>
+<p class="subtitle lead">Decoding the Mysteries: Analyzing Temporal, Spatial, and Descriptive Patterns in Over 80,000 UFO Sightings</p>
 </div>
 
 
@@ -180,6 +187,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<section id="project-overview" class="level1">
+<h1>Project Overview</h1>
+<p>The fascination with unidentified flying objects (UFOs) has captured the imagination of humanity for decades. This project aims to explore a comprehensive dataset comprising over 80,000 records of UFO sightings dating back to 1949. By leveraging the wealth of information provided, including latitude and longitude data, date and time stamps, and detailed descriptions of each sighting, we seek to unravel patterns, trends, and insights regarding UFO activities around the world.</p>
+</section>
+<section id="dataset-overview" class="level1">
+<h1>Dataset Overview</h1>
+</section>
+<section id="questions-to-answer" class="level1">
+<h1>Questions to Answer</h1>
+</section>
+<section id="expected-outcomes" class="level1">
+<h1>Expected Outcomes</h1>
+<ol type="1">
+<li><p><strong>Spatial Insights:</strong></p>
+<ul>
+<li><p>Visualization of global UFO sighting distribution.</p></li>
+<li><p>Identification of regions with high UFO activity.</p></li>
+</ul></li>
+<li><p><strong>Temporal Patterns:</strong></p>
+<ul>
+<li><p>Uncovering patterns in the timing and duration of UFO sightings.</p></li>
+<li><p>Predictive models for potential future sightings.</p></li>
+</ul></li>
+<li><p><strong>Day-of-Week Analysis:</strong></p>
+<ul>
+<li>Insights into whether extraterrestrial activities follow a weekly pattern.</li>
+</ul></li>
+<li><p><strong>Craft Classifications:</strong></p>
+<ul>
+<li><p>Categorization of UFO sightings based on craft descriptions.</p></li>
+<li><p>Identification of common characteristics among reported sightings.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -190,7 +234,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p>The two questions you want to answer.</p>
+<p>Eeshaan Reddy - Here are 2 questions I was able to find form the dataset with some help online.</p>
+<ol type="1">
+<li>The Twilight from day_parts_map.csv: Analysis Goal: To investigate whether UFO sightings are correlated with twilight times.</li>
+</ol>
+<p>Hypothesis: UFO sightings are more likely to occur during twilight periods due to unique lighting conditions.</p>
+<p>Method:</p>
+<p>-&gt; Divide the dataset into time intervals corresponding to different twilight phases. -&gt; Count the number of UFO sightings within each twilight interval. -&gt; Compare the frequency of sightings across different twilight phases.</p>
+<p>In simpler terms, we’re checking if UFO sightings happen more often during twilight and if there’s a connection between them. We’ll split the data based on twilight phases, count sightings for each phase, and then see if there’s a pattern using statistical tests.</p>
+<ol start="2" type="1">
+<li>The Places/Details from places.csv:</li>
+</ol>
+<p>Analysis Goal: To investigate if there’s a connection between UFO sightings and place and population density.</p>
+<p>Hypothesis: UFO sightings are more frequent in densely populated areas due to increased human activity and reporting or does this depend on the place (lat/long).</p>
+<p>Method:</p>
+<p>-&gt; Merge the UFO sightings dataset with city population data and places details. -&gt; Use statistical methods like correlation analysis or regression to explore the relationship between population density and UFO sighting frequency.</p>
+<p>In simpler terms, we’re checking if more UFO sightings happen in places with more people. We’ll compare UFO reports with population data from different cities and it details to see if there’s a link. Then, we’ll use graphs to understand if the number of sightings goes up or down as population density changes and use filters of place details.</p>
 </section>
 <section id="analysis-plan" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h2>
@@ -199,6 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
