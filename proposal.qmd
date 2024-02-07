@@ -3,6 +3,9 @@ title: "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Si
 subtitle: "Decoding the Mysteries: Analyzing Temporal, Spatial, and Descriptive Patterns in Over 80,000 UFO Sightings"
 format: html
 editor: visual
+execute:
+  echo: false
+  warning: false
 ---
 
 # Project Overview
@@ -16,6 +19,7 @@ The fascination with unidentified flying objects (UFOs) has captured the imagina
 The dataset under consideration contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.
 
 ```{r}
+
 # Load necessary libraries
 library(tidyverse)
 

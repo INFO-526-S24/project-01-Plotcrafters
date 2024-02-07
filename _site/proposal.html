@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -193,9 +159,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dataset-overview" class="level1">
 <h1>Dataset Overview</h1>
+<p><strong>Reasons for Choosing the Dataset:</strong></p>
+<p>The dataset under consideration contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Dataset Information:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [80,332 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ date_time                 : chr [1:80332] "10/10/1949 20:30" "10/10/1949 21:00" "10/10/1955 17:00" "10/10/1956 21:00" ...
+ $ city_area                 : chr [1:80332] "san marcos" "lackland afb" "chester (uk/england)" "edna" ...
+ $ state                     : chr [1:80332] "tx" "tx" NA "tx" ...
+ $ country                   : chr [1:80332] "us" NA "gb" "us" ...
+ $ ufo_shape                 : chr [1:80332] "cylinder" "light" "circle" "circle" ...
+ $ encounter_length          : num [1:80332] 2700 7200 20 20 900 300 180 1200 180 120 ...
+ $ described_encounter_length: chr [1:80332] "45 minutes" "1-2 hrs" "20 seconds" "1/2 hour" ...
+ $ description               : chr [1:80332] "This event took place in early fall around 1949-50. It occurred after a Boy Scout meeting in the Baptist Church"| __truncated__ "1949 Lackland AFB&amp;#44 TX.  Lights racing across the sky &amp;amp; making 90 degree turns on a dime." "Green/Orange circular disc over Chester&amp;#44 England" "My older brother and twin sister were leaving the only Edna theater at about 9 PM&amp;#44...we had our bikes and I "| __truncated__ ...
+ $ date_documented           : chr [1:80332] "4/27/2004" "12/16/2005" "1/21/2008" "1/17/2004" ...
+ $ latitude                  : num [1:80332] 29.9 29.4 53.2 29 21.4 ...
+ $ longitude                 : num [1:80332] -97.94 -98.58 -2.92 -96.65 -157.8 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   date_time = col_character(),
+  ..   city_area = col_character(),
+  ..   state = col_character(),
+  ..   country = col_character(),
+  ..   ufo_shape = col_character(),
+  ..   encounter_length = col_double(),
+  ..   described_encounter_length = col_character(),
+  ..   description = col_character(),
+  ..   date_documented = col_character(),
+  ..   latitude = col_double(),
+  ..   longitude = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Summary Statistics:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  date_time          city_area            state             country         
+ Length:80332       Length:80332       Length:80332       Length:80332      
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+  ufo_shape         encounter_length   described_encounter_length
+ Length:80332       Min.   :       0   Length:80332              
+ Class :character   1st Qu.:      30   Class :character          
+ Mode  :character   Median :     180   Mode  :character          
+                    Mean   :    9017                             
+                    3rd Qu.:     600                             
+                    Max.   :97836000                             
+                    NA's   :3                                    
+ description        date_documented       latitude        longitude      
+ Length:80332       Length:80332       Min.   :-82.86   Min.   :-176.66  
+ Class :character   Class :character   1st Qu.: 34.13   1st Qu.:-112.07  
+ Mode  :character   Mode  :character   Median : 39.41   Median : -87.90  
+                                       Mean   : 38.12   Mean   : -86.77  
+                                       3rd Qu.: 42.79   3rd Qu.: -78.75  
+                                       Max.   : 72.70   Max.   : 178.44  
+                                       NA's   :1                         </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Dimensions of the Dataset:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 80332    11</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+First Few Rows of the Dataset:</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+  date_time        city_area            state country ufo_shape encounter_length
+  &lt;chr&gt;            &lt;chr&gt;                &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;
+1 10/10/1949 20:30 san marcos           tx    us      cylinder              2700
+2 10/10/1949 21:00 lackland afb         tx    &lt;NA&gt;    light                 7200
+3 10/10/1955 17:00 chester (uk/england) &lt;NA&gt;  gb      circle                  20
+4 10/10/1956 21:00 edna                 tx    us      circle                  20
+5 10/10/1960 20:00 kaneohe              hi    us      light                  900
+6 10/10/1961 19:00 bristol              tn    us      sphere                 300
+# ℹ 5 more variables: described_encounter_length &lt;chr&gt;, description &lt;chr&gt;,
+#   date_documented &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;</code></pre>
+</div>
+</div>
 </section>
 <section id="questions-to-answer" class="level1">
 <h1>Questions to Answer</h1>
+<p><strong>Question 1: Global Distribution Analysis</strong></p>
+<p><strong>Plan:</strong> Utilize latitude and longitude data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities. Variables Involved: Latitude, Longitude</p>
+<p><strong>Question 2: Temporal Patterns and Predictions</strong></p>
+<p><strong>Plan:</strong> Analyze dates and times of UFO sightings to uncover temporal patterns in their arrival. Investigate the duration of UFO stays and discern any recurring patterns or anomalies. Utilize predictive modeling to forecast potential future UFO sightings based on historical patterns. Variables Involved: Date, Time, Duration Variables to be Created: New variables for temporal patterns and duration analysis External Data: None for now, but additional celestial events data may enhance predictive&nbsp;modeling.</p>
 </section>
 <section id="expected-outcomes" class="level1">
 <h1>Expected Outcomes</h1>
@@ -224,9 +284,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
 <p>This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="dataset" class="level2">
 <h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <p>A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.</p>
