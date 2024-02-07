@@ -10,7 +10,6 @@ execute:
   echo: false
   warning: false
   message: false
-  
 ---
 
 # Project Overview
@@ -54,9 +53,9 @@ head(ufo_sightings)
 
 **Question 1: Global Distribution Analysis**
 
-**Plan:** Utilize latitude and longitude data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
+**Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
 
-**Variables Involved:** Latitude, Longitude
+**Variables Involved:** Latitude, Longitude & State
 
 **Question 2: Temporal Patterns and Predictions**
 
