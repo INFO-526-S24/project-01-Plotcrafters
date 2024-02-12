@@ -51,17 +51,17 @@ head(ufo_sightings)
 
 # Questions to Answer
 
-**Question 1: Global Distribution Analysis - where are the UFO sightings?**
+**Question 1: Global Distribution Analysis**
 
 **Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
 
 **Variables Involved:** Latitude, Longitude & State
 
-**Question 2: Temporal Trends by Time of Day - when do we have UFO sightings?**
+**Question 2: Temporal Trends by Time of Day**
 
 **Plan:** Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.
 
-**Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable).
+**Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable)
 
 # Expected Outcomes
 
