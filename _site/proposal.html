@@ -4716,7 +4716,7 @@ vertical-align: -.125em;
 <p>The dataset under consideration comes originally from <a href="http://www.nuforc.org/">NUFORC</a> contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Dataset Information:</code></pre>
+<pre><code>========== Dataset Structure ==========</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>spc_tbl_ [80,332 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
@@ -4748,45 +4748,35 @@ vertical-align: -.125em;
  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt; </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Summary Statistics:</code></pre>
+<pre><code>========== Dataset Overview ==========</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  date_time          city_area            state             country         
- Length:80332       Length:80332       Length:80332       Length:80332      
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-  ufo_shape         encounter_length   described_encounter_length
- Length:80332       Min.   :       0   Length:80332              
- Class :character   1st Qu.:      30   Class :character          
- Mode  :character   Median :     180   Mode  :character          
-                    Mean   :    9017                             
-                    3rd Qu.:     600                             
-                    Max.   :97836000                             
-                    NA&#39;s   :3                                    
- description        date_documented       latitude        longitude      
- Length:80332       Length:80332       Min.   :-82.86   Min.   :-176.66  
- Class :character   Class :character   1st Qu.: 34.13   1st Qu.:-112.07  
- Mode  :character   Mode  :character   Median : 39.41   Median : -87.90  
-                                       Mean   : 38.12   Mean   : -86.77  
-                                       3rd Qu.: 42.79   3rd Qu.: -78.75  
-                                       Max.   : 72.70   Max.   : 178.44  
-                                       NA&#39;s   :1                         </code></pre>
+<pre><code># A tibble: 11 × 6
+   variables        types missing_count missing_percent unique_count unique_rate
+   &lt;chr&gt;            &lt;chr&gt;         &lt;int&gt;           &lt;dbl&gt;        &lt;int&gt;       &lt;dbl&gt;
+ 1 date_time        char…             0         0              69586   0.866    
+ 2 city_area        char…             0         0              19900   0.248    
+ 3 state            char…          5797         7.22              68   0.000846 
+ 4 country          char…          9670        12.0                6   0.0000747
+ 5 ufo_shape        char…          1932         2.41              30   0.000373 
+ 6 encounter_length nume…             3         0.00373          534   0.00665  
+ 7 described_encou… char…             0         0               8349   0.104    
+ 8 description      char…            15         0.0187         79997   0.996    
+ 9 date_documented  char…             0         0                317   0.00395  
+10 latitude         nume…             1         0.00124        18421   0.229    
+11 longitude        nume…             0         0              19455   0.242    </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Dimensions of the Dataset:</code></pre>
+<pre><code>========== Dataset Dimensions ==========</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 80332    11</code></pre>
+<pre><code>Number of rows: 80332 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-First Few Rows of the Dataset:</code></pre>
+<pre><code>Number of columns: 11 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>========== First Few Rows of the Dataset ==========</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 11

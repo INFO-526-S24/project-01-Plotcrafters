@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
+    "section": "",
+    "text": "Project Overview\nThe fascination with unidentified flying objects (UFOs) has captured the imagination of humanity for decades. This project aims to explore a comprehensive dataset comprising over 80,000 records of UFO sightings dating back to 1949. By leveraging the wealth of information provided, including latitude and longitude data, date and time stamps, and detailed descriptions of each sighting, we seek to unravel patterns, trends, and insights regarding UFO activities around the world.\n\n\nDataset Overview\nReasons for Choosing the Dataset:\nThe dataset under consideration comes originally from NUFORC contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.\n\n\n========== Dataset Structure ==========\n\n\nspc_tbl_ [80,332 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ date_time                 : chr [1:80332] \"10/10/1949 20:30\" \"10/10/1949 21:00\" \"10/10/1955 17:00\" \"10/10/1956 21:00\" ...\n $ city_area                 : chr [1:80332] \"san marcos\" \"lackland afb\" \"chester (uk/england)\" \"edna\" ...\n $ state                     : chr [1:80332] \"tx\" \"tx\" NA \"tx\" ...\n $ country                   : chr [1:80332] \"us\" NA \"gb\" \"us\" ...\n $ ufo_shape                 : chr [1:80332] \"cylinder\" \"light\" \"circle\" \"circle\" ...\n $ encounter_length          : num [1:80332] 2700 7200 20 20 900 300 180 1200 180 120 ...\n $ described_encounter_length: chr [1:80332] \"45 minutes\" \"1-2 hrs\" \"20 seconds\" \"1/2 hour\" ...\n $ description               : chr [1:80332] \"This event took place in early fall around 1949-50. It occurred after a Boy Scout meeting in the Baptist Church\"| __truncated__ \"1949 Lackland AFB&#44 TX.  Lights racing across the sky &amp; making 90 degree turns on a dime.\" \"Green/Orange circular disc over Chester&#44 England\" \"My older brother and twin sister were leaving the only Edna theater at about 9 PM&#44...we had our bikes and I \"| __truncated__ ...\n $ date_documented           : chr [1:80332] \"4/27/2004\" \"12/16/2005\" \"1/21/2008\" \"1/17/2004\" ...\n $ latitude                  : num [1:80332] 29.9 29.4 53.2 29 21.4 ...\n $ longitude                 : num [1:80332] -97.94 -98.58 -2.92 -96.65 -157.8 ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   date_time = col_character(),\n  ..   city_area = col_character(),\n  ..   state = col_character(),\n  ..   country = col_character(),\n  ..   ufo_shape = col_character(),\n  ..   encounter_length = col_double(),\n  ..   described_encounter_length = col_character(),\n  ..   description = col_character(),\n  ..   date_documented = col_character(),\n  ..   latitude = col_double(),\n  ..   longitude = col_double()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\n========== Dataset Overview ==========\n\n\n# A tibble: 11 × 6\n   variables        types missing_count missing_percent unique_count unique_rate\n   &lt;chr&gt;            &lt;chr&gt;         &lt;int&gt;           &lt;dbl&gt;        &lt;int&gt;       &lt;dbl&gt;\n 1 date_time        char…             0         0              69586   0.866    \n 2 city_area        char…             0         0              19900   0.248    \n 3 state            char…          5797         7.22              68   0.000846 \n 4 country          char…          9670        12.0                6   0.0000747\n 5 ufo_shape        char…          1932         2.41              30   0.000373 \n 6 encounter_length nume…             3         0.00373          534   0.00665  \n 7 described_encou… char…             0         0               8349   0.104    \n 8 description      char…            15         0.0187         79997   0.996    \n 9 date_documented  char…             0         0                317   0.00395  \n10 latitude         nume…             1         0.00124        18421   0.229    \n11 longitude        nume…             0         0              19455   0.242    \n\n\n========== Dataset Dimensions ==========\n\n\nNumber of rows: 80332 \n\n\nNumber of columns: 11 \n\n\n========== First Few Rows of the Dataset ==========\n\n\n# A tibble: 6 × 11\n  date_time        city_area            state country ufo_shape encounter_length\n  &lt;chr&gt;            &lt;chr&gt;                &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;\n1 10/10/1949 20:30 san marcos           tx    us      cylinder              2700\n2 10/10/1949 21:00 lackland afb         tx    &lt;NA&gt;    light                 7200\n3 10/10/1955 17:00 chester (uk/england) &lt;NA&gt;  gb      circle                  20\n4 10/10/1956 21:00 edna                 tx    us      circle                  20\n5 10/10/1960 20:00 kaneohe              hi    us      light                  900\n6 10/10/1961 19:00 bristol              tn    us      sphere                 300\n# ℹ 5 more variables: described_encounter_length &lt;chr&gt;, description &lt;chr&gt;,\n#   date_documented &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;\n\n\n\n\nQuestions to Answer\nQuestion 1: Global Distribution Analysis\nPlan: Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.\nVariables Involved: Latitude, Longitude & State\nQuestion 2: Temporal Trends by Time of Day\nPlan: Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.\nVariables Involved: Time of Day (New variable for time of day binning to be build using date_time variable)\n\n\nExpected Outcomes\n\nSpatial Insights:\n\nVisualization of global UFO sighting distribution.\nIdentification of regions with high UFO activity.\n\nTemporal Patterns:\n\nUncovering patterns in the timing and duration of UFO sightings.\n\n\n\n\nConclusion\nThis project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Project title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
     "objectID": "data/README 2.html",
     "href": "data/README 2.html",
     "title": "Data",
@@ -21,46 +49,39 @@
     "text": "Data Types:\n\nColumn: data type"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
-  },
-  {
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
     "title": "Project title",
-    "section": "",
-    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "section": "Quarto",
+    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
     "title": "Project title",
-    "section": "",
-    "text": "You can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
+    "section": "Layouts",
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
     "title": "Project title",
-    "section": "",
-    "text": "# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "section": "Code",
+    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "presentation.html#plots",
     "href": "presentation.html#plots",
     "title": "Project title",
-    "section": "",
-    "text": "Warning: Removed 2 rows containing missing values (`geom_point()`)."
+    "section": "Plots",
+    "text": "Plots"
   },
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
     "title": "Project title",
-    "section": "",
-    "text": "Some text\ngoes here"
+    "section": "Plot and text",
+    "text": "Plot and text\n\n\n\nSome text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
@@ -74,7 +95,7 @@
     "href": "presentation.html#images",
     "title": "Project title",
     "section": "Images",
-    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -89,61 +110,5 @@
     "title": "Project title",
     "section": "Feeling adventurous?",
     "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Project title",
-    "section": "",
-    "text": "Add project abstract here."
-  },
-  {
-    "objectID": "index.html#abstract",
-    "href": "index.html#abstract",
-    "title": "Project title",
-    "section": "",
-    "text": "Add project abstract here."
-  },
-  {
-    "objectID": "proposal.html",
-    "href": "proposal.html",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "",
-    "text": "Project Overview\nThe fascination with unidentified flying objects (UFOs) has captured the imagination of humanity for decades. This project aims to explore a comprehensive dataset comprising over 80,000 records of UFO sightings dating back to 1949. By leveraging the wealth of information provided, including latitude and longitude data, date and time stamps, and detailed descriptions of each sighting, we seek to unravel patterns, trends, and insights regarding UFO activities around the world.\n\n\nDataset Overview\nReasons for Choosing the Dataset:\nThe dataset under consideration comes originally from NUFORC contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.\n\n\nDataset Information:\n\n\nspc_tbl_ [80,332 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ date_time                 : chr [1:80332] \"10/10/1949 20:30\" \"10/10/1949 21:00\" \"10/10/1955 17:00\" \"10/10/1956 21:00\" ...\n $ city_area                 : chr [1:80332] \"san marcos\" \"lackland afb\" \"chester (uk/england)\" \"edna\" ...\n $ state                     : chr [1:80332] \"tx\" \"tx\" NA \"tx\" ...\n $ country                   : chr [1:80332] \"us\" NA \"gb\" \"us\" ...\n $ ufo_shape                 : chr [1:80332] \"cylinder\" \"light\" \"circle\" \"circle\" ...\n $ encounter_length          : num [1:80332] 2700 7200 20 20 900 300 180 1200 180 120 ...\n $ described_encounter_length: chr [1:80332] \"45 minutes\" \"1-2 hrs\" \"20 seconds\" \"1/2 hour\" ...\n $ description               : chr [1:80332] \"This event took place in early fall around 1949-50. It occurred after a Boy Scout meeting in the Baptist Church\"| __truncated__ \"1949 Lackland AFB&#44 TX.  Lights racing across the sky &amp; making 90 degree turns on a dime.\" \"Green/Orange circular disc over Chester&#44 England\" \"My older brother and twin sister were leaving the only Edna theater at about 9 PM&#44...we had our bikes and I \"| __truncated__ ...\n $ date_documented           : chr [1:80332] \"4/27/2004\" \"12/16/2005\" \"1/21/2008\" \"1/17/2004\" ...\n $ latitude                  : num [1:80332] 29.9 29.4 53.2 29 21.4 ...\n $ longitude                 : num [1:80332] -97.94 -98.58 -2.92 -96.65 -157.8 ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   date_time = col_character(),\n  ..   city_area = col_character(),\n  ..   state = col_character(),\n  ..   country = col_character(),\n  ..   ufo_shape = col_character(),\n  ..   encounter_length = col_double(),\n  ..   described_encounter_length = col_character(),\n  ..   description = col_character(),\n  ..   date_documented = col_character(),\n  ..   latitude = col_double(),\n  ..   longitude = col_double()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\n\nSummary Statistics:\n\n\n  date_time          city_area            state             country         \n Length:80332       Length:80332       Length:80332       Length:80332      \n Class :character   Class :character   Class :character   Class :character  \n Mode  :character   Mode  :character   Mode  :character   Mode  :character  \n                                                                            \n                                                                            \n                                                                            \n                                                                            \n  ufo_shape         encounter_length   described_encounter_length\n Length:80332       Min.   :       0   Length:80332              \n Class :character   1st Qu.:      30   Class :character          \n Mode  :character   Median :     180   Mode  :character          \n                    Mean   :    9017                             \n                    3rd Qu.:     600                             \n                    Max.   :97836000                             \n                    NA's   :3                                    \n description        date_documented       latitude        longitude      \n Length:80332       Length:80332       Min.   :-82.86   Min.   :-176.66  \n Class :character   Class :character   1st Qu.: 34.13   1st Qu.:-112.07  \n Mode  :character   Mode  :character   Median : 39.41   Median : -87.90  \n                                       Mean   : 38.12   Mean   : -86.77  \n                                       3rd Qu.: 42.79   3rd Qu.: -78.75  \n                                       Max.   : 72.70   Max.   : 178.44  \n                                       NA's   :1                         \n\n\n\nDimensions of the Dataset:\n\n\n[1] 80332    11\n\n\n\nFirst Few Rows of the Dataset:\n\n\n# A tibble: 6 × 11\n  date_time        city_area            state country ufo_shape encounter_length\n  &lt;chr&gt;            &lt;chr&gt;                &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;                &lt;dbl&gt;\n1 10/10/1949 20:30 san marcos           tx    us      cylinder              2700\n2 10/10/1949 21:00 lackland afb         tx    &lt;NA&gt;    light                 7200\n3 10/10/1955 17:00 chester (uk/england) &lt;NA&gt;  gb      circle                  20\n4 10/10/1956 21:00 edna                 tx    us      circle                  20\n5 10/10/1960 20:00 kaneohe              hi    us      light                  900\n6 10/10/1961 19:00 bristol              tn    us      sphere                 300\n# ℹ 5 more variables: described_encounter_length &lt;chr&gt;, description &lt;chr&gt;,\n#   date_documented &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;\n\n\n\n\nQuestions to Answer\nQuestion 1: Global Distribution Analysis\nPlan: Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.\nVariables Involved: Latitude, Longitude & State\nQuestion 2: Temporal Trends by Time of Day\nPlan: Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.\nVariables Involved: Time of Day (New variable for time of day binning to be build using date_time variable)\n\n\nExpected Outcomes\n\nSpatial Insights:\n\nVisualization of global UFO sighting distribution.\nIdentification of regions with high UFO activity.\n\nTemporal Patterns:\n\nUncovering patterns in the timing and duration of UFO sightings.\n\n\n\n\nConclusion\nThis project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown."
-  },
-  {
-    "objectID": "proposal.html#dataset",
-    "href": "proposal.html#dataset",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Dataset",
-    "text": "Dataset\nA brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.\nMake sure to load the data and use inline code for some of this information."
-  },
-  {
-    "objectID": "proposal.html#questions",
-    "href": "proposal.html#questions",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Questions",
-    "text": "Questions\nEeshaan Reddy - Here are 2 questions I was able to find form the dataset with some help online.\n\nThe Twilight from day_parts_map.csv: Analysis Goal: To investigate whether UFO sightings are correlated with twilight times.\n\nHypothesis: UFO sightings are more likely to occur during twilight periods due to unique lighting conditions.\nMethod:\n-&gt; Divide the dataset into time intervals corresponding to different twilight phases. -&gt; Count the number of UFO sightings within each twilight interval. -&gt; Compare the frequency of sightings across different twilight phases.\nIn simpler terms, we’re checking if UFO sightings happen more often during twilight and if there’s a connection between them. We’ll split the data based on twilight phases, count sightings for each phase, and then see if there’s a pattern using statistical tests.\n\nThe Places/Details from places.csv:\n\nAnalysis Goal: To investigate if there’s a connection between UFO sightings and place and population density.\nHypothesis: UFO sightings are more frequent in densely populated areas due to increased human activity and reporting or does this depend on the place (lat/long).\nMethod:\n-&gt; Merge the UFO sightings dataset with city population data and places details. -&gt; Use statistical methods like correlation analysis or regression to explore the relationship between population density and UFO sighting frequency.\nIn simpler terms, we’re checking if more UFO sightings happen in places with more people. We’ll compare UFO reports with population data from different cities and it details to see if there’s a link. Then, we’ll use graphs to understand if the number of sightings goes up or down as population density changes and use filters of place details."
-  },
-  {
-    "objectID": "proposal.html#analysis-plan",
-    "href": "proposal.html#analysis-plan",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Analysis plan",
-    "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any)."
-  },
-  {
-    "objectID": "presentation.html",
-    "href": "presentation.html",
-    "title": "Project title",
-    "section": "",
-    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\n\n\n\nWarning: Removed 2 rows containing missing values (`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
-  },
-  {
-    "objectID": "presentation.html#footnotes",
-    "href": "presentation.html#footnotes",
-    "title": "Project title",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAnd add footnotes↩︎"
   }
 ]

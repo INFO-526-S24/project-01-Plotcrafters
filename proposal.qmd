@@ -27,25 +27,42 @@ The dataset under consideration comes originally from [NUFORC](http://www.nufor
 # Load necessary libraries
 library(tidyverse)
 
-ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 ```
 
 ```{r}
 
 # Display basic information about the dataset
-cat("Dataset Information:\n")
+#cat("Dataset Information:\n")
+cat("========== Dataset Structure ==========\n")
 str(ufo_sightings)
 
 # Display summary statistics
-cat("\nSummary Statistics:\n")
-summary(ufo_sightings)
+#cat("\nSummary Statistics:\n")
+#summary(ufo_sightings) --- Dropped Summary upon receiving feedback
+
+#Installing and Loading the dlookr package
+
+library(dlookr)
+
+# Showing the aspects of the columns of dataset using dlookr package
+overview <- diagnose(ufo_sightings)
+
+# Print the overview
+cat("========== Dataset Overview ==========\n")
+
+print(overview)
 
 # Display the dimensions of the dataset
-cat("\nDimensions of the Dataset:\n")
-dim(ufo_sightings)
+#cat("\nDimensions of the Dataset:\n")
+cat("========== Dataset Dimensions ==========\n")
+#dim(ufo_sightings)
+cat("Number of rows:", nrow(ufo_sightings), "\n")
+cat("Number of columns:", ncol(ufo_sightings), "\n")
 
 # Display the first few rows of the dataset
-cat("\nFirst Few Rows of the Dataset:\n")
+#cat("\nFirst Few Rows of the Dataset:\n")
+cat("========== First Few Rows of the Dataset ==========\n")
 head(ufo_sightings)
 ```
 
