@@ -66,27 +66,36 @@ cat("========== First Few Rows of the Dataset ==========\n")
 head(ufo_sightings)
 ```
 
-## Questions 
+# Questions to Answer
 
-**Question 1: Global Distribution Analysis**
-**Question 2: Temporal Trends by Time of Day**
+**Question 1:**
 
-## Analysis plan
-A plan for answering each of the questions including the variables involved, variables to be created , external data to be merged in (if any).
+What are the Numbers of UFO sightings Globally ? Are there specific regions where sightings occur more frequently ? Correlating Population Density to the amount of Sighting to Identify if there are any region more prone to UFO activities
 
+**Question 2:**
 
-**Variables Involved to answer Question1:** 
-latitude- The latitude for this city, from geonames.org
-longitude- The longitude for this city, from geonames.org
-state-The state, province, or similar division of the sighting.
+Is there any specific time of the day when UFO sighting are more prevalent?
 
-No new variables are required to answer question1.
+# Analysis plan
+## **Analysis Plan for Q1 :**
 
-** Plan for answering question1 **
-1.Data Cleaning -Ensure latitude, longitude and state columns are clean and contain no missing or outlier values.
-2.Visualization - Creating a global map of UFO Sightings using ggplot.
-3.Identify hotspot- Analyze the map to observe geographical hostpots with high UFO activity and ranking the regions with high UFO Sightings using descriptive statistics.
-4.Regional Trends - Explore whether there are specific patterns or trends associated with certain states or countries.
+**Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
+
+We will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.
+
+**Type of Plot:** Heatmap or Choropleth Map
+
+**Rationale:** Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.
+
+**Variables Involved:** Latitude, Longitude & State
+
+### **Additional Statistical Approaches for Q1 :**
+
+**Descriptive Statistics:**Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.
+
+**Geospatial Clustering:**Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.
+
+**Spatial Autocorrelation:**Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran's I index.
 
 **Variables Involved to answer Question2:**
 Time of Day -New variable for time of day binning to be build using date_time variable.
