@@ -66,19 +66,36 @@ cat("========== First Few Rows of the Dataset ==========\n")
 head(ufo_sightings)
 ```
 
-# Questions to Answer
+## Questions 
 
 **Question 1: Global Distribution Analysis**
-
-**Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
-
-**Variables Involved:** Latitude, Longitude & State
-
 **Question 2: Temporal Trends by Time of Day**
 
-**Plan:** Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.
+## Analysis plan
+A plan for answering each of the questions including the variables involved, variables to be created , external data to be merged in (if any).
 
-**Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable)
+
+**Variables Involved to answer Question1:** 
+latitude- The latitude for this city, from geonames.org
+longitude- The longitude for this city, from geonames.org
+state-The state, province, or similar division of the sighting.
+
+No new variables are required to answer question1.
+
+** Plan for answering question1 **
+1.Data Cleaning -Ensure latitude, longitude and state columns are clean and contain no missing or outlier values.
+2.Visualization - Creating a global map of UFO Sightings using ggplot.
+3.Identify hotspot- Analyze the map to observe geographical hostpots with high UFO activity and ranking the regions with high UFO Sightings using descriptive statistics.
+4.Regional Trends - Explore whether there are specific patterns or trends associated with certain states or countries.
+
+**Variables Involved to answer Question2:**
+Time of Day -New variable for time of day binning to be build using date_time variable.
+
+**Plan for answering question2 **
+1.Data Preparation- Converting the existing data and time stamps into format suitable for analysis and create new variable that indicates time of day.
+2.Visualization - Creating a time series plot to visualize the overall trend of UFO sightings over time and generating bar graph to represent distribution of sightings across different times of day.
+3.Temporal patterns- Conduct statistical analysis to identify if there are significant differences in sighting frequencies during specific times of the day.
+4.Interpretation- Consider if there are correlations between specific times of the day and the frequency or characteristics of sightings.
 
 # Expected Outcomes
 
@@ -95,3 +112,10 @@ head(ufo_sightings)
 # Conclusion
 
 This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.
+
+## References
+
+1. Title: UFO Sightings Redux
+   Author: [jonthegeek](https://github.com/jonthegeek)
+   Date: 2023-06-20
+   Link: "https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-06-20"
