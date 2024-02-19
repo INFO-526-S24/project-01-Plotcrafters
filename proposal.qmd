@@ -70,7 +70,7 @@ head(ufo_sightings)
 
 **Question 1:**
 
-What are the Numbers of UFO sightings Globally ? Are there specific regions where sightings occur more frequently ?
+How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
 
 **Question 2:**
 
