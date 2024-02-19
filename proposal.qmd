@@ -97,14 +97,37 @@ We will emphasize this correlation in our presentation, dedicating a section to 
 
 **Spatial Autocorrelation:**Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran's I index.
 
-**Variables Involved to answer Question2:**
-Time of Day -New variable for time of day binning to be build using date_time variable.
+## **Analysis Plan for Q2 :**
 
-**Plan for answering question2 **
-1.Data Preparation- Converting the existing data and time stamps into format suitable for analysis and create new variable that indicates time of day.
-2.Visualization - Creating a time series plot to visualize the overall trend of UFO sightings over time and generating bar graph to represent distribution of sightings across different times of day.
-3.Temporal patterns- Conduct statistical analysis to identify if there are significant differences in sighting frequencies during specific times of the day.
-4.Interpretation- Consider if there are correlations between specific times of the day and the frequency or characteristics of sightings.
+**Plan:** R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.
+
+**Type of Plot:** Line Plot or Bar Chart
+
+**Rationale:** A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.
+
+**Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.
+
+Morning:
+
+Start time: 6:00 AM End time: 12:00 PM (noon) Afternoon:
+
+Start time: 12:00 PM (noon) End time: 6:00 PM Evening:
+
+Start time: 6:00 PM End time: 10:00 PM Night:
+
+Start time: 10:00 PM End time: 6:00 AM (next day)
+
+### **Additional Statistical Approaches for Q2 :**
+
+•Density plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.
+
+•Conduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night).
+
+
+
+
+
+
 
 # Expected Outcomes
 
