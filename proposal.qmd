@@ -173,3 +173,12 @@ Start time: 10:00 PM End time: 5:59 AM (next day)
 This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.
 
 ## Additional Points :
+
+# Timeline
+
+| Serial No. |                           Tasks                            |                    Responsibility                     | Expected Time of Completion |
+|:-----:|:-----------------------------:|:----------------:|:--------------:|
+|     1      |                       Data Wrangling                       |                Tushar, Ajay & Eeshaan                 |         26th Feb'24         |
+|     2      |                   Analysis of Question 1                   |                   Ajay & Maheedhar                    |        4th March'24         |
+|     3      |                   Analysis of Question 2                   |                    Ajay & Nandini                     |        8th March'24         |
+|     4      | Finalizing Write Up, Presentation Slides & Project Website | Alexandar, Tushar, Ajay, Eeshaan, Nandini & Maheedhar |        11th March'24        |
