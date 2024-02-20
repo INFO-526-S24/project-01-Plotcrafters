@@ -116,35 +116,9 @@ Is there any specific time of the day when UFO sighting are more prevalent?
 
 ## Data Wrangling :
 
-To prepare the dataset for analysis, several steps will be undertaken:
-
-1.  Data Cleaning:
-
-Use functions like na.omit() to handle missing data.Employ lubridate for standardizing date and time formats.
-
-2.  Feature Engineering:
-
-Utilize dplyr for creating a new variable representing the time of day by binning the existing date and time variable.
-
-3. Filtering and Subsetting:
-
-Leverage dplyr to remove irrelevant columns and subset the data based on the desired time range.
-
-4. Geocoding:
-
-If necessary, use packages like ggmap for geocoding to convert location names into latitude and longitude coordinates.
-
-5. Exploratory Data Analysis (EDA):
-
-Leverage functions like summary() and plot() to perform initial exploratory data analysis, identifying outliers and gaining insights
-
-6. Normalization:
-
-Normalize data if required, especially if there are variations in the reporting of sightings over the years.
-
 ## Analysis Plan for Q1 :
 
-**Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
+**Plan:** We plan to utilize latitude, longitude & State data to visualize the global distribution of UFO sightings, and identify geographical hot-spots and trends to understand if there are regions more prone to UFO activities.
 
 We will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.
 
@@ -156,19 +130,19 @@ We will emphasize this correlation in our presentation, dedicating a section to 
 
 ### Additional Statistical Approaches for Q1 :
 
-**Descriptive Statistics:**Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.
+**Descriptive Statistics:** We will provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This will give us an overall understanding of the distribution of sightings.
 
-**Geospatial Clustering:**Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.
+**Geospatial Clustering:** We will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.
 
-**Spatial Autocorrelation:**Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran's I index.
+**Spatial Autocorrelation:** We will assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran's I index.
 
 ## Analysis Plan for Q2 :
 
 **Plan:** R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.
 
-**Type of Plot:** Line Plot or Bar Chart
+**Type of Plot:** Line Plot or Bar Chart.
 
-**Rationale:** A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.
+**Rationale:** We can use a line plot or bar chart to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.
 
 **Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.
 
@@ -199,6 +173,22 @@ Start time: 10:00 PM End time: 5:59 AM (next day)
 This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.
 
 ## Additional Points :
+
+1.  **Impact on Public Perception:**
+
+    This highlights how the findings of this project can impact public perception and awareness of UFO sightings. The analysis can shed light on the frequency and distribution of sightings, potentially influencing how people perceive these phenomena.
+
+2.  **Scientific Inquiry and Exploration:**
+
+    This emphasizes the importance of using a data-driven approach to explore UFO sightings. This project contributes to scientific inquiry by applying rigorous analysis techniques to historical data, fostering a better understanding of these mysterious occurrences.
+
+3.  **Potential for Further Research:**
+
+    This discusses how the insights gained from this project can serve as a foundation for future research in the field of ufology and related disciplines. The patterns and trends uncovered may spark new questions and avenues for exploration within the scientific community.
+
+4.  **Public Engagement and Education:**
+
+    It highlights the potential for public engagement and education regarding UFO sightings. The project’s findings can be disseminated through various channels, including educational programs, documentaries, and public seminars, to increase awareness and understanding of these phenomena.
 
 # Timeline
 
