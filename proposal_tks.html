@@ -4865,7 +4865,7 @@ border: 0;
 <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./proposal.html" aria-current="page"> 
+    <a class="nav-link" href="./proposal.html"> 
 <span class="menu-text">Proposal</span></a>
   </li>  
   <li class="nav-item">
@@ -4902,23 +4902,22 @@ border: 0;
   <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview">Project Overview</a></li>
   <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview">Dataset Overview</a></li>
   <li><a href="#questions-to-answer" id="toc-questions-to-answer" class="nav-link" data-scroll-target="#questions-to-answer">Questions to Answer</a></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a>
   <ul class="collapse">
-  <li><a href="#data-wrangling-to-prepare-the-dataset-for-analysis-several-steps-will-be-undertaken" id="toc-data-wrangling-to-prepare-the-dataset-for-analysis-several-steps-will-be-undertaken" class="nav-link" data-scroll-target="#data-wrangling-to-prepare-the-dataset-for-analysis-several-steps-will-be-undertaken">Data Wrangling : To prepare the dataset for analysis, several steps will be undertaken:</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling :</a></li>
   <li><a href="#analysis-plan-for-q1" id="toc-analysis-plan-for-q1" class="nav-link" data-scroll-target="#analysis-plan-for-q1">Analysis Plan for Q1 :</a>
   <ul class="collapse">
   <li><a href="#additional-statistical-approaches-for-q1" id="toc-additional-statistical-approaches-for-q1" class="nav-link" data-scroll-target="#additional-statistical-approaches-for-q1">Additional Statistical Approaches for Q1 :</a></li>
   </ul></li>
   <li><a href="#analysis-plan-for-q2" id="toc-analysis-plan-for-q2" class="nav-link" data-scroll-target="#analysis-plan-for-q2">Analysis Plan for Q2 :</a>
   <ul class="collapse">
-  <li><a href="#additional-statistical-approaches-for-q2" id="toc-additional-statistical-approaches-for-q2" class="nav-link" data-scroll-target="#additional-statistical-approaches-for-q2">Additional Statistical Approaches for Q2 :</a></li>
+  <li><a href="#additional-statistical-approaches-q2" id="toc-additional-statistical-approaches-q2" class="nav-link" data-scroll-target="#additional-statistical-approaches-q2">Additional Statistical Approaches Q2 :</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
   <ul class="collapse">
   <li><a href="#additional-points" id="toc-additional-points" class="nav-link" data-scroll-target="#additional-points">Additional Points :</a></li>
   </ul></li>
-  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline">Timeline</a></li>
   </ul>
 </nav>
     </div>
@@ -5074,14 +5073,15 @@ border: 0;
 <section id="questions-to-answer" class="level1">
 <h1>Questions to Answer</h1>
 <p><strong>Question 1:</strong></p>
-<p>How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?</p>
+<p>What are the Numbers of UFO sightings Globally ? Are there specific regions where sightings occur more frequently ?</p>
 <p><strong>Question 2:</strong></p>
 <p>Is there any specific time of the day when UFO sighting are more prevalent?</p>
 </section>
 <section id="analysis-plan" class="level1">
-<h1>Analysis plan</h1>
-<section id="data-wrangling-to-prepare-the-dataset-for-analysis-several-steps-will-be-undertaken" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling-to-prepare-the-dataset-for-analysis-several-steps-will-be-undertaken">Data Wrangling : To prepare the dataset for analysis, several steps will be undertaken:</h2>
+<h1>Analysis Plan</h1>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling :</h2>
+<p>To prepare the dataset for analysis, several steps will be undertaken:</p>
 <ol type="1">
 <li><p><strong>Data Cleaning:</strong></p>
 <ul>
@@ -5112,34 +5112,31 @@ border: 0;
 </section>
 <section id="analysis-plan-for-q1" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan-for-q1">Analysis Plan for Q1 :</h2>
-<p><strong>Plan:</strong> We plan to utilize latitude, longitude &amp; State data to visualize the global distribution of UFO sightings, and identify geographical hot-spots and trends to understand if there are regions more prone to UFO activities.</p>
+<p><strong>Plan:</strong> Utilize latitude, longitude &amp; State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.</p>
 <p>We will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.</p>
 <p><strong>Type of Plot:</strong> Heatmap or Choropleth Map</p>
 <p><strong>Rationale:</strong> Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.</p>
 <p><strong>Variables Involved:</strong> Latitude, Longitude &amp; State</p>
 <section id="additional-statistical-approaches-for-q1" class="level3">
 <h3 class="anchored" data-anchor-id="additional-statistical-approaches-for-q1">Additional Statistical Approaches for Q1 :</h3>
-<p><strong>Descriptive Statistics:</strong> We will provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This will give us an overall understanding of the distribution of sightings.</p>
-<p><strong>Geospatial Clustering:</strong> We will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.</p>
-<p><strong>Spatial Autocorrelation:</strong> We will assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index.</p>
+<p><strong>Descriptive Statistics:</strong>Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.</p>
+<p><strong>Geospatial Clustering:</strong>Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.</p>
+<p><strong>Spatial Autocorrelation:</strong>Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index.</p>
 </section>
 </section>
 <section id="analysis-plan-for-q2" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-plan-for-q2">Analysis Plan for Q2 :</h2>
 <p><strong>Plan:</strong> R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.</p>
-<p><strong>Type of Plot:</strong> Line Plot or Bar Chart.</p>
-<p><strong>Rationale:</strong> We can use a line plot or bar chart to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.</p>
+<p><strong>Type of Plot:</strong> Line Plot or Bar Chart</p>
+<p><strong>Rationale:</strong> A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.</p>
 <p><strong>Variables Involved:</strong> Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.</p>
 <p>Morning:</p>
-<p>Start time: 6:00 AM End time: 12:00 PM (noon)</p>
-<p>Afternoon:</p>
-<p>Start time: 12:00 PM (noon) End time: 6:00 PM</p>
-<p>Evening:</p>
-<p>Start time: 6:00 PM End time: 10:00 PM</p>
-<p>Night:</p>
-<p>Start time: 10:00 PM End time: 5:59 AM (next day)</p>
-<section id="additional-statistical-approaches-for-q2" class="level3">
-<h3 class="anchored" data-anchor-id="additional-statistical-approaches-for-q2">Additional Statistical Approaches for Q2 :</h3>
+<p>Start time: 6:00 AM End time: 12:00 PM (noon) Afternoon:</p>
+<p>Start time: 12:00 PM (noon) End time: 6:00 PM Evening:</p>
+<p>Start time: 6:00 PM End time: 10:00 PM Night:</p>
+<p>Start time: 10:00 PM End time: 6:00 AM (next day)</p>
+<section id="additional-statistical-approaches-q2" class="level3">
+<h3 class="anchored" data-anchor-id="additional-statistical-approaches-q2">Additional Statistical Approaches Q2 :</h3>
 <ul>
 <li><p>Density plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.</p></li>
 <li><p>Conduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night).</p></li>
@@ -5149,67 +5146,30 @@ border: 0;
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
-<p>This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.</p>
-<section id="additional-points" class="level2">
-<h2 class="anchored" data-anchor-id="additional-points">Additional Points :</h2>
+<p>This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena.</p>
+<section id="additional-points" class="level3">
+<h3 class="anchored" data-anchor-id="additional-points">Additional Points :</h3>
 <ol type="1">
 <li><p><strong>Impact on Public Perception:</strong></p>
-<p>This highlights how the findings of this project can impact public perception and awareness of UFO sightings. The analysis can shed light on the frequency and distribution of sightings, potentially influencing how people perceive these phenomena.</p></li>
+<ul>
+<li>It highlights how the findings of this project can impact public perception and awareness of UFO sightings. The analysis can shed light on the frequency and distribution of sightings, potentially influencing how people perceive these phenomena.</li>
+</ul></li>
 <li><p><strong>Scientific Inquiry and Exploration:</strong></p>
-<p>This emphasizes the importance of using a data-driven approach to explore UFO sightings. This project contributes to scientific inquiry by applying rigorous analysis techniques to historical data, fostering a better understanding of these mysterious occurrences.</p></li>
+<ul>
+<li>It emphasize the importance of using a data-driven approach to explore UFO sightings. This project contributes to scientific inquiry by applying rigorous analysis techniques to historical data, fostering a better understanding of these mysterious occurrences.</li>
+</ul></li>
 <li><p><strong>Potential for Further Research:</strong></p>
-<p>This discusses how the insights gained from this project can serve as a foundation for future research in the field of ufology and related disciplines. The patterns and trends uncovered may spark new questions and avenues for exploration within the scientific community.</p></li>
+<ul>
+<li>It discusses how the insights gained from this project can serve as a foundation for future research in the field of ufology and related disciplines. The patterns and trends uncovered may spark new questions and avenues for exploration within the scientific community.</li>
+</ul></li>
 <li><p><strong>Public Engagement and Education:</strong></p>
-<p>It highlights the potential for public engagement and education regarding UFO sightings. The project’s findings can be disseminated through various channels, including educational programs, documentaries, and public seminars, to increase awareness and understanding of these phenomena.</p></li>
+<ul>
+<li>It highlights the potential for public engagement and education regarding UFO sightings. The project’s findings can be disseminated through various channels, including educational programs, documentaries, and public seminars, to increase awareness and understanding of these phenomena.</li>
+</ul></li>
 </ol>
-</section>
-</section>
-<section id="timeline" class="level1">
-<h1>Timeline</h1>
-<table class="table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 30%">
-<col style="width: 23%">
-<col style="width: 23%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Serial No.</th>
-<th style="text-align: center;">Tasks</th>
-<th style="text-align: center;">Responsibility</th>
-<th style="text-align: center;">Expected Time of Completion</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">Data Wrangling</td>
-<td style="text-align: center;">Tushar, Ajay &amp; Eeshaan</td>
-<td style="text-align: center;">26th Feb’24</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">Analysis of Question 1</td>
-<td style="text-align: center;">Ajay &amp; Maheedhar</td>
-<td style="text-align: center;">4th March’24</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">Analysis of Question 2</td>
-<td style="text-align: center;">Ajay &amp; Nandini</td>
-<td style="text-align: center;">8th March’24</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">Finalizing Write Up, Presentation Slides &amp; Project Website</td>
-<td style="text-align: center;">Alexandar, Tushar, Ajay, Eeshaan, Nandini &amp; Maheedhar</td>
-<td style="text-align: center;">11th March’24</td>
-</tr>
-</tbody>
-</table>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
