@@ -116,6 +116,32 @@ Is there any specific time of the day when UFO sighting are more prevalent?
 
 ## Data Wrangling :
 
+To prepare the dataset for analysis, several steps will be undertaken:
+
+1.  Data Cleaning:
+
+Use functions like na.omit() to handle missing data.Employ lubridate for standardizing date and time formats.
+
+2.  Feature Engineering:
+
+Utilize dplyr for creating a new variable representing the time of day by binning the existing date and time variable.
+
+3. Filtering and Subsetting:
+
+Leverage dplyr to remove irrelevant columns and subset the data based on the desired time range.
+
+4. Geocoding:
+
+If necessary, use packages like ggmap for geocoding to convert location names into latitude and longitude coordinates.
+
+5. Exploratory Data Analysis (EDA):
+
+Leverage functions like summary() and plot() to perform initial exploratory data analysis, identifying outliers and gaining insights
+
+6. Normalization:
+
+Normalize data if required, especially if there are variations in the reporting of sightings over the years.
+
 ## Analysis Plan for Q1 :
 
 **Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
@@ -177,7 +203,7 @@ This project seeks to bring a data-driven approach to the mysterious realm of UF
 # Timeline
 
 | Serial No. |                           Tasks                            |                    Responsibility                     | Expected Time of Completion |
-|:-----:|:-----------------------------:|:----------------:|:--------------:|
+|:--------------:|:----------------------:|:--------------:|:--------------:|
 |     1      |                       Data Wrangling                       |                Tushar, Ajay & Eeshaan                 |         26th Feb'24         |
 |     2      |                   Analysis of Question 1                   |                   Ajay & Maheedhar                    |        4th March'24         |
 |     3      |                   Analysis of Question 2                   |                    Ajay & Nandini                     |        8th March'24         |
