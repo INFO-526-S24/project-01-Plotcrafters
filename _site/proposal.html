@@ -4615,6 +4615,230 @@ vertical-align: -.125em;
     "search-label": "Search"
   }
 }</script>
+<script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+<style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
 
 </head>
@@ -4678,8 +4902,22 @@ vertical-align: -.125em;
   <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview">Project Overview</a></li>
   <li><a href="#dataset-overview" id="toc-dataset-overview" class="nav-link" data-scroll-target="#dataset-overview">Dataset Overview</a></li>
   <li><a href="#questions-to-answer" id="toc-questions-to-answer" class="nav-link" data-scroll-target="#questions-to-answer">Questions to Answer</a></li>
-  <li><a href="#expected-outcomes" id="toc-expected-outcomes" class="nav-link" data-scroll-target="#expected-outcomes">Expected Outcomes</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling :</a></li>
+  <li><a href="#analysis-plan-for-q1" id="toc-analysis-plan-for-q1" class="nav-link" data-scroll-target="#analysis-plan-for-q1">Analysis Plan for Q1 :</a>
+  <ul class="collapse">
+  <li><a href="#additional-statistical-approaches-for-q1" id="toc-additional-statistical-approaches-for-q1" class="nav-link" data-scroll-target="#additional-statistical-approaches-for-q1">Additional Statistical Approaches for Q1 :</a></li>
+  </ul></li>
+  <li><a href="#analysis-plan-for-q2" id="toc-analysis-plan-for-q2" class="nav-link" data-scroll-target="#analysis-plan-for-q2">Analysis Plan for Q2 :</a>
+  <ul class="collapse">
+  <li><a href="#additional-statistical-approaches-for-q2" id="toc-additional-statistical-approaches-for-q2" class="nav-link" data-scroll-target="#additional-statistical-approaches-for-q2">Additional Statistical Approaches for Q2 :</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#additional-points" id="toc-additional-points" class="nav-link" data-scroll-target="#additional-points">Additional Points :</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4714,42 +4952,81 @@ vertical-align: -.125em;
 <h1>Dataset Overview</h1>
 <p><strong>Reasons for Choosing the Dataset:</strong></p>
 <p>The dataset under consideration comes originally from <a href="http://www.nuforc.org/">NUFORC</a> contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.</p>
+<p><strong>========== Structure of Dataset ==========</strong></p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>========== Dataset Structure ==========</code></pre>
+<div class="cell-output-display">
+<table class="table table-striped table-hover table-sm small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Column</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DataType</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">SampleData</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">date_time</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">10/10/1949 20:30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">city_area</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">san marcos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">state</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">tx</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">country</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">us</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">ufo_shape</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">cylinder</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">encounter_length</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">2700.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">described_encounter_length</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">45 minutes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">description</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">This event took place in early fall around 1949-50. It occurred after a Boy Scout meeting in the Baptist Church. The Baptist Church sit</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">date_documented</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">4/27/2004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; font-weight: bold;">latitude</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">29.88306</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">longitude</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">-97.94111</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [80,332 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ date_time                 : chr [1:80332] &quot;10/10/1949 20:30&quot; &quot;10/10/1949 21:00&quot; &quot;10/10/1955 17:00&quot; &quot;10/10/1956 21:00&quot; ...
- $ city_area                 : chr [1:80332] &quot;san marcos&quot; &quot;lackland afb&quot; &quot;chester (uk/england)&quot; &quot;edna&quot; ...
- $ state                     : chr [1:80332] &quot;tx&quot; &quot;tx&quot; NA &quot;tx&quot; ...
- $ country                   : chr [1:80332] &quot;us&quot; NA &quot;gb&quot; &quot;us&quot; ...
- $ ufo_shape                 : chr [1:80332] &quot;cylinder&quot; &quot;light&quot; &quot;circle&quot; &quot;circle&quot; ...
- $ encounter_length          : num [1:80332] 2700 7200 20 20 900 300 180 1200 180 120 ...
- $ described_encounter_length: chr [1:80332] &quot;45 minutes&quot; &quot;1-2 hrs&quot; &quot;20 seconds&quot; &quot;1/2 hour&quot; ...
- $ description               : chr [1:80332] &quot;This event took place in early fall around 1949-50. It occurred after a Boy Scout meeting in the Baptist Church&quot;| __truncated__ &quot;1949 Lackland AFB&amp;#44 TX.  Lights racing across the sky &amp;amp; making 90 degree turns on a dime.&quot; &quot;Green/Orange circular disc over Chester&amp;#44 England&quot; &quot;My older brother and twin sister were leaving the only Edna theater at about 9 PM&amp;#44...we had our bikes and I &quot;| __truncated__ ...
- $ date_documented           : chr [1:80332] &quot;4/27/2004&quot; &quot;12/16/2005&quot; &quot;1/21/2008&quot; &quot;1/17/2004&quot; ...
- $ latitude                  : num [1:80332] 29.9 29.4 53.2 29 21.4 ...
- $ longitude                 : num [1:80332] -97.94 -98.58 -2.92 -96.65 -157.8 ...
- - attr(*, &quot;spec&quot;)=
-  .. cols(
-  ..   date_time = col_character(),
-  ..   city_area = col_character(),
-  ..   state = col_character(),
-  ..   country = col_character(),
-  ..   ufo_shape = col_character(),
-  ..   encounter_length = col_double(),
-  ..   described_encounter_length = col_character(),
-  ..   description = col_character(),
-  ..   date_documented = col_character(),
-  ..   latitude = col_double(),
-  ..   longitude = col_double()
-  .. )
- - attr(*, &quot;problems&quot;)=&lt;externalptr&gt; </code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>========== Dataset Overview ==========</code></pre>
-</div>
+<p><strong>========== Overview of Dataset ==========</strong></p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 6
    variables        types missing_count missing_percent unique_count unique_rate
@@ -4766,18 +5043,18 @@ vertical-align: -.125em;
 10 latitude         nume…             1         0.00124        18421   0.229    
 11 longitude        nume…             0         0              19455   0.242    </code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>========== Dataset Dimensions ==========</code></pre>
 </div>
+<p><strong>========== Dataset Dimensions ==========</strong></p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of rows: 80332 </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Number of columns: 11 </code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>========== First Few Rows of the Dataset ==========</code></pre>
 </div>
+<p><strong>======= First Few Rows of the Dataset ========</strong></p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 11
   date_time        city_area            state country ufo_shape encounter_length
@@ -4795,32 +5072,61 @@ vertical-align: -.125em;
 </section>
 <section id="questions-to-answer" class="level1">
 <h1>Questions to Answer</h1>
-<p><strong>Question 1: Global Distribution Analysis</strong></p>
-<p><strong>Plan:</strong> Utilize latitude, longitude &amp; State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.</p>
-<p><strong>Variables Involved:</strong> Latitude, Longitude &amp; State</p>
-<p><strong>Question 2: Temporal Trends by Time of Day</strong></p>
-<p><strong>Plan:</strong> Examine if there are specific times of the day when UFO sightings are more prevalent. Utilize the time data from the dataset. Create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin. Investigate if there are temporal trends associated with different times of the day.</p>
-<p><strong>Variables Involved:</strong> Time of Day (New variable for time of day binning to be build using date_time variable)</p>
+<p><strong>Question 1:</strong></p>
+<p>How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?</p>
+<p><strong>Question 2:</strong></p>
+<p>Is there any specific time of the day when UFO sighting are more prevalent?</p>
 </section>
-<section id="expected-outcomes" class="level1">
-<h1>Expected Outcomes</h1>
-<ol type="1">
-<li><p><strong>Spatial Insights:</strong></p>
+<section id="analysis-plan" class="level1">
+<h1>Analysis plan</h1>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling :</h2>
+</section>
+<section id="analysis-plan-for-q1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-plan-for-q1">Analysis Plan for Q1 :</h2>
+<p><strong>Plan:</strong> Utilize latitude, longitude &amp; State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.</p>
+<p>We will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.</p>
+<p><strong>Type of Plot:</strong> Heatmap or Choropleth Map</p>
+<p><strong>Rationale:</strong> Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.</p>
+<p><strong>Variables Involved:</strong> Latitude, Longitude &amp; State</p>
+<section id="additional-statistical-approaches-for-q1" class="level3">
+<h3 class="anchored" data-anchor-id="additional-statistical-approaches-for-q1">Additional Statistical Approaches for Q1 :</h3>
+<p><strong>Descriptive Statistics:</strong>Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.</p>
+<p><strong>Geospatial Clustering:</strong>Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.</p>
+<p><strong>Spatial Autocorrelation:</strong>Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index.</p>
+</section>
+</section>
+<section id="analysis-plan-for-q2" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-plan-for-q2">Analysis Plan for Q2 :</h2>
+<p><strong>Plan:</strong> R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.</p>
+<p><strong>Type of Plot:</strong> Line Plot or Bar Chart</p>
+<p><strong>Rationale:</strong> A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.</p>
+<p><strong>Variables Involved:</strong> Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.</p>
+<p>Morning:</p>
+<p>Start time: 6:00 AM End time: 12:00 PM (noon)</p>
+<p>Afternoon:</p>
+<p>Start time: 12:00 PM (noon) End time: 6:00 PM</p>
+<p>Evening:</p>
+<p>Start time: 6:00 PM End time: 10:00 PM</p>
+<p>Night:</p>
+<p>Start time: 10:00 PM End time: 5:59 AM (next day)</p>
+<section id="additional-statistical-approaches-for-q2" class="level3">
+<h3 class="anchored" data-anchor-id="additional-statistical-approaches-for-q2">Additional Statistical Approaches for Q2 :</h3>
 <ul>
-<li><p>Visualization of global UFO sighting distribution.</p></li>
-<li><p>Identification of regions with high UFO activity.</p></li>
-</ul></li>
-<li><p><strong>Temporal Patterns:</strong></p>
-<ul>
-<li>Uncovering patterns in the timing and duration of UFO sightings.</li>
-</ul></li>
-</ol>
+<li><p>Density plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.</p></li>
+<li><p>Conduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night).</p></li>
+</ul>
+</section>
+</section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
 <p>This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.</p>
+<section id="additional-points" class="level2">
+<h2 class="anchored" data-anchor-id="additional-points">Additional Points :</h2>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

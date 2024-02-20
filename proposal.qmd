@@ -30,12 +30,42 @@ library(tidyverse)
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 ```
 
-```{r}
+**========== Structure of Dataset ==========**
 
+```{r}
+library(tidyverse)
+library(kableExtra)
+
+# Create metadata tibble including sample data
+metadata_ufo <- tibble(
+  Column = names(ufo_sightings),
+  DataType = sapply(ufo_sightings, class),
+  SampleData = sapply(ufo_sightings, function(column) {
+    # Extracting the first non-NA value as sample. You might adjust this logic based on your needs.
+    first_non_na <- column[!is.na(column)][1]
+    if (is.numeric(first_non_na)) {
+      # For numeric data, format to limit the number of decimal places
+      return(format(first_non_na, nsmall = 2))
+    } else {
+      return(as.character(first_non_na))
+    }
+  })
+)
+
+# Display the metadata with sample data using kable and kableExtra
+metadata_ufo %>%
+  kable("html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  column_spec(1, bold = T)
+```
+
+**========== Overview of Dataset ==========**
+
+```{r}
 # Display basic information about the dataset
 #cat("Dataset Information:\n")
-cat("========== Dataset Structure ==========\n")
-str(ufo_sightings)
+#cat("========== Dataset Structure ==========\n")
+#str(ufo_sightings)
 
 # Display summary statistics
 #cat("\nSummary Statistics:\n")
@@ -47,22 +77,28 @@ library(dlookr)
 
 # Showing the aspects of the columns of dataset using dlookr package
 overview <- diagnose(ufo_sightings)
-
-# Print the overview
-cat("========== Dataset Overview ==========\n")
-
 print(overview)
+# Print the overview
+#cat("========== Dataset Overview ==========\n")
+```
 
+**========== Dataset Dimensions ==========**
+
+```{r}
 # Display the dimensions of the dataset
 #cat("\nDimensions of the Dataset:\n")
-cat("========== Dataset Dimensions ==========\n")
+#cat("========== Dataset Dimensions ==========\n")
 #dim(ufo_sightings)
 cat("Number of rows:", nrow(ufo_sightings), "\n")
 cat("Number of columns:", ncol(ufo_sightings), "\n")
+```
 
+**======= First Few Rows of the Dataset ========**
+
+```{r}
 # Display the first few rows of the dataset
 #cat("\nFirst Few Rows of the Dataset:\n")
-cat("========== First Few Rows of the Dataset ==========\n")
+#cat("========== First Few Rows of the Dataset ==========\n")
 head(ufo_sightings)
 ```
 
@@ -77,7 +113,10 @@ How many UFO sightings have been reported worldwide, and are there particular re
 Is there any specific time of the day when UFO sighting are more prevalent?
 
 # Analysis plan
-## **Analysis Plan for Q1 :**
+
+## Data Wrangling :
+
+## Analysis Plan for Q1 :
 
 **Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
 
@@ -89,7 +128,7 @@ We will emphasize this correlation in our presentation, dedicating a section to 
 
 **Variables Involved:** Latitude, Longitude & State
 
-### **Additional Statistical Approaches for Q1 :**
+### Additional Statistical Approaches for Q1 :
 
 **Descriptive Statistics:**Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.
 
@@ -97,7 +136,7 @@ We will emphasize this correlation in our presentation, dedicating a section to 
 
 **Spatial Autocorrelation:**Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran's I index.
 
-## **Analysis Plan for Q2 :**
+## Analysis Plan for Q2 :
 
 **Plan:** R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.
 
@@ -109,45 +148,28 @@ We will emphasize this correlation in our presentation, dedicating a section to 
 
 Morning:
 
-Start time: 6:00 AM End time: 12:00 PM (noon) Afternoon:
+Start time: 6:00 AM End time: 12:00 PM (noon)
 
-Start time: 12:00 PM (noon) End time: 6:00 PM Evening:
+Afternoon:
 
-Start time: 6:00 PM End time: 10:00 PM Night:
+Start time: 12:00 PM (noon) End time: 6:00 PM
 
-Start time: 10:00 PM End time: 6:00 AM (next day)
+Evening:
 
-### **Additional Statistical Approaches for Q2 :**
+Start time: 6:00 PM End time: 10:00 PM
 
-•Density plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.
+Night:
 
-•Conduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night).
+Start time: 10:00 PM End time: 5:59 AM (next day)
 
+### Additional Statistical Approaches for Q2 :
 
+-   Density plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.
 
-
-
-
-
-# Expected Outcomes
-
-1.  **Spatial Insights:**
-
-    -   Visualization of global UFO sighting distribution.
-
-    -   Identification of regions with high UFO activity.
-
-2.  **Temporal Patterns:**
-
-    -   Uncovering patterns in the timing and duration of UFO sightings.
+-   Conduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night).
 
 # Conclusion
 
 This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena. The findings may have public awareness, providing valuable insights into the unknown.
 
-## References
-
-1. Title: UFO Sightings Redux
-   Author: [jonthegeek](https://github.com/jonthegeek)
-   Date: 2023-06-20
-   Link: "https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-06-20"
+## Additional Points :
