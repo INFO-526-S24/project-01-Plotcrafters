@@ -1,0 +1,215 @@
+---
+title: "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings"
+subtitle: "Decoding the Mysteries: Analyzing Temporal, Spatial, and Descriptive Patterns in Over 80,000 UFO Sightings"
+format: 
+  html:
+    embed-resources: true
+toc: true
+editor: visual
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Project Overview
+
+The fascination with unidentified flying objects (UFOs) has captured the imagination of humanity for decades. This project aims to explore a comprehensive dataset comprising over 80,000 records of UFO sightings dating back to 1949. By leveraging the wealth of information provided, including latitude and longitude data, date and time stamps, and detailed descriptions of each sighting, we seek to unravel patterns, trends, and insights regarding UFO activities around the world.
+
+# Dataset Overview
+
+**Reasons for Choosing the Dataset:**
+
+The dataset under consideration comes originally from [NUFORC](http://www.nuforc.org/) contains over 80,000 records of UFO sightings dating back to 1949, making it a rich source for exploring the temporal and spatial patterns of extraterrestrial activities. The inclusion of latitude and longitude data, date and time stamps, and detailed descriptions of each sighting provides a comprehensive foundation for conducting a thorough analysis.
+
+```{r}
+
+# Load necessary libraries
+library(tidyverse)
+
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
+```
+
+**========== Structure of Dataset ==========**
+
+```{r}
+library(tidyverse)
+library(kableExtra)
+
+# Create metadata tibble including sample data
+metadata_ufo <- tibble(
+  Column = names(ufo_sightings),
+  DataType = sapply(ufo_sightings, class),
+  SampleData = sapply(ufo_sightings, function(column) {
+    # Extracting the first non-NA value as sample. You might adjust this logic based on your needs.
+    first_non_na <- column[!is.na(column)][1]
+    if (is.numeric(first_non_na)) {
+      # For numeric data, format to limit the number of decimal places
+      return(format(first_non_na, nsmall = 2))
+    } else {
+      return(as.character(first_non_na))
+    }
+  })
+)
+
+# Display the metadata with sample data using kable and kableExtra
+metadata_ufo %>%
+  kable("html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+  column_spec(1, bold = T)
+```
+
+**========== Overview of Dataset ==========**
+
+```{r}
+
+# Display basic information about the dataset
+#cat("Dataset Information:\n")
+#cat("========== Dataset Structure ==========\n")
+#str(ufo_sightings)
+
+# Display summary statistics
+#cat("\nSummary Statistics:\n")
+#summary(ufo_sightings) --- Dropped Summary upon receiving feedback
+
+#Installing and Loading the dlookr package
+
+library(dlookr)
+
+# Showing the aspects of the columns of dataset using dlookr package
+overview <- diagnose(ufo_sightings)
+print(overview)
+# Print the overview
+#cat("========== Dataset Overview ==========\n")
+```
+
+**========== Dataset Dimensions ==========**
+
+```{r}
+
+# Display the dimensions of the dataset
+#cat("\nDimensions of the Dataset:\n")
+#cat("========== Dataset Dimensions ==========\n")
+#dim(ufo_sightings)
+cat("Number of rows:", nrow(ufo_sightings), "\n")
+cat("Number of columns:", ncol(ufo_sightings), "\n")
+```
+
+**======= First Few Rows of the Dataset ========**
+
+```{r}
+# Display the first few rows of the dataset
+#cat("\nFirst Few Rows of the Dataset:\n")
+#cat("========== First Few Rows of the Dataset ==========\n")
+head(ufo_sightings)
+```
+
+# Questions to Answer
+
+**Question 1:**
+
+What are the Numbers of UFO sightings Globally ? Are there specific regions where sightings occur more frequently ?
+
+**Question 2:**
+
+Is there any specific time of the day when UFO sighting are more prevalent?
+
+# Analysis Plan
+
+## Data Wrangling :
+
+To prepare the dataset for analysis, several steps will be undertaken:
+
+1.  **Data Cleaning:**
+
+    -   Use functions like na.omit() to handle missing data.
+
+    -   Employ lubridate for standardizing date and time formats.
+
+2.  **Feature Engineering:**
+
+    -   Utilize dplyr for creating a new variable representing the time of day by binning the existing date and time variable.
+
+3.  **Filtering and Subsetting:**
+
+    -   Leverage dplyr to remove irrelevant columns and subset the data based on the desired time range.
+
+4.  **Geocoding:**
+
+    -   If necessary, use packages like ggmap for geocoding to convert location names into latitude and longitude coordinates.
+
+5.  **Exploratory Data Analysis (EDA):**
+
+    -   Leverage functions like summary() and plot() to perform initial exploratory data analysis, identifying outliers and gaining insights.
+
+6.  **Normalization:**
+
+    -   Normalize data if required, especially if there are variations in the reporting of sightings over the years.
+
+## Analysis Plan for Q1 :
+
+**Plan:** Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.
+
+We will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.
+
+**Type of Plot:** Heatmap or Choropleth Map
+
+**Rationale:** Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.
+
+**Variables Involved:** Latitude, Longitude & State
+
+### Additional Statistical Approaches for Q1 :
+
+**Descriptive Statistics:**Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.
+
+**Geospatial Clustering:**Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.
+
+**Spatial Autocorrelation:**Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index.
+
+## Analysis Plan for Q2 :
+
+**Plan:** R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.
+
+**Type of Plot:** Line Plot or Bar Chart
+
+**Rationale:** A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.
+
+**Variables Involved:** Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.
+
+Morning:
+
+Start time: 6:00 AM End time: 12:00 PM (noon) Afternoon:
+
+Start time: 12:00 PM (noon) End time: 6:00 PM Evening:
+
+Start time: 6:00 PM End time: 10:00 PM Night:
+
+Start time: 10:00 PM End time: 6:00 AM (next day)
+
+### Additional Statistical Approaches Q2 :
+
+-   Density plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.
+
+-   Conduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night).
+
+# Conclusion
+
+This project seeks to bring a data-driven approach to the mysterious realm of UFO sightings. By analyzing historical data, we aim to uncover patterns, answer questions about temporal and spatial characteristics, and contribute to our understanding of these extraterrestrial phenomena.
+
+### Additional Points :
+
+1.  **Impact on Public Perception:**
+
+    -   It highlights how the findings of this project can impact public perception and awareness of UFO sightings. The analysis can shed light on the frequency and distribution of sightings, potentially influencing how people perceive these phenomena.
+
+2.  **Scientific Inquiry and Exploration:**
+
+    -   It emphasize the importance of using a data-driven approach to explore UFO sightings. This project contributes to scientific inquiry by applying rigorous analysis techniques to historical data, fostering a better understanding of these mysterious occurrences.
+
+3.  **Potential for Further Research:**
+
+    -   It discusses how the insights gained from this project can serve as a foundation for future research in the field of ufology and related disciplines. The patterns and trends uncovered may spark new questions and avenues for exploration within the scientific community.
+
+4.  **Public Engagement and Education:**
+
+    -   It highlights the potential for public engagement and education regarding UFO sightings. The project’s findings can be disseminated through various channels, including educational programs, documentaries, and public seminars, to increase awareness and understanding of these phenomena.
