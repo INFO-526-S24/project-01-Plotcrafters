@@ -88,4 +88,4 @@
 
 10. **latitude:**
 
-    -   **Data Type:** Numeric
+    -   **Data Type:** Numeric.
