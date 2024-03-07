@@ -9,3 +9,25 @@ editor: visual
 ## Abstract
 
 Add project abstract here.
+
+## Introduction
+
+## Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
+
+### Introduction
+
+### Approach
+
+### Analysis
+
+### Discussion
+
+## Question 2: Is there any specific time of the day when UFO sighting are more prevalent?
+
+### Introduction
+
+### Approach
+
+### Analysis
+
+### Discussion
