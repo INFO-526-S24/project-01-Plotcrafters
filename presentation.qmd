@@ -1,7 +1,7 @@
 ---
-title: "Project title"
-subtitle: "INFO 526 - Fall 2023 - Project 1"
-author: "Author names"
+title: "Revealing Alien Patterns"
+subtitle: "A Data-Driven Investigation into Global UFO Sightings"
+author: "--Plot Crafters"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
@@ -51,6 +51,20 @@ mtcars$speed <- mtcars$hp / mtcars$wt
 
 data("penguins")
 ```
+
+# Q1: How many UFO sightings have been reported worldwide ? Particular regions where these sightings occur more frequently ?
+
+## The UFO Footprints with Numbers
+
+## Popular Destination
+
+# Q2: Is there any specific time of the day when UFO sighting are more prevalent?
+
+## Understanding Time Trend for UFO sightings
+
+## Thank you !! {style="text-align: center"}
+
+-------------------------------------------------------------------------------------------------------------
 
 # Using Quarto for presentations
 
@@ -160,6 +174,6 @@ Limitations:
 
 ## Feeling adventurous?
 
--   You are welcomed to use the default styling of the slides. In fact, that\'s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
+-   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
 
 -   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
