@@ -114,7 +114,7 @@ Is there any specific time of the day when UFO sighting are more prevalent?
 
 # Analysis plan
 
-## Data Wrangling :  To prepare the dataset for analysis, several steps will be undertaken:
+## Data Wrangling : To prepare the dataset for analysis, several steps will be undertaken:
 
 1.  **Data Cleaning:**
 
@@ -219,7 +219,7 @@ This project seeks to bring a data-driven approach to the mysterious realm of UF
 # Timeline
 
 | Serial No. |                           Tasks                            |                    Responsibility                     | Expected Time of Completion |
-|:---------------:|:--------------------:|:---------------:|:---------------:|
+|:---------------:|:-------------------:|:---------------:|:---------------:|
 |     1      |                       Data Wrangling                       |                Tushar, Ajay & Eeshaan                 |         26th Feb'24         |
 |     2      |                   Analysis of Question 1                   |                   Ajay & Maheedhar                    |        4th March'24         |
 |     3      |                   Analysis of Question 2                   |                    Ajay & Nandini                     |        8th March'24         |
