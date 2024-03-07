@@ -1,8 +1,8 @@
 # Data
 
--   **UFO Sightings**: Description of the dataset
+**UFO Sightings**: Description of the dataset
 
-    The dataset comprises information about global UFO sightings, capturing various details related to each encounter. The variables include temporal, spatial, and descriptive aspects of the sightings, providing a comprehensive view of the reported incidents.
+-   The dataset comprises information about global UFO sightings, capturing various details related to each encounter. The variables include temporal, spatial, and descriptive aspects of the sightings, providing a comprehensive view of the reported incidents.
 
 # Codebook for UFO Sightings Dataset
 
