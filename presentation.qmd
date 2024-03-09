@@ -65,6 +65,8 @@ data("penguins")
 
 ## Thank you !! {style="text-align: center"}
 
+![](images/neuralyzer-men-in-black.gif){fig-align="center"}
+
 -------------------------------------------------------------------------------------------------------------
 
 # Using Quarto for presentations
