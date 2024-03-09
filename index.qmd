@@ -122,6 +122,8 @@ ufo_sightings$time_of_day <- sapply(hour_of_day, assign_time_bin)
 
 
 
+# Plotting Time Trend for UFO sightings
+
 
 ```
 
