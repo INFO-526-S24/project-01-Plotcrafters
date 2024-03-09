@@ -1,19 +1,20 @@
 ---
-title: "Revealing Alien Patterns"
-subtitle: "A Data-Driven Investigation into Global UFO Sightings"
-author: "--Plot Crafters"
-title-slide-attributes:
-  data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
-  data-background-size: stretch
-  data-background-opacity: "0.7"
-  data-slide-number: none
-format:
-  revealjs:
-    theme:  ['data/customtheming.scss']
-  
-editor: visual
-execute:
-  echo: false
+  title: "Revealing UFO Sighting Pattern"
+  subtitle: "A Data-Driven Investigation into Global UFO Sightings"
+  author: "--Plot Crafters"
+  title-slide-attributes:
+    data-background-image: images/spaceship-5820448.jpg
+    data-background-size: stretch
+    data-background-opacity: "0.7"
+    data-slide-number: none
+  format:
+    revealjs:
+      theme: League  # Sets the theme of the presentation to "moon"
+      transition: convex  # Specifies the transition effect between slides as "convex"
+      background-transition: zoom  # Specifies the transition effect for background changes as "zoom"
+  editor: visual
+  execute:
+    echo: false
 ---
 
 ```{r}
