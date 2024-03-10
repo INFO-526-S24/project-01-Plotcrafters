@@ -5,7 +5,6 @@
     "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
     "section": "",
     "text": "The fascination with unidentified flying objects (UFOs) has captured the imagination of humanity for decades. This project aims to explore a comprehensive dataset comprising over 80,000 records of UFO sightings dating back to 1949. By leveraging the wealth of information provided, including latitude and longitude data, date and time stamps, and detailed descriptions of each sighting, we seek to unravel patterns, trends, and insights regarding UFO activities around the world."
-<<<<<<< HEAD
   },
   {
     "objectID": "proposal.html#data-wrangling-to-prepare-the-dataset-for-analysis-several-steps-will-be-undertaken",
@@ -34,8 +33,6 @@
     "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
     "section": "Additional Points :",
     "text": "Additional Points :\n\nImpact on Public Perception:\nThis highlights how the findings of this project can impact public perception and awareness of UFO sightings. The analysis can shed light on the frequency and distribution of sightings, potentially influencing how people perceive these phenomena.\nScientific Inquiry and Exploration:\nThis emphasizes the importance of using a data-driven approach to explore UFO sightings. This project contributes to scientific inquiry by applying rigorous analysis techniques to historical data, fostering a better understanding of these mysterious occurrences.\nPotential for Further Research:\nThis discusses how the insights gained from this project can serve as a foundation for future research in the field of ufology and related disciplines. The patterns and trends uncovered may spark new questions and avenues for exploration within the scientific community.\nPublic Engagement and Education:\nIt highlights the potential for public engagement and education regarding UFO sightings. The project’s findings can be disseminated through various channels, including educational programs, documentaries, and public seminars, to increase awareness and understanding of these phenomena."
-=======
->>>>>>> 35c7e3dbd359e10a0a74d1c42e59055df0c63a2b
   },
   {
     "objectID": "index.html",
@@ -52,11 +49,32 @@
     "text": "Add project abstract here."
   },
   {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Project title",
+    "section": "Introduction",
+    "text": "Introduction"
+  },
+  {
+    "objectID": "index.html#question-1-how-many-ufo-sightings-have-been-reported-worldwide-and-are-there-particular-regions-where-these-sightings-occur-more-frequently",
+    "href": "index.html#question-1-how-many-ufo-sightings-have-been-reported-worldwide-and-are-there-particular-regions-where-these-sightings-occur-more-frequently",
+    "title": "Project title",
+    "section": "Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?",
+    "text": "Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?\n\nIntroduction\n\n\nApproach\n\n\nAnalysis\n\n\nDiscussion"
+  },
+  {
+    "objectID": "index.html#question-2-is-there-any-specific-time-of-the-day-when-ufo-sighting-are-more-prevalent",
+    "href": "index.html#question-2-is-there-any-specific-time-of-the-day-when-ufo-sighting-are-more-prevalent",
+    "title": "Project title",
+    "section": "Question 2: Is there any specific time of the day when UFO sighting are more prevalent?",
+    "text": "Question 2: Is there any specific time of the day when UFO sighting are more prevalent?\n\nIntroduction\nFor the second question we want to visualize any temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.\n\n\nApproach\nInitially the dataset ufo_sightings was loaded from the “TidyTuesday” source using the read.csv function in R. The date_time column was verified to ensure if it is the correct data types.\nAfter that we’ve created a new variable undername time_of_day , upon extracting time from date_time variable we’ve created time bins morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), night_hours(22:00 PM - 5:59 AM). and analyzed sighting patterns within each bin.\nAfter that we’ve grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under name ________.\nThen we’ve plotted the _______ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.\n\n\nAnalysis\n\n# Load necessary libraries\nlibrary(tidyverse)\n\n#&gt; Loading the Dataset \n\n#&gt; UFO_Sightings\n\nufo_sightings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv\", show_col_types = FALSE)\n\n#&gt; Data Wrangling\n\n#&gt; Exploring the data interactively\n#View(ufo_sightings)\n\n#Displaying first few entries of date_time column\n#head(ufo_sightings$date_time)\n\n#Displaying the data type of the date_time column\n#class(ufo_sightings$date_time)\n\n#&gt; Finding Missing Data in date_time\n#sum(is.na(ufo_sightings$date_time))\n\n# Load the lubridate package\nlibrary(lubridate)\n\n\n# converting character strings of date_time variable into a format that R can recognize and manipulate as date-time data.\nufo_sightings$date_time &lt;- as.POSIXct(ufo_sightings$date_time, format = \"%m/%d/%Y %H:%M\")\n\n# Extracting the hour component\nhour_of_day &lt;- hour(ufo_sightings$date_time)\n\n# Define time ranges for each bin\nmorning_hours &lt;- 6:11\nafternoon_hours &lt;- 12:17\nevening_hours &lt;- 18:21\nnight_hours &lt;- c(22:23, 0:5)\n\n# Function to assign time bins\nassign_time_bin &lt;- function(hour_of_day) {\n  if (hour_of_day %in% morning_hours) {\n    return(\"Morning\")\n  } else if (hour_of_day %in% afternoon_hours) {\n    return(\"Afternoon\")\n  } else if (hour_of_day %in% evening_hours) {\n    return(\"Evening\")\n  } else {\n    return(\"Night\")\n  }\n}\n\n# Create a new variable representing the time of day bins\nufo_sightings$time_of_day &lt;- sapply(hour_of_day, assign_time_bin)\n\n# Output the time_of_day variable\n#ufo_sightings$time_of_day\n\n# Displaying date_time and time_of_day variables of ufo_sightings dataframe side by side\n# View(ufo_sightings[, c(\"date_time\", \"time_of_day\")])\n\n# Write the dataframe to a CSV file\n#write.csv(ufo_sightings, \"ufo_sightings_with_time_of_day.csv\", row.names = FALSE)\n\n#finding out the current working directory in R to get the ufo_sightings_with_time_of_day.csv dataframe\n#getwd()\n\n# Plotting Time Trend for UFO sightings\n\n\nsuppressWarnings({\n# Load necessary libraries\nlibrary(tidyverse)\n\n#&gt; Loading the Dataset \n\n#&gt; UFO_Sightings\n\nufo_sightings &lt;- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv\", show_col_types = FALSE)\n\n#&gt; Data Wrangling\n\n#&gt; Exploring the data interactively\n#View(ufo_sightings)\n\n#Displaying first few entries of date_time column\n#head(ufo_sightings$date_time)\n\n#Displaying the data type of the date_time column\n#class(ufo_sightings$date_time)\n\n#&gt; Finding Missing Data in date_time\n#sum(is.na(ufo_sightings$date_time))\n\n# Load the lubridate package\nlibrary(lubridate)\n\n\n# converting character strings of date_time variable into a format that R can recognize and manipulate as date-time data.\nufo_sightings$date_time &lt;- as.POSIXct(ufo_sightings$date_time, format = \"%m/%d/%Y %H:%M\")\n\n# Extracting the hour component\nhour_of_day &lt;- hour(ufo_sightings$date_time)\n\n# Define time ranges for each bin\nmorning_hours &lt;- 6:11\nafternoon_hours &lt;- 12:17\nevening_hours &lt;- 18:21\nnight_hours &lt;- c(22:23, 0:5)\n\n# Function to assign time bins\nassign_time_bin &lt;- function(hour_of_day) {\n  if (hour_of_day %in% morning_hours) {\n    return(\"Morning\")\n  } else if (hour_of_day %in% afternoon_hours) {\n    return(\"Afternoon\")\n  } else if (hour_of_day %in% evening_hours) {\n    return(\"Evening\")\n  } else {\n    return(\"Night\")\n  }\n}\n\n# Create a new variable representing the time of day bins\nufo_sightings$time_of_day &lt;- sapply(hour_of_day, assign_time_bin)\n\n# Output the time_of_day variable\n#ufo_sightings$time_of_day\n\n# Displaying date_time and time_of_day variables of ufo_sightings dataframe side by side\n# View(ufo_sightings[, c(\"date_time\", \"time_of_day\")])\n\n# Write the dataframe to a CSV file\n#write.csv(ufo_sightings, \"ufo_sightings_with_time_of_day.csv\", row.names = FALSE)\n\n#finding out the current working directory in R to get the ufo_sightings_with_time_of_day.csv dataframe\n#getwd()\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read the CSV file and prepare the data\nufo_data &lt;- read.csv(\"ufo_sightings_with_time_of_day.csv\")\n\n# Convert time_of_day to a factor with specified order\nufo_data$time_of_day &lt;- factor(ufo_data$time_of_day, levels = c(\"Morning\", \"Afternoon\", \"Evening\", \"Night\"))\n\n# Group the data by time_of_day and summarize to calculate count of sightings\nufo_summary &lt;- ufo_data %&gt;%\n  group_by(time_of_day) %&gt;%\n  summarize(count = n())\n\n# Create the plot\nggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +\n  geom_bar(stat = \"identity\") +\n  scale_fill_gradient(low = \"lightblue\", high = \"darkblue\") +  # Use a gradient scale from light blue to dark blue\n  geom_text(aes(label = count), vjust = -0.5, color = \"black\") +\n  theme_minimal() +\n  labs(title = \"UFO Sightings Count by Time of Day\",\n       x = \"Time of Day\",\n       y = \"Count\") +\n  theme(plot.background = element_rect(fill = \"transparent\", color = NA),\n        panel.background = element_rect(fill = \"transparent\", color = NA),\n        panel.grid.major = element_line(color = \"gray\", size = 0.5),  # Add major grid lines\n        panel.grid.minor = element_blank(),\n        axis.line = element_line(color = \"black\"),\n        axis.text = element_text(color = \"black\"),\n        axis.title = element_text(color = \"black\"),\n        plot.title = element_text(hjust = 0.5, size = 20, color = \"black\"))\n\n})\n\n\n\n\n\n\n\n\n\n\nDiscussion"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+    "text": "This project was developed by Plotcrafters For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nAlexander Berliner: Graduate student in statistics and data science.\nAjay Kumar: Graduate student in data science.\nEeshaan Ace: Graduate student in data science.\nMaheedhar Kolli: Graduate student in statistics and data science.\nNandhini Anne: Graduate student in data science.\nTushar Kant Singh: Graduate student in data science."
   },
   {
     "objectID": "data/README 2.html",
@@ -80,144 +98,45 @@
     "text": "Data Types:\n\nColumn: data type"
   },
   {
-    "objectID": "presentation.html#quarto",
-    "href": "presentation.html#quarto",
-    "title": "Project title",
-    "section": "Quarto",
-    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "objectID": "presentation.html#the-ufo-footprints-with-numbers",
+    "href": "presentation.html#the-ufo-footprints-with-numbers",
+    "title": "Revealing UFO Sighting Pattern",
+    "section": "The UFO Footprints with Numbers",
+    "text": "The UFO Footprints with Numbers"
   },
   {
-    "objectID": "presentation.html#layouts",
-    "href": "presentation.html#layouts",
-    "title": "Project title",
-    "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+    "objectID": "presentation.html#popular-destination",
+    "href": "presentation.html#popular-destination",
+    "title": "Revealing UFO Sighting Pattern",
+    "section": "Popular Destination",
+    "text": "Popular Destination"
   },
   {
-    "objectID": "presentation.html#code",
-    "href": "presentation.html#code",
-    "title": "Project title",
-    "section": "Code",
-    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "objectID": "presentation.html#understanding-time-trend-for-ufo-sightings",
+    "href": "presentation.html#understanding-time-trend-for-ufo-sightings",
+    "title": "Revealing UFO Sighting Pattern",
+    "section": "Understanding Time Trend for UFO sightings",
+    "text": "Understanding Time Trend for UFO sightings\n\n\nWarning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.\nℹ Please use the `linewidth` argument instead."
   },
   {
-    "objectID": "presentation.html#plots",
-    "href": "presentation.html#plots",
-    "title": "Project title",
-    "section": "Plots",
-    "text": "Plots"
+    "objectID": "presentation.html#observations-from-the-ufo-sightings-count-plot-by-time-of-day",
+    "href": "presentation.html#observations-from-the-ufo-sightings-count-plot-by-time-of-day",
+    "title": "Revealing UFO Sighting Pattern",
+    "section": "Observations from the UFO Sightings Count Plot by Time of Day",
+    "text": "Observations from the UFO Sightings Count Plot by Time of Day\n\nNighttime records the highest UFO sightings, with 34,283 occurrences, followed closely by Evening with 30,211 sightings.\nIn contrast, Morning and Afternoon show considerably lower counts of 6,200 and 9,638 sightings, respectively."
   },
   {
-    "objectID": "presentation.html#plot-and-text",
-    "href": "presentation.html#plot-and-text",
-    "title": "Project title",
-    "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+    "objectID": "presentation.html#overall-conclusion-for-both-q1-q2",
+    "href": "presentation.html#overall-conclusion-for-both-q1-q2",
+    "title": "Revealing UFO Sighting Pattern",
+    "section": "Overall Conclusion for both Q1 & Q2",
+    "text": "Overall Conclusion for both Q1 & Q2\n\nPlease write what answer we’ve got for Question 1 from our analysis and plot\nPlease write what answer we’ve got for Question Q2 from our analysis and plot"
   },
   {
-    "objectID": "presentation.html#tables",
-    "href": "presentation.html#tables",
-    "title": "Project title",
-    "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
-  },
-  {
-    "objectID": "presentation.html#images",
-    "href": "presentation.html#images",
-    "title": "Project title",
-    "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
-  },
-  {
-    "objectID": "presentation.html#math-expressions",
-    "href": "presentation.html#math-expressions",
-    "title": "Project title",
-    "section": "Math Expressions",
-    "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
-  },
-  {
-    "objectID": "presentation.html#feeling-adventurous",
-    "href": "presentation.html#feeling-adventurous",
-    "title": "Project title",
-    "section": "Feeling adventurous?",
-    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
-  },
-  {
-<<<<<<< HEAD
-    "objectID": "index.html#introduction",
-    "href": "index.html#introduction",
-    "title": "Project title",
-    "section": "Introduction",
-    "text": "Introduction"
-  },
-  {
-    "objectID": "index.html#question-1-how-many-ufo-sightings-have-been-reported-worldwide-and-are-there-particular-regions-where-these-sightings-occur-more-frequently",
-    "href": "index.html#question-1-how-many-ufo-sightings-have-been-reported-worldwide-and-are-there-particular-regions-where-these-sightings-occur-more-frequently",
-    "title": "Project title",
-    "section": "Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?",
-    "text": "Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?\n\nIntroduction\n\n\nApproach\n\n\nAnalysis\n\n\nDiscussion"
-  },
-  {
-    "objectID": "index.html#question-2-is-there-any-specific-time-of-the-day-when-ufo-sighting-are-more-prevalent",
-    "href": "index.html#question-2-is-there-any-specific-time-of-the-day-when-ufo-sighting-are-more-prevalent",
-    "title": "Project title",
-    "section": "Question 2: Is there any specific time of the day when UFO sighting are more prevalent?",
-    "text": "Question 2: Is there any specific time of the day when UFO sighting are more prevalent?\n\nIntroduction\n\n\nApproach\n\n\nAnalysis\n\n\nDiscussion"
-=======
-    "objectID": "proposal.html#data-wrangling-approach",
-    "href": "proposal.html#data-wrangling-approach",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Data Wrangling Approach:",
-    "text": "Data Wrangling Approach:\nTo prepare the dataset for analysis, several steps will be undertaken:\n\nData Cleaning:\n\nUse functions like na.omit() to handle missing data.\nEmploy lubridate for standardizing date and time formats.\n\nFeature Engineering:\n\nUtilize dplyr for creating a new variable representing the time of day by binning the existing date and time variable.\n\nFiltering and Subsetting:\n\nLeverage dplyr to remove irrelevant columns and subset the data based on the desired time range.\n\nGeocoding:\n\nIf necessary, use packages like ggmap for geocoding to convert location names into latitude and longitude coordinates.\n\nExploratory Data Analysis (EDA):\n\nLeverage functions like summary() and plot() to perform initial exploratory data analysis, identifying outliers and gaining insights.\n\nNormalization:\n\nNormalize data if required, especially if there are variations in the reporting of sightings over the years."
-  },
-  {
-    "objectID": "proposal.html#question-1",
-    "href": "proposal.html#question-1",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Question 1 :",
-    "text": "Question 1 :\nPlan: Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.\nWe will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.\nType of Plot: Heatmap or Choropleth Map\nRationale: Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.\nVariables Involved: Latitude, Longitude & State\n\nAdditional Statistical Approaches for Question 1 :\nDescriptive Statistics:Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.\nGeospatial Clustering:Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.\nSpatial Autocorrelation:Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index."
-  },
-  {
-    "objectID": "proposal.html#question-2",
-    "href": "proposal.html#question-2",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Question 2 :",
-    "text": "Question 2 :\nPlan: R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.\nType of Plot: Line Plot or Bar Chart\nRationale: A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.\nVariables Involved: Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.\nMorning:\nStart time: 6:00 AM End time: 12:00 PM (noon) Afternoon:\nStart time: 12:00 PM (noon) End time: 6:00 PM Evening:\nStart time: 6:00 PM End time: 10:00 PM Night:\nStart time: 10:00 PM End time: 6:00 AM (next day)\n\nAdditional Statistical Approaches Question 2 :\n\nDensity plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.\nConduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night)."
-  },
-  {
-    "objectID": "proposal.html#analysis-plan-for-question-1",
-    "href": "proposal.html#analysis-plan-for-question-1",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Analysis Plan for Question 1 :",
-    "text": "Analysis Plan for Question 1 :\nPlan: Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.\nWe will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.\nType of Plot: Heatmap or Choropleth Map\nRationale: Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.\nVariables Involved: Latitude, Longitude & State\n\nAdditional Statistical Approaches for Question 1 :\nDescriptive Statistics:Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.\nGeospatial Clustering:Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.\nSpatial Autocorrelation:Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index."
-  },
-  {
-    "objectID": "proposal.html#analysis-plan-for-question-2",
-    "href": "proposal.html#analysis-plan-for-question-2",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Analysis Plan for Question 2 :",
-    "text": "Analysis Plan for Question 2 :\nPlan: R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.\nType of Plot: Line Plot or Bar Chart\nRationale: A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.\nVariables Involved: Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.\nMorning:\nStart time: 6:00 AM End time: 12:00 PM (noon) Afternoon:\nStart time: 12:00 PM (noon) End time: 6:00 PM Evening:\nStart time: 6:00 PM End time: 10:00 PM Night:\nStart time: 10:00 PM End time: 6:00 AM (next day)\n\nAdditional Statistical Approaches Question 2 :\n\nDensity plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.\nConduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night)."
-  },
-  {
-    "objectID": "proposal.html#analysis-plan-for-q1",
-    "href": "proposal.html#analysis-plan-for-q1",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Analysis Plan for Q1 :",
-    "text": "Analysis Plan for Q1 :\nPlan: Utilize latitude, longitude & State data to visualize the global distribution of UFO sightings. Identify geographical hotspots and trends to understand if there are regions more prone to UFO activities.\nWe will emphasize this correlation in our presentation, dedicating a section to exploring and highlighting any relationships between population density and the frequency of UFO sightings. The specifics of this correlation will become clearer as we progress with the analysis.\nType of Plot: Heatmap or Choropleth Map\nRationale: Using packages like ggplot2 and leaflet, a geographical heatmap or spatial point density plot can effectively showcase the concentration of UFO sightings across different regions, providing a clear visual representation of hotspots and trends.\nVariables Involved: Latitude, Longitude & State\n\nAdditional Statistical Approaches for Q1 :\nDescriptive Statistics:Will Provide summary statistics such as the mean, median, and standard deviation of the number of sightings globally. This gives an overall understanding of the distribution of sightings.\nGeospatial Clustering:Will use clustering algorithms, such as K-means, to identify regions with a high concentration of sightings. This can help identify specific geographic areas where UFO sightings are more prevalent.\nSpatial Autocorrelation:Assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings. This can be done using Moran’s I index."
-  },
-  {
-    "objectID": "proposal.html#analysis-plan-for-q2",
-    "href": "proposal.html#analysis-plan-for-q2",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Analysis Plan for Q2 :",
-    "text": "Analysis Plan for Q2 :\nPlan: R offers packages such as ggplot2 for time series plotting. A time series plot or bar chart can visually represent temporal trends in UFO sightings throughout the day, helping identify patterns associated with different times of day.\nType of Plot: Line Plot or Bar Chart\nRationale: A line plot or bar chart can be used to illustrate the temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.\nVariables Involved: Time of Day (New variable for time of day binning to be build using date_time variable).Will extract time from ‘date_time’ variable and create time bins (e.g., morning, afternoon, evening, night) and analyze sighting patterns within each bin.\nMorning:\nStart time: 6:00 AM End time: 12:00 PM (noon) Afternoon:\nStart time: 12:00 PM (noon) End time: 6:00 PM Evening:\nStart time: 6:00 PM End time: 10:00 PM Night:\nStart time: 10:00 PM End time: 6:00 AM (next day)\n\nAdditional Statistical Approaches Q2 :\n\nDensity plot to visualize the hourly distribution of UFO sightings. This will provide a more granular view of when sightings occur within each hour.\nConduct statistical tests (e.g., chi-square test) to determine if there are significant differences in sighting frequencies between different time periods (morning, afternoon, evening, night)."
-  },
-  {
-    "objectID": "proposal.html#data-wrangling",
-    "href": "proposal.html#data-wrangling",
-    "title": "Revealing Alien Patterns: A Data-Driven Investigation into Global UFO Sightings",
-    "section": "Data Wrangling :",
-    "text": "Data Wrangling :\nTo prepare the dataset for analysis, several steps will be undertaken:\n\nData Cleaning:\n\nUse functions like na.omit() to handle missing data.\nEmploy lubridate for standardizing date and time formats.\n\nFeature Engineering:\n\nUtilize dplyr for creating a new variable representing the time of day by binning the existing date and time variable.\n\nFiltering and Subsetting:\n\nLeverage dplyr to remove irrelevant columns and subset the data based on the desired time range.\n\nGeocoding:\n\nIf necessary, use packages like ggmap for geocoding to convert location names into latitude and longitude coordinates.\n\nExploratory Data Analysis (EDA):\n\nLeverage functions like summary() and plot() to perform initial exploratory data analysis, identifying outliers and gaining insights.\n\nNormalization:\n\nNormalize data if required, especially if there are variations in the reporting of sightings over the years."
->>>>>>> 35c7e3dbd359e10a0a74d1c42e59055df0c63a2b
+    "objectID": "presentation.html#thank-you",
+    "href": "presentation.html#thank-you",
+    "title": "Revealing UFO Sighting Pattern",
+    "section": "Thank you !!",
+    "text": "Thank you !!"
   }
 ]
