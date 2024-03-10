@@ -116,7 +116,7 @@
     "href": "presentation.html#understanding-time-trend-for-ufo-sightings",
     "title": "Revealing UFO Sighting Pattern",
     "section": "Understanding Time Trend for UFO sightings",
-    "text": "Understanding Time Trend for UFO sightings\n\n\nWarning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.\nℹ Please use the `linewidth` argument instead."
+    "text": "Understanding Time Trend for UFO sightings"
   },
   {
     "objectID": "presentation.html#observations-from-the-ufo-sightings-count-plot-by-time-of-day",
