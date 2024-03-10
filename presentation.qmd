@@ -52,15 +52,22 @@ mtcars$speed <- mtcars$hp / mtcars$wt
 
 data("penguins")
 ```
+## Introduction
+-"UFO Sightings Redux" dataset is obtained from National UFO Reporting center. The dataset offers a detailed look into various aspects of UFO sightings, including temporal details, geographical information, and specific characteristics of the reported sightings.Our mission is to decipher patterns, trends, and anomalies within this dataset. By employing data analysis techniques, we aim to uncover temporal, spatial, and thematic insights that may bring us closer to understanding the enigmatic world of UFO sightings.
 
 # Q1: How many UFO sightings have been reported worldwide ? Particular regions where these sightings occur more frequently ?
+##Motivation for Question1:
+-By exploring the distribution of UFO sightings across different locations, we aim to uncover geographical patterns and hotspots. 
+-This investigation can provide insights into whether certain areas or countries have a higher incidence of reported UFO sightings, contributing to our understanding of potential regional variations in extraterrestrial encounter reports.
 
 ## The UFO Footprints with Numbers
 
 ## Popular Destination
 
 # Q2: Is there any specific time of the day when UFO sighting are more prevalent?
-
+## Motivation for Question2:
+-  By exploring temporal patterns in UFO sightings, we aim to identify if certain times of the day are associated with a higher frequency of reported encounters. 
+- This investigation can provide valuable insights into the temporal aspects of UFO sightings, potentially revealing patterns that could be linked to environmental conditions, human behavior, or other factors.
 ## Understanding Time Trend for UFO sightings
 
 ```{r}
