@@ -179,7 +179,7 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 
 -   Please write what answer we've got for Question 1 from our analysis and plot
 
--   Please write what answer we've got for Question Q2 from our analysis and plot
+-  Global Trend: The overall trend suggests that UFO sightings tend to be more prevalent during the night, aligning with the common perception of UFO sightings occurring in the dark.
 
 ## Thank you !! {style="text-align: center"}
 
