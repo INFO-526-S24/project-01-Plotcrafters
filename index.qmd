@@ -19,6 +19,7 @@ Add project abstract here.
 ### Approach
 
 ### Analysis
+
 ```{r}
 library(tidyverse)
 
@@ -32,6 +33,7 @@ ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascie
 summary(ufo_sightings)
 
 ```
+
 Data Cleaning: First, we'll ensure that the dataset is clean, with no missing or invalid values that could affect our analysis.
 
 Descriptive Statistics: We'll calculate summary statistics such as the mean, median, and standard deviation of the number of sightings globally to understand the distribution.
@@ -41,28 +43,34 @@ Geographical Visualization: Using latitude, longitude, and state data, we'll cre
 Spatial Analysis: We'll perform spatial clustering using algorithms like K-means to identify regions with a high concentration of sightings. Additionally, we'll assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings.
 
 ```{r}
-
 library(ggplot2)
-library(dplyr)
 
-# Read the data
-ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
+# Load world map data
+world_map <- map_data("world")
 
-# Data Cleaning
-ufo_sightings_clean <- ufo_sightings %>%
-  filter(!is.na(latitude), !is.na(longitude)) # Remove rows with missing latitude or longitude
+# Create Heatmap with map outline
+heatmap_with_map <- ggplot() +
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), color = "black", fill = NA) +  # Map outline
+  geom_bin2d(data = ufo_sightings_clean, aes(x = longitude, y = latitude), bins = 50, color = "black") +  # Heatmap
+  scale_fill_gradient(name = "Frequency", low = "#045275", high = "#D32F2F") +  # Color gradient
+  labs(title = "Heatmap of UFO Sightings", 
+       subtitle = "Heatmap Showing Frequency of Sightings",
+       x = "Longitude", y = "Latitude") +  # Axis labels
+  theme_minimal() +  # Minimal theme
+  theme(plot.title = element_text(size = 20, face = "bold"),  # Title font size and style
+        plot.subtitle = element_text(size = 14, color = "gray"),  # Subtitle font size and color
+        axis.text = element_text(size = 10),  # Axis text size
+        legend.title = element_text(size = 12),  # Legend title size
+        legend.text = element_text(size = 10))  # Legend text size
 
-# Create Heatmap
-ggplot(ufo_sightings_clean, aes(x = longitude, y = latitude)) +
-  geom_bin2d(bins = 50) + # Adjust bins for resolution
-  scale_fill_gradient(name = "Frequency", low = "blue", high = "red") +
-  labs(title = "Global Distribution of UFO Sightings") +
-  theme_minimal()
+# Print the heatmap with map outline
+print(heatmap_with_map)
+
+
 
 ```
-This heatmap of UFO sightings worldwide, where each bin represents a certain area on the map, and the color intensity represents the frequency of sightings in that area. This visualization will help us identify regions with higher concentrations of UFO sightings. In the above Heatmap, we can tell most of the sightings are around the USA region and little over East Europe, the frequency is not distributed around as expected, the entire map is below 2000 sightings and UAS having higher than 2000.
-This suggests that while UFO sightings are reported worldwide, they remain rare events. Factors such as population density, cultural beliefs, and reporting biases likely contribute to the observed distribution patterns. Further exploration of these factors is necessary to better understand the underlying reasons for the observed variations in UFO sighting frequencies.
 
+This heatmap of UFO sightings worldwide, where each bin represents a certain area on the map, and the color intensity represents the frequency of sightings in that area. This visualization will help us identify regions with higher concentrations of UFO sightings. In the above Heatmap, we can tell most of the sightings are around the USA region and little over East Europe, the frequency is not distributed around as expected, the entire map is below 2000 sightings and UAS having higher than 2000. This suggests that while UFO sightings are reported worldwide, they remain rare events. Factors such as population density, cultural beliefs, and reporting biases likely contribute to the observed distribution patterns. Further exploration of these factors is necessary to better understand the underlying reasons for the observed variations in UFO sighting frequencies.
 
 ```{r}
 # Load necessary libraries
@@ -86,17 +94,35 @@ world_map <- map_data("world")
 # Merge with sightings data
 world_map_with_sightings <- left_join(world_map, sightings_by_country, by = c("region" = "country"))
 
+library(ggplot2)
+
 # Create Choropleth Map with individual sightings as points
-ggplot() +
+choropleth_map <- ggplot() +
   geom_polygon(data = world_map_with_sightings, aes(x = long, y = lat, group = group, fill = n), color = "black") +
   geom_point(data = ufo_sightings_clean, aes(x = longitude, y = latitude), color = "red", alpha = 0.3) +
-  labs(title = "Global Distribution of UFO Sightings by Country") +
-  theme_minimal()
+  labs(title = "Global Distribution of UFO Sightings by Country",
+       subtitle = "Choropleth Map with Individual Sightings",
+       x = "Longitude",
+       y = "Latitude",
+       fill = "Number of Sightings") +  # Add legend title
+  theme_minimal() +  # Use minimal theme
+  theme(plot.title = element_text(size = 20, face = "bold"),  # Adjust title font size and style
+        plot.subtitle = element_text(size = 14, color = "gray"),  # Adjust subtitle font size and color
+        axis.title.x = element_text(size = 12),  # Adjust x-axis title size
+        axis.title.y = element_text(size = 12),  # Adjust y-axis title size
+        legend.title = element_text(size = 12),  # Adjust legend title size
+        legend.text = element_text(size = 10)) +  # Adjust legend text size
+  scale_fill_gradient(name = "Number of Sightings", low = "#FFEDA0", high = "#F44336")  # Adjust color gradient
+
+# Print the choropleth map
+print(choropleth_map)
+
 
 ```
+
 This graph overlays the individual UFO sightings as red points on top of the choropleth map, allowing you to see both the country-level distribution and the specific locations of sightings. This along side the heatmap will give a better understanding where the freaquency and distribution of UFO sightings take place.
 
-
+s
 ### Discussion
 
 ## Question 2: Is there any specific time of the day when UFO sighting are more prevalent?
@@ -288,22 +314,23 @@ ufo_summary <- ufo_data %>%
 # Create the plot
 ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
   geom_bar(stat = "identity") +
-  scale_fill_gradient(low = "lightblue", high = "darkblue") +  # Use a gradient scale from light blue to dark blue
-  geom_text(aes(label = count), vjust = -0.5, color = "black") +
+  scale_fill_gradient(name = "Count", low = "#ADD8E6", high = "#000080") +  # Use a gradient scale from light blue to navy blue
+  geom_text(aes(label = count), vjust = -0.5, color = "black", size = 3) +  
   theme_minimal() +
   labs(title = "UFO Sightings Count by Time of Day",
        x = "Time of Day",
        y = "Count") +
-  theme(plot.background = element_rect(fill = "transparent", color = NA),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        panel.grid.major = element_line(color = "gray", size = 0.5),  # Add major grid lines
+  theme(plot.background = element_rect(fill = "white", color = NA),  
+        panel.background = element_rect(fill = "white", color = NA),  
+        panel.grid.major = element_line(color = "gray", size = 0.2),  
         panel.grid.minor = element_blank(),
         axis.line = element_line(color = "black"),
-        axis.text = element_text(color = "black"),
-        axis.title = element_text(color = "black"),
-        plot.title = element_text(hjust = 0.5, size = 20, color = "black"))
+        axis.text = element_text(color = "black", size = 10),  # Adjust size of axis text
+        axis.title = element_text(color = "black", size = 12),  # Adjust size of axis titles
+        plot.title = element_text(hjust = 0.5, size = 20, color = "black", face = "bold"), 
+        legend.position = "right") +  # Position legend on the right side
+  guides(fill = guide_colorbar(title.position = "top", title.vjust = 0.5))  })
 
-})
 ```
 
 ### Discussion
