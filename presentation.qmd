@@ -59,9 +59,9 @@ data("penguins")
 
 # Q1: How many UFO sightings have been reported worldwide ? Particular regions where these sightings occur more frequently ?
 
-##Motivation for Question1: 
+##Motivation for Question1:
 
--By exploring the distribution of UFO sightings across different locations, we aim to uncover geographical patterns and hotspots. 
+-By exploring the distribution of UFO sightings across different locations, we aim to uncover geographical patterns and hotspots.
 
 -This investigation can provide insights into whether certain areas or countries have a higher incidence of reported UFO sightings, contributing to our understanding of potential regional variations in extraterrestrial encounter reports.
 
@@ -135,8 +135,8 @@ print(heatmap_with_map)
 ## The UFO Footprints with Numbers
 
 ## Popular Destination
-USA
 
+USA
 
 # Q2: Is there any specific time of the day when UFO sighting are more prevalent?
 
@@ -259,10 +259,16 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 
 ## Overall Conclusion for both Q1 & Q2
 
--   Please write what answer we've got for Question 1 from our analysis and plot
+-   Americans were by far the most frequent group to claim ufo sightings. Three possible conclusions:
 
--   Global Trend: The overall trend suggests that UFO sightings tend to be more prevalent during the night, aligning with the common perception of UFO sightings occurring in the dark.
+    1\) alien UFOs have unfinished business in the USA
 
-## Thank you !! {style="text-align: center"}
+    2\) Americans are the most delusional group
+
+    3\) Unlike America, other countries probably don't care to collect such data so UFO sightings would be under-reported.
+
+-   UFO sightings tend to be more prevalent during the night, aligning with the common perception of UFO sightings occurring in the dark.
+
+## Thank you {style="text-align: center"}
 
 ![](images/neuralyzer-men-in-black.gif){fig-align="center"}
