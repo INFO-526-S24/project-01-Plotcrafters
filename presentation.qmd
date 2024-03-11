@@ -259,13 +259,13 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 
 ## Overall Conclusion for both Q1 & Q2
 
--   Americans were by far the most frequent group to claim ufo sightings. Three possible conclusions:
+-   Americans by far claimed ufo sightings most frequently. Three possible conclusions:
 
     1\) alien UFOs have unfinished business in the USA
 
-    2\) Americans are the most delusional group
+    2\) Americans are the most delusional
 
-    3\) Unlike America, other countries probably don't care to collect such data so UFO sightings would be under-reported.
+    3\) Other countries don't care to collect such data so UFO sightings would be under-reported.
 
 -   UFO sightings tend to be more prevalent during the night, aligning with the common perception of UFO sightings occurring in the dark.
 
