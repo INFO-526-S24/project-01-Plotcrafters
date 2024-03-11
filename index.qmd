@@ -140,13 +140,16 @@ pacman::p_load(tidyverse,
                leaflet)
 ```
 
+
 ```{r}
+# Load necessary libraries
 library(ggplot2)
 library(png)
 library(tidyverse)
 library(lubridate)
 library(viridis)
 library(png)
+library(cowplot)
 
 # Read the data
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
@@ -155,35 +158,44 @@ ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascie
 ufo_sightings$date_time <- as.POSIXct(ufo_sightings$date_time, format = "%m/%d/%Y %H:%M")
 
 # Extract the hour component
-hour_of_day <- hour(ufo_sightings$date_time)
+ufo_sightings$hour_of_day <- hour(ufo_sightings$date_time)
 
-# Create the polar bar plot
-bar_plot_polar <- ggplot(hour_frequency_df, aes(x = Hour, y = Frequency)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
-  guides(fill = "none") +
-  labs(title = "UFO Sightings Frequency by Hour",
-       x = "24 Hour CLOCK",
-       y = NULL) +
+# Create a summary table for counts of sightings per hour
+hourly_counts <- table(ufo_sightings$hour_of_day)
+
+# Convert the summary table to a data frame
+hourly_counts_df <- data.frame(hour = as.numeric(names(hourly_counts)), count = as.numeric(hourly_counts))
+
+# Plotting with polar coordinates
+bar_plot_polar <- ggplot(hourly_counts_df, aes(x = factor(hour), y = count)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  scale_x_discrete(name = "Hour of Day") +
+  scale_y_continuous(name = NULL) +
+  labs(title = "UFO Sightings by Hour of Day") +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         axis.line.y = element_blank(),
         axis.ticks = element_blank(), 
-        panel.grid.major.y = element_blank())  + # Remove vertical grid lines
+        panel.grid.major.y = element_blank()) +
   coord_polar(start = -pi/1.45)
 
-##################
-
+# Read the image
 img <- readPNG("images/q2Clock.png")
 ger <- grid::rasterGrob(img, interpolate=TRUE)
 
-library(cowplot)
-
+# Draw the plot
 coord_plot <- ggdraw(bar_plot_polar)
 
+# Combine the plot and the image
 coord_plot + draw_grob(ger, 0.168, 0.18, 0.65, 0.65) + 
   draw_plot(bar_plot_polar)
-```
 
+```
+1. Optimal Visibility: Darker evening skies provide better visibility, aiding in the detection of unusual objects or lights.
+
+2. Leisure Activities: Evening leisure pursuits, like stargazing and outdoor activities, increase opportunities for people to spot UFOs while relaxing outdoors.
+
+3.Cultural Influence: Cultural depictions of UFO sightings during nighttime and psychological factors may heighten vigilance and reporting of sightings during evening hours.
 
 ```{r}
 suppressWarnings({
