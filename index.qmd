@@ -35,11 +35,20 @@ library(tidyverse)
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
 ```
+
+
 ```{r}
 library(ggplot2)
 
 # Load world map data
 world_map <- map_data("world")
+
+# Read the UFO sightings data
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
+
+# Data Cleaning
+ufo_sightings_clean <- ufo_sightings %>%
+  filter(!is.na(state))
 
 # Create Heatmap with map outline
 heatmap_with_map <- ggplot() +
@@ -59,23 +68,11 @@ heatmap_with_map <- ggplot() +
 # Print the heatmap with map outline
 print(heatmap_with_map)
 
-
-
 ```
 
 This heatmap of UFO sightings worldwide, where each bin represents a certain area on the map, and the color intensity represents the frequency of sightings in that area. This visualization will help us identify regions with higher concentrations of UFO sightings. In the above Heatmap, we can tell most of the sightings are around the USA region and little over East Europe, the frequency is not distributed around as expected, the entire map is below 2000 sightings and UAS having higher than 2000. This suggests that while UFO sightings are reported worldwide, they remain rare events. Factors such as population density, cultural beliefs, and reporting biases likely contribute to the observed distribution patterns. Further exploration of these factors is necessary to better understand the underlying reasons for the observed variations in UFO sighting frequencies.
 
 ```{r}
-# Load necessary libraries
-library(ggplot2)
-library(dplyr)
-
-# Read the UFO sightings data
-ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
-
-# Data Cleaning
-ufo_sightings_clean <- ufo_sightings %>%
-  filter(!is.na(state))
 
 # Count sightings by country
 sightings_by_country <- ufo_sightings_clean %>%
@@ -86,8 +83,6 @@ world_map <- map_data("world")
 
 # Merge with sightings data
 world_map_with_sightings <- left_join(world_map, sightings_by_country, by = c("region" = "country"))
-
-library(ggplot2)
 
 # Create Choropleth Map with individual sightings as points
 choropleth_map <- ggplot() +
@@ -165,7 +160,7 @@ bar_plot_polar <- ggplot(hour_frequency_df, aes(x = Hour, y = Frequency)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   guides(fill = "none") +
   labs(title = "UFO Sightings Frequency by Hour",
-       x = "Hour of Day",
+       x = "24 Hour CLOCK",
        y = NULL) +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
