@@ -17,6 +17,9 @@ Add project abstract here.
 ### Introduction
 
 ### Approach
+We first ensure that the dataset is clean, with no missing or invalid values that could affect our analysis. We then calculate summary statistics such as the mean, median, and standard deviation of the number of sightings globally to give us an idea of the distribution of ufo sightings.
+
+We then create a geographical visualization where we use latitude, longitude, and state data to create a heatmap and choropleth map to visualize the global distribution of UFO sightings. This will help identify geographical hotspots and trends. For our last visualization we do a spatial analysis via spatial clustering using algorithms like K-means to identify regions with a high concentration of sightings. Additionally, we'll assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings.
 
 ### Analysis
 
@@ -33,15 +36,6 @@ ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascie
 summary(ufo_sightings)
 
 ```
-
-Data Cleaning: First, we'll ensure that the dataset is clean, with no missing or invalid values that could affect our analysis.
-
-Descriptive Statistics: We'll calculate summary statistics such as the mean, median, and standard deviation of the number of sightings globally to understand the distribution.
-
-Geographical Visualization: Using latitude, longitude, and state data, we'll create a heatmap and choropleth map to visualize the global distribution of UFO sightings. This will help identify geographical hotspots and trends.
-
-Spatial Analysis: We'll perform spatial clustering using algorithms like K-means to identify regions with a high concentration of sightings. Additionally, we'll assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings.
-
 ```{r}
 library(ggplot2)
 
@@ -138,7 +132,7 @@ Military Presence and Experimental Technology: The presence of military installa
 
 ### Introduction
 
-For the second question we want to visualize any temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.
+For this question we want to visualize any temporal trends in UFO sightings throughout the day.
 
 ### Approach
 
@@ -339,3 +333,4 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 ```
 
 ### Discussion
+
