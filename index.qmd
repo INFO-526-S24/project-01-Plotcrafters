@@ -123,6 +123,7 @@ print(choropleth_map)
 This graph overlays the individual UFO sightings as red points on top of the choropleth map, allowing you to see both the country-level distribution and the specific locations of sightings. This along side the heatmap will give a better understanding where the freaquency and distribution of UFO sightings take place.
 
 ### Discussion
+
 Analysis of the heat map and choropleth map shows most UFO sightings occur in the USA, especially in the West Bay area. This region has more sightings compared to others. While most sightings are in the West Bay, some are also seen in the northern and eastern USA. This suggests certain areas have more UFO activity.
 
 Factors that can affect:
@@ -133,7 +134,6 @@ Cultural Impact: The USA's rich history of UFO-related media, including movies a
 
 Military Presence and Experimental Technology: The presence of military installations in certain regions, coupled with the testing of experimental aircraft or other technology, may result in misidentifications and increased UFO sightings.
 
-
 ## Question 2: Is there any specific time of the day when UFO sighting are more prevalent?
 
 ### Introduction
@@ -142,13 +142,9 @@ For the second question we want to visualize any temporal trends in UFO sighting
 
 ### Approach
 
-Initially the dataset `ufo_sightings` was loaded from the "TidyTuesday" source using the `read.csv` function in R. The `date_time` column was verified to ensure if it is the correct data types.
+We loaded the dataset `ufo_sightings` from the "TidyTuesday" source using the `read.csv` function in R. We verified the `date_time` column to ensure if it is the correct data type. After that we created a new variable under the name `time_of_day`, and upon extracting time from `date_time` variable we created the following time bins: morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), and  night_hours(22:00 PM - 5:59 AM). We analyzed sighting patterns within each bin.
 
-After that we've created a new variable undername `time_of_day` , upon extracting time from `date_time` variable we've created time bins morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), night_hours(22:00 PM - 5:59 AM). and analyzed sighting patterns within each bin.
-
-After that we've grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under name \_\_\_\_\_\_\_\_.
-
-Then we've plotted the \_\_\_\_\_\_\_ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.
+Lastly, we grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under the name \_\_\_\_\_\_\_\_. We then plotted the \_\_\_\_\_\_\_ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.
 
 ### Analysis
 
