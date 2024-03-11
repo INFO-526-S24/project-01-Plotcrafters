@@ -12,7 +12,6 @@ The project delves into the realm of UFO sightings by conducting a data-driven i
 
 Utilizing statistical approaches like geospatial clustering and spatial autocorrelation, the project aims to provide a comprehensive understanding of the worldwide prevalence of UFO sightings. Beyond the analytical aspects, the project emphasizes the broader impact on public perception, scientific inquiry, and the potential for future research. The dissemination of findings holds the promise of not only contributing to scientific discourse but also fostering public engagement and education, thereby enhancing awareness and knowledge about UFO sightings.
 
-
 ## Introduction
 
 The dataset under investigation is drawn from the TidyTuesday project, presenting a comprehensive compilation of records documenting encounters with unidentified flying objects (UFOs). With origins tracing back to diverse temporal, spatial, and descriptive dimensions, this dataset unfolds as a multifaceted exploration of the mysterious world of UFO sightings. Imbued with details such as precise date and time stamps, geographical coordinates, and intricate descriptions of each reported incident, this dataset forms a robust foundation for a thorough examination. As we embark on this data-driven journey, our objective is to discern latent patterns and unveil nuanced insights, contributing to a heightened comprehension of the intricate temporal and spatial dynamics characterizing UFO encounters on a global scale.
@@ -22,9 +21,11 @@ This repository of UFO sightings serves as a captivating reservoir for explorati
 ## Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
 
 ### Introduction
+
 For this question we want to know where the frequency and location, or the concentration, of UFO sightings. Under the ufo_sightings dataset we require the longitude and latitude of the sighting as well as the count. We're interested in this question because it's in our best interest to know where delusional people who claim ufo sightings are so we can avoid them.
 
 ### Approach
+
 We first ensure that the dataset is clean, with no missing or invalid values that could affect our analysis. We then calculate summary statistics such as the mean, median, and standard deviation of the number of sightings globally to give us an idea of the distribution of ufo sightings.
 
 We then create a geographical visualization where we use latitude, longitude, and state data to create a heatmap and choropleth map to visualize the global distribution of UFO sightings. This will help identify geographical hotspots and trends. For our last visualization we do a spatial analysis via spatial clustering using algorithms like K-means to identify regions with a high concentration of sightings. Additionally, we'll assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings.
@@ -32,8 +33,9 @@ We then create a geographical visualization where we use latitude, longitude, an
 ### Analysis
 
 ```{r}
+suppressMessages({
 library(tidyverse)
-
+})
 #> Loading the Dataset 
 
 #> UFO_Sightings
@@ -43,15 +45,15 @@ ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascie
 
 ```
 
-
 ```{r}
+suppressWarnings({
 library(ggplot2)
 
 # Load world map data
 world_map <- map_data("world")
 
 # Read the UFO sightings data
-ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
 # Data Cleaning
 ufo_sightings_clean <- ufo_sightings %>%
@@ -74,13 +76,13 @@ heatmap_with_map <- ggplot() +
 
 # Print the heatmap with map outline
 print(heatmap_with_map)
-
+})
 ```
 
 This heatmap of UFO sightings worldwide, where each bin represents a certain area on the map, and the color intensity represents the frequency of sightings in that area. This visualization will help us identify regions with higher concentrations of UFO sightings. In the above Heatmap, we can tell most of the sightings are around the USA region and little over East Europe, the frequency is not distributed around as expected, the entire map is below 2000 sightings and UAS having higher than 2000. This suggests that while UFO sightings are reported worldwide, they remain rare events. Factors such as population density, cultural beliefs, and reporting biases likely contribute to the observed distribution patterns. Further exploration of these factors is necessary to better understand the underlying reasons for the observed variations in UFO sighting frequencies.
 
 ```{r}
-
+suppressWarnings({
 # Count sightings by country
 sightings_by_country <- ufo_sightings_clean %>%
   count(country)
@@ -112,7 +114,7 @@ choropleth_map <- ggplot() +
 # Print the choropleth map
 print(choropleth_map)
 
-
+})
 ```
 
 This graph overlays the individual UFO sightings as red points on top of the choropleth map, allowing you to see both the country-level distribution and the specific locations of sightings. This along side the heatmap will give a better understanding where the freaquency and distribution of UFO sightings take place.
@@ -131,7 +133,7 @@ For this question we want to visualize any temporal trends in UFO sightings thro
 
 ### Approach
 
-We loaded the dataset `ufo_sightings` from the "TidyTuesday" source using the `read.csv` function in R. We verified the `date_time` column to ensure if it is the correct data type. After that we created a new variable under the name `time_of_day`, and upon extracting time from `date_time` variable we created the following time bins: morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), and  night_hours(22:00 PM - 5:59 AM). We analyzed sighting patterns within each bin.
+We loaded the dataset `ufo_sightings` from the "TidyTuesday" source using the `read.csv` function in R. We verified the `date_time` column to ensure if it is the correct data type. After that we created a new variable under the name `time_of_day`, and upon extracting time from `date_time` variable we created the following time bins: morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), and night_hours(22:00 PM - 5:59 AM). We analyzed sighting patterns within each bin.
 
 Lastly, we grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under the name \_\_\_\_\_\_\_\_. We then plotted the \_\_\_\_\_\_\_ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.
 
@@ -146,17 +148,20 @@ pacman::p_load(tidyverse,
                leaflet)
 ```
 
-
 ```{r}
+suppressWarnings({
 # Load necessary libraries
 library(ggplot2)
 library(png)
 library(tidyverse)
 library(lubridate)
+suppressMessages({  
 library(viridis)
+})
 library(png)
+suppressMessages({  
 library(cowplot)
-
+})
 # Read the data
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
@@ -195,11 +200,12 @@ coord_plot <- ggdraw(bar_plot_polar)
 # Combine the plot and the image
 coord_plot + draw_grob(ger, 0.168, 0.18, 0.65, 0.65) + 
   draw_plot(bar_plot_polar)
-
+})
 ```
-1. Optimal Visibility: Darker evening skies provide better visibility, aiding in the detection of unusual objects or lights.
 
-2. Leisure Activities: Evening leisure pursuits, like stargazing and outdoor activities, increase opportunities for people to spot UFOs while relaxing outdoors.
+1.  Optimal Visibility: Darker evening skies provide better visibility, aiding in the detection of unusual objects or lights.
+
+2.  Leisure Activities: Evening leisure pursuits, like stargazing and outdoor activities, increase opportunities for people to spot UFOs while relaxing outdoors.
 
 3.Cultural Influence: Cultural depictions of UFO sightings during nighttime and psychological factors may heighten vigilance and reporting of sightings during evening hours.
 
@@ -281,4 +287,5 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 ```
 
 ### Discussion
+
 According to the visualization above, it appears, unsurprisingly, that UFO sightings were most frequent at night time, followed by evening, afternoon, and morning. We speculate that this is so because when it is dark out people are less able to distincly recognize what object in the sky they are looking at. Why there are fewer sightings in the morning than in the afternoon makes little sense as there would be enough light in the sky to identify, or not identify, the object.
