@@ -15,6 +15,7 @@ Add project abstract here.
 ## Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
 
 ### Introduction
+For this question we want to know where the frequency and location, or the concentration, of UFO sightings. Under the ufo_sightings dataset we require the longitude and latitude of the sighting as well as the count. We're interested in this question because it's in our best interest to know where delusional people who claim ufo sightings are so we can avoid them.
 
 ### Approach
 We first ensure that the dataset is clean, with no missing or invalid values that could affect our analysis. We then calculate summary statistics such as the mean, median, and standard deviation of the number of sightings globally to give us an idea of the distribution of ufo sightings.
