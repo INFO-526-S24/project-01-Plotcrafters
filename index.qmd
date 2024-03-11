@@ -1,347 +1,141 @@
 ---
-title: "Project title"
-subtitle: "INFO 526 - Project 1"
-author: "Team name"
+title: "Revealing UFO Sighting Pattern"
+subtitle: "A Data-Driven Investigation into Global UFO Sightings"
+author: "Plot Crafters"
 format: html
 editor: visual
 ---
 
 ## Abstract
 
-Add project abstract here.
+The project delves into the realm of UFO sightings by conducting a data-driven investigation into a comprehensive dataset comprising over 80,000 records dating back to 1949. Leveraging information such as latitude, longitude, date, and detailed descriptions of each sighting, the analysis aims to unravel temporal, spatial, and descriptive patterns associated with these unidentified flying objects. The dataset, originating from NUFORC, provides a robust foundation for exploring global UFO activities, and the project employs data wrangling, exploratory data analysis, and statistical approaches to answer key questions about the frequency and distribution of sightings worldwide.
+
+Utilizing statistical approaches like geospatial clustering and spatial autocorrelation, the project aims to provide a comprehensive understanding of the worldwide prevalence of UFO sightings. Beyond the analytical aspects, the project emphasizes the broader impact on public perception, scientific inquiry, and the potential for future research. The dissemination of findings holds the promise of not only contributing to scientific discourse but also fostering public engagement and education, thereby enhancing awareness and knowledge about UFO sightings.
 
 ## Introduction
+
+The dataset under investigation is drawn from the TidyTuesday project, presenting a comprehensive compilation of records documenting encounters with unidentified flying objects (UFOs). With origins tracing back to diverse temporal, spatial, and descriptive dimensions, this dataset unfolds as a multifaceted exploration of the mysterious world of UFO sightings. Imbued with details such as precise date and time stamps, geographical coordinates, and intricate descriptions of each reported incident, this dataset forms a robust foundation for a thorough examination. As we embark on this data-driven journey, our objective is to discern latent patterns and unveil nuanced insights, contributing to a heightened comprehension of the intricate temporal and spatial dynamics characterizing UFO encounters on a global scale.
+
+This repository of UFO sightings serves as a captivating reservoir for exploration, providing researchers, data enthusiasts, and the wider public with an opportunity to dissect the enigmatic phenomena surrounding unidentified flying objects. By delving into the layers of information embedded within this dataset, we aim to demystify the patterns and intricacies that define these sightings, fostering a deeper understanding of the uncharted territories within the UFO phenomenon.
 
 ## Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
 
 ### Introduction
 
-**Unveiling the Mysteries of Global UFO Sightings:**
-
-The night sky, with its vastness and celestial wonders, has long been a subject of fascination for humanity. Within this vast expanse, reports of unidentified flying objects (UFOs) have ignited curiosity and sparked countless debates. In our data visualization project, we embark on a journey to unravel the mysteries surrounding UFO sightings worldwide.
-
-Our dataset, meticulously sourced and curated, comprises invaluable information from various dimensions. The **`ufo_sightings.csv`** dataset provides crucial details about the time, date, location, and characteristics of each reported UFO sighting. To enrich our analysis, we integrate data from **`places.csv`**, offering geographic coordinates and location descriptors, and **`day_parts_map.csv`**, providing dates of astronomical events such as sunrise, sunset, and twilight phases.
-
-**Key Questions:**
-
--   How many UFO sightings have been reported globally?
-
--   Are there particular regions where these sightings occur more frequently?
-
--   Can temporal and spatial patterns reveal insights into the UFO phenomena?
+For this question we want to know where the frequency and location, or the concentration, of UFO sightings. Under the ufo_sightings dataset we require the longitude and latitude of the sighting as well as the count. We're interested in this question because it's in our best interest to know where delusional people who claim ufo sightings are so we can avoid them.
 
 ### Approach
 
-Our approach involves merging datasets based on common variables such as city, state, and country, creating a comprehensive dataset that intertwines the anecdotal richness of UFO sightings with the contextual information of their occurrence.
+We first ensure that the dataset is clean, with no missing or invalid values that could affect our analysis. We then calculate summary statistics such as the mean, median, and standard deviation of the number of sightings globally to give us an idea of the distribution of ufo sightings.
 
-By employing advanced data visualization techniques, we aim to craft a visual narrative that not only quantifies the occurrences but also brings to light patterns, correlations, and intriguing insights. From temporal analyses to spatial distributions, and from shapes of reported UFOs to the duration of sightings, our exploration will span the spectrum of possibilities.
-
-As we delve into this data-driven investigation, our ultimate goal is to present a captivating story that bridges the gap between scientific inquiry and the realm of the unknown. Join us in deciphering the global tapestry of UFO sightings and exploring the fascinating intersections of data science and the uncharted territories of the night sky.
+We then create a geographical visualization where we use latitude, longitude, and state data to create a heatmap and choropleth map to visualize the global distribution of UFO sightings. This will help identify geographical hotspots and trends. For our last visualization we do a spatial analysis via spatial clustering using algorithms like K-means to identify regions with a high concentration of sightings. Additionally, we'll assess spatial autocorrelation to determine if there are spatial patterns in the distribution of sightings.
 
 ### Analysis
 
-```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results='hide'}
-if(!require(pacman))
-  install.packages("pacman")
+```{r}
+suppressMessages({
+library(tidyverse)
+})
+#> Loading the Dataset 
 
-pacman::p_load(tidyverse,
-               dplyr,
-               leaflet)
+#> UFO_Sightings
+
+
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
+
 ```
 
 ```{r}
-
-library(dplyr)
-library(plotly)
+suppressWarnings({
 library(ggplot2)
-library(rnaturalearth)
 
+# Load world map data
+world_map <- map_data("world")
 
-# Loading the Dataset 
-day_parts_map <- read.csv("data/day_parts_map.csv")
-places <- read.csv("data/places.csv")
-ufo_sightings <- read.csv("data/ufo_sightings.csv")
-ufo_sightings_with_time_of_day <- read.csv("ufo_sightings_with_time_of_day.csv")
+# Read the UFO sightings data
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
-#Preprocessing - Check for missing values
+# Data Cleaning
+ufo_sightings_clean <- ufo_sightings %>%
+  filter(!is.na(state))
 
-# Check for missing values in each dataset
-sapply(list(day_parts_map, places, ufo_sightings, ufo_sightings_with_time_of_day), function(x) sum(is.na(x)))
+# Create Heatmap with map outline
+heatmap_with_map <- ggplot() +
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), color = "black", fill = NA) +  # Map outline
+  geom_bin2d(data = ufo_sightings_clean, aes(x = longitude, y = latitude), bins = 50, color = "black") +  # Heatmap
+  scale_fill_gradient(name = "Frequency", low = "#045275", high = "#D32F2F") +  # Color gradient
+  labs(title = "Heatmap of UFO Sightings", 
+       subtitle = "Heatmap Showing Frequency of Sightings",
+       x = "Longitude", y = "Latitude") +  # Axis labels
+  theme_minimal() +  # Minimal theme
+  theme(plot.title = element_text(size = 20, face = "bold"),  # Title font size and style
+        plot.subtitle = element_text(size = 14, color = "gray"),  # Subtitle font size and color
+        axis.text = element_text(size = 10),  # Axis text size
+        legend.title = element_text(size = 12),  # Legend title size
+        legend.text = element_text(size = 10))  # Legend text size
 
-# List of datasets
-datasets <- list(day_parts_map, places, ufo_sightings, ufo_sightings_with_time_of_day)
-
-# Remove missing values from each dataset and assign to the original dataset
-for (i in seq_along(datasets)) {
-  datasets[[i]] <- datasets[[i]][complete.cases(datasets[[i]]), ]
-}
-
-# Check for missing values after removal
-sapply(datasets, function(x) sum(is.na(x)))
-
-
-geo_properties_world = list(
-  scope = 'world',
-  projection = list(type = 'natural earth'),
-  showland = TRUE,
-  showsubunits = FALSE,
-  landcolor = '#d2b48c',  # Use a color code or name directly
-  showlakes = TRUE,
-  lakecolor = 'skyblue'    # Use a color code or name directly
-)
-
-
-
-ufo_graph = plot_geo(ufo_sightings,  
-                     lat = ~latitude, 
-                     lon = ~longitude,
-                     marker = list(size = 2, color = "#ffd700",opacity = 0.35)) %>%# this will change the shape and colour of data points  
-  add_markers(hoverinfo = "none") %>% 
-  config(displayModeBar = FALSE) %>%  # this will not show the display bar , which we dont require 
-   layout(  # Define layout
-    geo = geo_properties_world,  # Apply map properties
-    mapbox = TRUE,  # Use mapbox base layer
-    title = 'UFO Sightings Worldwide'  # Add a title
-  )
-
-ufo_graph
-
-
-
-
+# Print the heatmap with map outline
+print(heatmap_with_map)
+})
 ```
+
+This heatmap of UFO sightings worldwide, where each bin represents a certain area on the map, and the color intensity represents the frequency of sightings in that area. This visualization will help us identify regions with higher concentrations of UFO sightings. In the above Heatmap, we can tell most of the sightings are around the USA region and little over East Europe, the frequency is not distributed around as expected, the entire map is below 2000 sightings and UAS having higher than 2000. This suggests that while UFO sightings are reported worldwide, they remain rare events. Factors such as population density, cultural beliefs, and reporting biases likely contribute to the observed distribution patterns. Further exploration of these factors is necessary to better understand the underlying reasons for the observed variations in UFO sighting frequencies.
 
 ```{r}
+suppressWarnings({
+# Count sightings by country
+sightings_by_country <- ufo_sightings_clean %>%
+  count(country)
 
-library(maps)
-places <- places %>%
-  mutate(
-    region = case_when(
-      country_code %in% c("US", "MX", "CA", "CR", "GT", "BZ", "BS", "DO", "HT", "JM", "BM", "SX", "BB", "HN", "LC", "VI", "CU", "PR", "SV", "KN", "KY") ~ "North America",
-      country_code %in% c("AU", "NZ", "PW", "SB", "GU", "FJ", "TV") ~ "Oceania",
-      country_code %in% c("IN", "JP", "PK", "ID", "AM", "MY", "PH", "AE", "MV", "TH", "LK", "CN", "KZ", "IQ", "KR", "OM", "JO", "AF", "TW", "IL", "VN", "IR", "BD", "SA", "KW", "HK", "NP", "BN", "SG", "QA", "LA", "BH", "RU", "KH", "LB", "SY", "MM", "UZ", "KG", "TL", "TR", "AZ") ~ "Asia",
-      country_code %in% c("FR", "GB", "DE", "NO", "CH", "BG", "ES", "LT", "HR", "IE", "NL", "IS", "IT", "FI", "CZ", "EE", "HU", "SE", "PT", "PL", "DK", "CY", "BA", "SK", "RS", "RO", "MT", "BE", "LV", "AL", "AT", "MK", "GR", "BY", "GE", "SI", "LU", "FO", "MD", "UA", "GI", "XK", "ME") ~ "Europe",
-      country_code %in% c("CO", "BR", "VE", "BO", "AR", "TT", "CL", "PE", "EC", "UY", "PA", "PY", "GY", "SR") ~ "South America",
-      country_code %in% c("ZA", "MA", "ZW", "AO", "MU", "LS", "NG", "EG", "CM", "UG", "KE", "DZ", "TD", "BW", "ZM", "TZ", "ET", "TN", "SN", "LY", "LR", "GH", "CV", "MW", "SZ") ~ "Africa",
-      TRUE ~ "Antratica"
-    )
-  )
+# Read world map data from ggplot2
+world_map <- map_data("world")
 
-# Naming the country name from country_code
-places <- places %>%
-  mutate(
-    full_countryname = case_when(
-      country_code %in% c("US") ~ "United States",
-      country_code %in% c("MX") ~ "Mexico",
-      country_code %in% c("CA") ~ "Canada",
-      country_code %in% c("MX") ~ "Costa Rica",
-      country_code %in% c("GT") ~ "Guatemala",
-      country_code %in% c("BZ") ~ "Belize",
-      country_code %in% c("BS") ~ "The Bahamas",
-      country_code %in% c("DO") ~ "Dominican Republic",
-      country_code %in% c("HT") ~ "Haiti",
-      country_code %in% c("JM") ~ "Jamaica",
-      country_code %in% c("BM") ~ "Bermuda",
-      country_code %in% c("SX") ~ "Sint Maarten",
-      country_code %in% c("BB") ~ "Barbados",
-      country_code %in% c("MX") ~ "Honduras",
-      country_code %in% c("LC") ~ "St Lucia",
-      country_code %in% c("VI") ~ "U.S Virgin Islands",
-      country_code %in% c("CU") ~ "Cuba",
-      country_code %in% c("PR") ~ "Puerto Rico",
-      country_code %in% c("SV") ~ "El Salvador",
-      country_code %in% c("KN") ~ "St Kitts & Nevis",
-      country_code %in% c("KY") ~ "Cayman Islands",
-      country_code %in% c("AU") ~ "Australia",
-      country_code %in% c("NZ") ~ "New Zealand",
-      country_code %in% c("PW") ~ "Palau",
-      country_code %in% c("SB") ~ "Solomon Islands",
-      country_code %in% c("GU") ~ "Guam",
-      country_code %in% c("FJ") ~ "Fiji",
-      country_code %in% c("IN") ~ "India",
-      country_code %in% c("JP") ~ "Japan",
-      country_code %in% c("PK") ~ "Pakistan",
-      country_code %in% c("ID") ~ "Indonesia",
-      country_code %in% c("AM") ~ "Armenia",
-      country_code %in% c("MY") ~ "Malaysia",
-      country_code %in% c("PH") ~ "Philippines",
-      country_code %in% c("AE") ~ "United Arab Emirates",
-      country_code %in% c("MV") ~ "Maldives",
-      country_code %in% c("TH") ~ "Thailand",
-      country_code %in% c("LK") ~ "Sri Lanka",
-      country_code %in% c("CN") ~ "China",
-      country_code %in% c("KZ") ~ "Kazakhstan",
-      country_code %in% c("IQ") ~ "Iraq",
-      country_code %in% c("KR") ~ "South Korea",
-      country_code %in% c("OM") ~ "Oman",
-      country_code %in% c("JO") ~ "Jordan",
-      country_code %in% c("AF") ~ "Afghanistan",
-      country_code %in% c("TW") ~ "Taiwan",
-      country_code %in% c("IL") ~ "Israel",
-      country_code %in% c("VN") ~ "Vietnam",
-      country_code %in% c("IR") ~ "Iran",
-      country_code %in% c("BD") ~ "Bangladesh",
-      country_code %in% c("SA") ~ "Saudi Arabia",
-      country_code %in% c("KW") ~ "Kuwait",
-      country_code %in% c("HK") ~ "Hong Kong",
-      country_code %in% c("NP") ~ "Nepal",
-      country_code %in% c("BN") ~ "Brunei",
-      country_code %in% c("SG") ~ "Singapore",
-      country_code %in% c("QA") ~ "Qatar",
-      country_code %in% c("LA") ~ "Laos",
-      country_code %in% c("BH") ~ "Bahrain",
-      country_code %in% c("RU") ~ "Russia",
-      country_code %in% c("KH") ~ "Cambodia",
-      country_code %in% c("LB") ~ "Lebanon",
-      country_code %in% c("SY") ~ "Syria",
-      country_code %in% c("MM") ~ "Myanmar",
-      country_code %in% c("UZ") ~ "Uzbekistan",
-      country_code %in% c("KG") ~ "Kyrgyzstan",
-      country_code %in% c("TL") ~ "Timor-Leste",
-      country_code %in% c("TR") ~ "Turkey",
-      country_code %in% c("AZ") ~ "Azerbaijan",
-      country_code %in% c("FR") ~ "France",
-      country_code %in% c("GB") ~ "United Kingdom",
-      country_code %in% c("DE") ~ "Germany",
-      country_code %in% c("NO") ~ "Norway",
-      country_code %in% c("CH") ~ "Switzerland",
-      country_code %in% c("BG") ~ "Bulgaria",
-      country_code %in% c("ES") ~ "Spain",
-      country_code %in% c("LT") ~ "Lithuania",
-      country_code %in% c("HR") ~ "Croatia",
-      country_code %in% c("IE") ~ "Ireland",
-      country_code %in% c("NL") ~ "Netherlands",
-      country_code %in% c("IS") ~ "Iceland",
-      country_code %in% c("IT") ~ "Italy",
-      country_code %in% c("FI") ~ "Finland",
-      country_code %in% c("CZ") ~ "Czechia",
-      country_code %in% c("EE") ~ "Estonia",
-      country_code %in% c("HU") ~ "Hungary",
-      country_code %in% c("SE") ~ "Sweden",
-      country_code %in% c("PT") ~ "Portugal",
-      country_code %in% c("PL") ~ "Poland",
-      country_code %in% c("DK") ~ "Denmark",
-      country_code %in% c("CY") ~ "Cyprus",
-      country_code %in% c("BA") ~ "Bosnia and Herzegovina",
-      country_code %in% c("SK") ~ "Slovakia",
-      country_code %in% c("RS") ~ "Serbia",
-      country_code %in% c("RO") ~ "Romania",
-      country_code %in% c("MT") ~ "Malta",
-      country_code %in% c("BE") ~ "Belgium",
-      country_code %in% c("LV") ~ "Latvia",
-      country_code %in% c("AL") ~ "Albania",
-      country_code %in% c("AT") ~ "Austria",
-      country_code %in% c("MK") ~ "North Macedonia",
-      country_code %in% c("GR") ~ "Greece",
-      country_code %in% c("BY") ~ "Belarus",
-      country_code %in% c("GE") ~ "Georgia",
-      country_code %in% c("SI") ~ "Slovenia",
-      country_code %in% c("LU") ~ "Luxembourg",
-      country_code %in% c("FO") ~ "Faroe Islands",
-      country_code %in% c("MD") ~ "Moldova",
-      country_code %in% c("UA") ~ "Ukraine",
-      country_code %in% c("GI") ~ "Gibraltar",
-      country_code %in% c("XK") ~ "Kosovo",
-      country_code %in% c("ME") ~ "Montenegro",
-      country_code %in% c("CO") ~ "Colombia",
-      country_code %in% c("BR") ~ "Brazil",
-      country_code %in% c("VE") ~ "Venezuela",
-      country_code %in% c("BO") ~ "Bolivia",
-      country_code %in% c("AR") ~ "Argentina",
-      country_code %in% c("TT") ~ "Trinidad and Tobago",
-      country_code %in% c("CL") ~ "Chile",
-      country_code %in% c("PE") ~ "Peru",
-      country_code %in% c("EC") ~ "Ecuado",
-      country_code %in% c("UY") ~ "Ecuado",
-      country_code %in% c("PA") ~ "Panama",
-      country_code %in% c("PY") ~ "Paraguay",
-      country_code %in% c("GY") ~ "Guyana",
-      country_code %in% c("SR") ~ "Suriname",
-      country_code %in% c("ZA") ~ "South Africa",
-      country_code %in% c("MA") ~ "Morocco",
-      country_code %in% c("ZW") ~ "Zimbabwe",
-      country_code %in% c("AO") ~ "Angola",
-      country_code %in% c("MU") ~ "Mauritius",
-      country_code %in% c("LS") ~ "Lesotho",
-      country_code %in% c("NG") ~ "Nigeria",
-      country_code %in% c("EG") ~ "Egypt",
-      country_code %in% c("CM") ~ "Cameroon",
-      country_code %in% c("UG") ~ "Uganda",
-      country_code %in% c("KE") ~ "Kenya",
-      country_code %in% c("DZ") ~ "Algeria",
-      country_code %in% c("TD") ~ "Chad",
-      country_code %in% c("BW") ~ "Botswana",
-      country_code %in% c("ZM") ~ "Zambia",
-      country_code %in% c("TZ") ~ "Tanzania",
-      country_code %in% c("ET") ~ "Ethiopia",
-      country_code %in% c("TN") ~ "Tunisia",
-      country_code %in% c("SN") ~ "Senegal",
-      country_code %in% c("LY") ~ "Libya",
-      country_code %in% c("LR") ~ "Liberia",
-      country_code %in% c("GH") ~ "Ghana",
-      country_code %in% c("CV") ~ "Cabo Verde",
-      country_code %in% c("MW") ~ "Malawi",
-      country_code %in% c("SZ") ~ "Eswatini",
-      country_code %in% c("TV") ~ "Tuvalu",
-      TRUE ~ "Unknow Places"
-    )
-  )
+# Merge with sightings data
+world_map_with_sightings <- left_join(world_map, sightings_by_country, by = c("region" = "country"))
 
+# Create Choropleth Map with individual sightings as points
+choropleth_map <- ggplot() +
+  geom_polygon(data = world_map_with_sightings, aes(x = long, y = lat, group = group, fill = n), color = "black") +
+  geom_point(data = ufo_sightings_clean, aes(x = longitude, y = latitude), color = "red", alpha = 0.3) +
+  labs(title = "Global Distribution of UFO Sightings by Country",
+       subtitle = "Choropleth Map with Individual Sightings",
+       x = "Longitude",
+       y = "Latitude",
+       fill = "Number of Sightings") +  # Add legend title
+  theme_minimal() +  # Use minimal theme
+  theme(plot.title = element_text(size = 20, face = "bold"),  # Adjust title font size and style
+        plot.subtitle = element_text(size = 14, color = "gray"),  # Adjust subtitle font size and color
+        axis.title.x = element_text(size = 12),  # Adjust x-axis title size
+        axis.title.y = element_text(size = 12),  # Adjust y-axis title size
+        legend.title = element_text(size = 12),  # Adjust legend title size
+        legend.text = element_text(size = 10)) +  # Adjust legend text size
+  scale_fill_gradient(name = "Number of Sightings", low = "#FFEDA0", high = "#F44336")  # Adjust color gradient
 
-#Counting the occurrence of UFO sightings in across the region 
-region_count <- places |>
-  group_by( region) |>
-  summarise(region_ufo_sighting = n(), .groups = "drop") |>
-  ungroup()
+# Print the choropleth map
+print(choropleth_map)
 
-
-
-# Create the plot
-ggplot(region_count, aes(x = region, y = region_ufo_sighting, fill = region_ufo_sighting)) +
-  geom_bar(stat = "identity") +
-  scale_fill_gradient(low = "lightblue", high = "darkblue") +
-  geom_text(aes(label = region_ufo_sighting), vjust = -0.5, color = "black") +  # Corrected label variable
-  theme_minimal() +
-  labs(title = "UFO Sightings Count by Region",
-       x = "Region",
-       y = "Count") +
-
-theme(
-  plot.background = element_rect(fill = "white", color = NA),
-  panel.background = element_rect(fill = "lightgray", color = NA),
-  panel.grid.major = element_line(color = "gray", size = 0.5),
-  panel.grid.minor = element_blank(),
-  axis.line = element_line(color = "black"),
-  axis.text = element_text(color = "black"),
-  axis.title = element_text(color = "black"),
-  plot.title = element_text(hjust = 0.5, size = 20, color = "black")
-)
-
-
-
+})
 ```
 
-```{r}
-
-```
+This graph overlays the individual UFO sightings as red points on top of the choropleth map, allowing you to see both the country-level distribution and the specific locations of sightings. This along side the heatmap will give a better understanding where the freaquency and distribution of UFO sightings take place.
 
 ### Discussion
+
+The heat map and choropleth map above show that most UFO sightings occur in the USA, especially in the West Bay area. While most sightings are in the West Bay, some are also seen in the northern and eastern USA.
+
+We speculate that there are several reasons for such distribution of sightings. First, higher population densities in the USA contribute to more reported UFO sightings, as there are more observers to witness and report such phenomena. Second, the USA's rich history of UFO-related media, including movies and TV shows, may influence public perception and reporting behavior, leading to increased awareness and reporting of UFO sightings. Third, the presence of military installations in certain regions, coupled with the testing of experimental aircraft or other technology, may result in misidentifications and increased UFO sightings.
 
 ## Question 2: Is there any specific time of the day when UFO sighting are more prevalent?
 
 ### Introduction
 
-For the second question we want to visualize any temporal trends in UFO sightings throughout the day. This visual representation will help identify peak hours and potential patterns associated with different times of the day.
+For this question we want to visualize any temporal trends in UFO sightings throughout the day. We utilize the hour_of_day and sighting count variable from the ufo_sightings_with_time_of_day dataset. We're interested in this question because we want to see what time of day people are most delusional.
 
 ### Approach
 
-Initially the dataset `ufo_sightings` was loaded from the "TidyTuesday" source using the `read.csv` function in R. The `date_time` column was verified to ensure if it is the correct data types.
+We loaded the dataset `ufo_sightings` from the "TidyTuesday" source using the `read.csv` function in R. We verified the `date_time` column to ensure if it is the correct data type. After that we created a new variable under the name `time_of_day`, and upon extracting time from `date_time` variable we created the following time bins: morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), and night_hours(22:00 PM - 5:59 AM). We analyzed sighting patterns within each bin.
 
-After that we've created a new variable undername `time_of_day` , upon extracting time from `date_time` variable we've created time bins morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), night_hours(22:00 PM - 5:59 AM). and analyzed sighting patterns within each bin.
-
-After that we've grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under name \_\_\_\_\_\_\_\_.
-
-Then we've plotted the \_\_\_\_\_\_\_ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.
+Lastly, we grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under the name \_\_\_\_\_\_\_\_. We then plotted the \_\_\_\_\_\_\_ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.
 
 ### Analysis
 
@@ -354,125 +148,66 @@ pacman::p_load(tidyverse,
                leaflet)
 ```
 
-```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
-```
-
 ```{r}
+suppressWarnings({
 # Load necessary libraries
+library(ggplot2)
+library(png)
 library(tidyverse)
-
-#> Loading the Dataset 
-
-#> UFO_Sightings
-
+library(lubridate)
+suppressMessages({  
+library(viridis)
+})
+library(png)
+suppressMessages({  
+library(cowplot)
+})
+# Read the data
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
-#> Data Wrangling
-
-#> Exploring the data interactively
-#View(ufo_sightings)
-
-#Displaying first few entries of date_time column
-#head(ufo_sightings$date_time)
-
-#Displaying the data type of the date_time column
-#class(ufo_sightings$date_time)
-
-#> Finding Missing Data in date_time
-#sum(is.na(ufo_sightings$date_time))
-
-# Load the lubridate package
-library(lubridate)
-
-
-# converting character strings of date_time variable into a format that R can recognize and manipulate as date-time data.
+# Convert character strings of date_time variable into POSIXct format
 ufo_sightings$date_time <- as.POSIXct(ufo_sightings$date_time, format = "%m/%d/%Y %H:%M")
 
-# Extracting the hour component
-hour_of_day <- hour(ufo_sightings$date_time)
+# Extract the hour component
+ufo_sightings$hour_of_day <- hour(ufo_sightings$date_time)
 
-# Define time ranges for each bin
-morning_hours <- 6:11
-afternoon_hours <- 12:17
-evening_hours <- 18:21
-night_hours <- c(22:23, 0:5)
+# Create a summary table for counts of sightings per hour
+hourly_counts <- table(ufo_sightings$hour_of_day)
 
-# Function to assign time bins
-assign_time_bin <- function(hour_of_day) {
-  if (hour_of_day %in% morning_hours) {
-    return("Morning")
-  } else if (hour_of_day %in% afternoon_hours) {
-    return("Afternoon")
-  } else if (hour_of_day %in% evening_hours) {
-    return("Evening")
-  } else {
-    return("Night")
-  }
-}
+# Convert the summary table to a data frame
+hourly_counts_df <- data.frame(hour = as.numeric(names(hourly_counts)), count = as.numeric(hourly_counts))
 
-# Create a new variable representing the time of day bins
-ufo_sightings$time_of_day <- sapply(hour_of_day, assign_time_bin)
+# Plotting with polar coordinates
+bar_plot_polar <- ggplot(hourly_counts_df, aes(x = factor(hour), y = count)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  scale_x_discrete(name = "Hour of Day") +
+  scale_y_continuous(name = NULL) +
+  labs(title = "UFO Sightings by Hour of Day") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks = element_blank(), 
+        panel.grid.major.y = element_blank()) +
+  coord_polar(start = -pi/1.45)
 
-# Output the time_of_day variable
-#ufo_sightings$time_of_day
+# Read the image
+img <- readPNG("images/q2Clock.png")
+ger <- grid::rasterGrob(img, interpolate=TRUE)
 
-# Displaying date_time and time_of_day variables of ufo_sightings dataframe side by side
-# View(ufo_sightings[, c("date_time", "time_of_day")])
+# Draw the plot
+coord_plot <- ggdraw(bar_plot_polar)
 
-# Write the dataframe to a CSV file
-#write.csv(ufo_sightings, "ufo_sightings_with_time_of_day.csv", row.names = FALSE)
-
-#finding out the current working directory in R to get the ufo_sightings_with_time_of_day.csv dataframe
-#getwd()
-
-# Plotting Time Trend for UFO sightings
-
-
+# Combine the plot and the image
+coord_plot + draw_grob(ger, 0.168, 0.18, 0.65, 0.65) + 
+  draw_plot(bar_plot_polar)
+})
 ```
 
-\# Group the data by time_of_day and summarize to calculate count of sightings
+1.  Optimal Visibility: Darker evening skies provide better visibility, aiding in the detection of unusual objects or lights.
 
-ufo_summary \<- ufo_data %\>%
+2.  Leisure Activities: Evening leisure pursuits, like stargazing and outdoor activities, increase opportunities for people to spot UFOs while relaxing outdoors.
 
-group_by(time_of_day) %\>%
-
-summarize(count = n())
-
-\# Create the plot
-
-ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
-
-geom_bar(stat = "identity") +
-
-scale_fill_gradient(low = "lightblue", high = "darkblue") + \# Use a gradient scale from light blue to dark blue
-
-geom_text(aes(label = count), vjust = -0.5, color = "black") +
-
-theme_minimal() +
-
-labs(title = "UFO Sightings Count by Time of Day",
-
-x = "Time of Day",
-
-y = "Count") +
-
-theme(plot.background = element_rect(fill = "transparent", color = NA),
-
-panel.background = element_rect(fill = "transparent", color = NA),
-
-panel.grid.major = element_line(color = "gray", size = 0.5), \# Add major grid lines
-
-panel.grid.minor = element_blank(),
-
-axis.line = element_line(color = "black"),
-
-axis.text = element_text(color = "black"),
-
-axis.title = element_text(color = "black"),
-
-plot.title = element_text(hjust = 0.5, size = 20, color = "black"))
-
-})
+3.Cultural Influence: Cultural depictions of UFO sightings during nighttime and psychological factors may heighten vigilance and reporting of sightings during evening hours.
 
 ```{r}
 suppressWarnings({
@@ -485,20 +220,6 @@ library(tidyverse)
 
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
-#> Data Wrangling
-
-#> Exploring the data interactively
-#View(ufo_sightings)
-
-#Displaying first few entries of date_time column
-#head(ufo_sightings$date_time)
-
-#Displaying the data type of the date_time column
-#class(ufo_sightings$date_time)
-
-#> Finding Missing Data in date_time
-#sum(is.na(ufo_sightings$date_time))
-
 # Load the lubridate package
 library(lubridate)
 
@@ -528,20 +249,6 @@ assign_time_bin <- function(hour_of_day) {
   }
 }
 
-# Create a new variable representing the time of day bins
-ufo_sightings$time_of_day <- sapply(hour_of_day, assign_time_bin)
-
-# Output the time_of_day variable
-#ufo_sightings$time_of_day
-
-# Displaying date_time and time_of_day variables of ufo_sightings dataframe side by side
-# View(ufo_sightings[, c("date_time", "time_of_day")])
-
-# Write the dataframe to a CSV file
-#write.csv(ufo_sightings, "ufo_sightings_with_time_of_day.csv", row.names = FALSE)
-
-#finding out the current working directory in R to get the ufo_sightings_with_time_of_day.csv dataframe
-#getwd()
 
 library(ggplot2)
 library(dplyr)
@@ -560,22 +267,25 @@ ufo_summary <- ufo_data %>%
 # Create the plot
 ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
   geom_bar(stat = "identity") +
-  scale_fill_gradient(low = "lightblue", high = "darkblue") +  # Use a gradient scale from light blue to dark blue
-  geom_text(aes(label = count), vjust = -0.5, color = "black") +
+  scale_fill_gradient(name = "Count", low = "#ADD8E6", high = "#000080") +  # Use a gradient scale from light blue to navy blue
+  geom_text(aes(label = count), vjust = -0.5, color = "black", size = 3) +  
   theme_minimal() +
   labs(title = "UFO Sightings Count by Time of Day",
        x = "Time of Day",
        y = "Count") +
-  theme(plot.background = element_rect(fill = "transparent", color = NA),
-        panel.background = element_rect(fill = "transparent", color = NA),
-        panel.grid.major = element_line(color = "gray", size = 0.5),  # Add major grid lines
+  theme(plot.background = element_rect(fill = "white", color = NA),  
+        panel.background = element_rect(fill = "white", color = NA),  
+        panel.grid.major = element_line(color = "gray", size = 0.2),  
         panel.grid.minor = element_blank(),
         axis.line = element_line(color = "black"),
-        axis.text = element_text(color = "black"),
-        axis.title = element_text(color = "black"),
-        plot.title = element_text(hjust = 0.5, size = 20, color = "black"))
+        axis.text = element_text(color = "black", size = 10),  # Adjust size of axis text
+        axis.title = element_text(color = "black", size = 12),  # Adjust size of axis titles
+        plot.title = element_text(hjust = 0.5, size = 20, color = "black", face = "bold"), 
+        legend.position = "right") +  # Position legend on the right side
+  guides(fill = guide_colorbar(title.position = "top", title.vjust = 0.5))  })
 
-})
 ```
 
 ### Discussion
+
+According to the visualization above, it appears, unsurprisingly, that UFO sightings were most frequent at night time, followed by evening, afternoon, and morning. We speculate that this is so because when it is dark out people are less able to distincly recognize what object in the sky they are looking at. Why there are fewer sightings in the morning than in the afternoon makes little sense as there would be enough light in the sky to identify, or not identify, the object.

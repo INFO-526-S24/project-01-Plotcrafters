@@ -53,15 +53,97 @@ mtcars$speed <- mtcars$hp / mtcars$wt
 data("penguins")
 ```
 
+## Introduction
+
+\-"UFO Sightings Redux" dataset is obtained from National UFO Reporting center. The dataset offers a detailed look into various aspects of UFO sightings, including temporal details, geographical information, and specific characteristics of the reported sightings.Our mission is to decipher patterns, trends, and anomalies within this dataset. By employing data analysis techniques, we aim to uncover temporal, spatial, and thematic insights that may bring us closer to understanding the enigmatic world of UFO sightings.
+
 # Q1: How many UFO sightings have been reported worldwide ? Particular regions where these sightings occur more frequently ?
+
+##Motivation for Question1:
+
+-By exploring the distribution of UFO sightings across different locations, we aim to uncover geographical patterns and hotspots.
+
+-This investigation can provide insights into whether certain areas or countries have a higher incidence of reported UFO sightings, contributing to our understanding of potential regional variations in extraterrestrial encounter reports.
+
+```{r}
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
+
+library(ggplot2)
+library(dplyr)
+
+# Read the UFO sightings data
+ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv")
+
+# Data Cleaning
+ufo_sightings_clean <- ufo_sightings %>%
+  filter(!is.na(state))
+
+# Count sightings by country
+sightings_by_country <- ufo_sightings_clean %>%
+  count(country)
+
+# Read world map data from ggplot2
+world_map <- map_data("world")
+
+# Merge with sightings data
+world_map_with_sightings <- left_join(world_map, sightings_by_country, by = c("region" = "country"))
+
+# Create Choropleth Map with individual sightings as points
+choropleth_map <- ggplot() +
+  geom_polygon(data = world_map_with_sightings, aes(x = long, y = lat, group = group, fill = n), color = "black") +
+  geom_point(data = ufo_sightings_clean, aes(x = longitude, y = latitude), color = "red", alpha = 0.3) +
+  labs(title = "Global Distribution of UFO Sightings by Country",
+       subtitle = "Choropleth Map with Individual Sightings",
+       x = "Longitude",
+       y = "Latitude",
+       fill = "Number of Sightings") +  # Add legend title
+  theme_minimal() +  # Use minimal theme
+  theme(plot.title = element_text(size = 20, face = "bold"),  # Adjust title font size and style
+        plot.subtitle = element_text(size = 14, color = "gray"),  # Adjust subtitle font size and color
+        axis.title.x = element_text(size = 12),  # Adjust x-axis title size
+        axis.title.y = element_text(size = 12),  # Adjust y-axis title size
+        legend.title = element_text(size = 12),  # Adjust legend title size
+        legend.text = element_text(size = 10)) +  # Adjust legend text size
+  scale_fill_gradient(name = "Number of Sightings", low = "#FFEDA0", high = "#F44336")  # Adjust color gradient
+
+world_map <- map_data("world")
+
+# Create Heatmap with map outline
+heatmap_with_map <- ggplot() +
+  geom_polygon(data = world_map, aes(x = long, y = lat, group = group), color = "black", fill = NA) +  # Map outline
+  geom_bin2d(data = ufo_sightings_clean, aes(x = longitude, y = latitude), bins = 50, color = "black") +  # Heatmap
+  scale_fill_gradient(name = "Frequency", low = "#045275", high = "#D32F2F") +  # Color gradient
+  labs(title = "Heatmap of UFO Sightings", 
+       subtitle = "Heatmap Showing Frequency of Sightings",
+       x = "Longitude", y = "Latitude") +  # Axis labels
+  theme_minimal() +  # Minimal theme
+  theme(plot.title = element_text(size = 20, face = "bold"),  # Title font size and style
+        plot.subtitle = element_text(size = 14, color = "gray"),  # Subtitle font size and color
+        axis.text = element_text(size = 10),  # Axis text size
+        legend.title = element_text(size = 12),  # Legend title size
+        legend.text = element_text(size = 10))  # Legend text size
+
+
+# Print the choropleth map
+print(choropleth_map)
+
+# Print the heatmap with map outline
+print(heatmap_with_map)
+
+```
 
 ## The UFO Footprints with Numbers
 
 ## Popular Destination
 
+USA
+
 # Q2: Is there any specific time of the day when UFO sighting are more prevalent?
 
-## Understanding Time Trend for UFO sightings
+## Motivation for Question2:
+
+-   By exploring temporal patterns in UFO sightings, we aim to identify if certain times of the day are associated with a higher frequency of reported encounters.
+-   This investigation can provide valuable insights into the temporal aspects of UFO sightings, potentially revealing patterns that could be linked to environmental conditions, human behavior, or other factors. \## Understanding Time Trend for UFO sightings
 
 ```{r}
 suppressWarnings({
@@ -177,10 +259,16 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 
 ## Overall Conclusion for both Q1 & Q2
 
--   Please write what answer we've got for Question 1 from our analysis and plot
+-   Americans by far claimed ufo sightings most frequently. Three possible conclusions:
 
--   Please write what answer we've got for Question Q2 from our analysis and plot
+    1\) alien UFOs have unfinished business in the USA
 
-## Thank you !! {style="text-align: center"}
+    2\) Americans are the most delusional
+
+    3\) Other countries don't care to collect such data so UFO sightings would be under-reported.
+
+-   UFO sightings tend to be more prevalent during the night, aligning with the common perception of UFO sightings occurring in the dark.
+
+## Thank you {style="text-align: center"}
 
 ![](images/neuralyzer-men-in-black.gif){fig-align="center"}
