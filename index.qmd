@@ -133,7 +133,7 @@ Military Presence and Experimental Technology: The presence of military installa
 
 ### Introduction
 
-For this question we want to visualize any temporal trends in UFO sightings throughout the day.
+For this question we want to visualize any temporal trends in UFO sightings throughout the day. We utilize the hour_of_day and sighting count variable from the ufo_sightings_with_time_of_day dataset. We're interested in this question because we want to see what time of day people are most delusional.
 
 ### Approach
 
@@ -334,4 +334,4 @@ ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
 ```
 
 ### Discussion
-
+According to the visualization above, it appears, unsurprisingly, that UFO sightings were most frequent at night time, followed by evening, afternoon, and morning. We speculate that this is so because when it is dark out people are less able to distincly recognize what object in the sky they are looking at. Why there are fewer sightings in the morning than in the afternoon makes little sense as there would be enough light in the sky to identify, or not identify, the object.
