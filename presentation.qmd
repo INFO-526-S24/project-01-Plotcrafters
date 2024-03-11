@@ -55,7 +55,7 @@ data("penguins")
 
 ## Introduction
 
--UFO Sightings Redux" dataset is obtained from National UFO Reporting center. The dataset offers a detailed look into various aspects of UFO sightings, including temporal details, geographical information, and specific characteristics of the reported sightings.Our mission is to decipher patterns, trends, and anomalies within this dataset. By employing data analysis techniques, we aim to uncover temporal, spatial, and thematic insights that may bring us closer to understanding the enigmatic world of UFO sightings.
+"UFO Sightings Redux" dataset is obtained from National UFO Reporting center. The dataset offers a detailed look into various aspects of UFO sightings, including temporal details, geographical information, and specific characteristics of the reported sightings.Our mission is to decipher patterns, trends, and anomalies within this dataset. By employing data analysis techniques, we aim to uncover temporal, spatial, and thematic insights that may bring us closer to understanding the enigmatic world of UFO sightings.
 
 ## Q1: How many UFO sightings have been reported worldwide ? Particular regions where these sightings occur more frequently ?
 
@@ -266,9 +266,10 @@ coord_plot <- ggdraw(bar_plot_polar)
 coord_plot + draw_grob(ger, 0.168, 0.18, 0.65, 0.65) + 
   draw_plot(bar_plot_polar)
 ```
-1. Optimal Visibility: Darker evening skies provide better visibility, aiding in the detection of unusual objects or lights.
 
-2. Leisure Activities: Evening leisure pursuits, like stargazing and outdoor activities, increase opportunities for people to spot UFOs while relaxing outdoors.
+1.  Optimal Visibility: Darker evening skies provide better visibility, aiding in the detection of unusual objects or lights.
+
+2.  Leisure Activities: Evening leisure pursuits, like stargazing and outdoor activities, increase opportunities for people to spot UFOs while relaxing outdoors.
 
 3.Cultural Influence: Cultural depictions of UFO sightings during nighttime and psychological factors may heighten vigilance and reporting of sightings during evening hours.
 
