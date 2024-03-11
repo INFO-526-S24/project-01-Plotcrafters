@@ -16,9 +16,314 @@ Add project abstract here.
 
 ### Introduction
 
+**Unveiling the Mysteries of Global UFO Sightings:**
+
+The night sky, with its vastness and celestial wonders, has long been a subject of fascination for humanity. Within this vast expanse, reports of unidentified flying objects (UFOs) have ignited curiosity and sparked countless debates. In our data visualization project, we embark on a journey to unravel the mysteries surrounding UFO sightings worldwide.
+
+Our dataset, meticulously sourced and curated, comprises invaluable information from various dimensions. The **`ufo_sightings.csv`** dataset provides crucial details about the time, date, location, and characteristics of each reported UFO sighting. To enrich our analysis, we integrate data from **`places.csv`**, offering geographic coordinates and location descriptors, and **`day_parts_map.csv`**, providing dates of astronomical events such as sunrise, sunset, and twilight phases.
+
+**Key Questions:**
+
+-   How many UFO sightings have been reported globally?
+
+-   Are there particular regions where these sightings occur more frequently?
+
+-   Can temporal and spatial patterns reveal insights into the UFO phenomena?
+
 ### Approach
 
+Our approach involves merging datasets based on common variables such as city, state, and country, creating a comprehensive dataset that intertwines the anecdotal richness of UFO sightings with the contextual information of their occurrence.
+
+By employing advanced data visualization techniques, we aim to craft a visual narrative that not only quantifies the occurrences but also brings to light patterns, correlations, and intriguing insights. From temporal analyses to spatial distributions, and from shapes of reported UFOs to the duration of sightings, our exploration will span the spectrum of possibilities.
+
+As we delve into this data-driven investigation, our ultimate goal is to present a captivating story that bridges the gap between scientific inquiry and the realm of the unknown. Join us in deciphering the global tapestry of UFO sightings and exploring the fascinating intersections of data science and the uncharted territories of the night sky.
+
 ### Analysis
+
+```{r echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, results='hide'}
+if(!require(pacman))
+  install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               dplyr,
+               leaflet)
+```
+
+```{r}
+
+library(dplyr)
+library(plotly)
+library(ggplot2)
+library(rnaturalearth)
+
+
+# Loading the Dataset 
+day_parts_map <- read.csv("data/day_parts_map.csv")
+places <- read.csv("data/places.csv")
+ufo_sightings <- read.csv("data/ufo_sightings.csv")
+ufo_sightings_with_time_of_day <- read.csv("ufo_sightings_with_time_of_day.csv")
+
+#Preprocessing - Check for missing values
+
+# Check for missing values in each dataset
+sapply(list(day_parts_map, places, ufo_sightings, ufo_sightings_with_time_of_day), function(x) sum(is.na(x)))
+
+# List of datasets
+datasets <- list(day_parts_map, places, ufo_sightings, ufo_sightings_with_time_of_day)
+
+# Remove missing values from each dataset and assign to the original dataset
+for (i in seq_along(datasets)) {
+  datasets[[i]] <- datasets[[i]][complete.cases(datasets[[i]]), ]
+}
+
+# Check for missing values after removal
+sapply(datasets, function(x) sum(is.na(x)))
+
+
+geo_properties_world = list(
+  scope = 'world',
+  projection = list(type = 'natural earth'),
+  showland = TRUE,
+  showsubunits = FALSE,
+  landcolor = '#d2b48c',  # Use a color code or name directly
+  showlakes = TRUE,
+  lakecolor = 'skyblue'    # Use a color code or name directly
+)
+
+
+
+ufo_graph = plot_geo(ufo_sightings,  
+                     lat = ~latitude, 
+                     lon = ~longitude,
+                     marker = list(size = 2, color = "#ffd700",opacity = 0.35)) %>%# this will change the shape and colour of data points  
+  add_markers(hoverinfo = "none") %>% 
+  config(displayModeBar = FALSE) %>%  # this will not show the display bar , which we dont require 
+   layout(  # Define layout
+    geo = geo_properties_world,  # Apply map properties
+    mapbox = TRUE,  # Use mapbox base layer
+    title = 'UFO Sightings Worldwide'  # Add a title
+  )
+
+ufo_graph
+
+
+
+
+```
+
+```{r}
+
+library(maps)
+places <- places %>%
+  mutate(
+    region = case_when(
+      country_code %in% c("US", "MX", "CA", "CR", "GT", "BZ", "BS", "DO", "HT", "JM", "BM", "SX", "BB", "HN", "LC", "VI", "CU", "PR", "SV", "KN", "KY") ~ "North America",
+      country_code %in% c("AU", "NZ", "PW", "SB", "GU", "FJ", "TV") ~ "Oceania",
+      country_code %in% c("IN", "JP", "PK", "ID", "AM", "MY", "PH", "AE", "MV", "TH", "LK", "CN", "KZ", "IQ", "KR", "OM", "JO", "AF", "TW", "IL", "VN", "IR", "BD", "SA", "KW", "HK", "NP", "BN", "SG", "QA", "LA", "BH", "RU", "KH", "LB", "SY", "MM", "UZ", "KG", "TL", "TR", "AZ") ~ "Asia",
+      country_code %in% c("FR", "GB", "DE", "NO", "CH", "BG", "ES", "LT", "HR", "IE", "NL", "IS", "IT", "FI", "CZ", "EE", "HU", "SE", "PT", "PL", "DK", "CY", "BA", "SK", "RS", "RO", "MT", "BE", "LV", "AL", "AT", "MK", "GR", "BY", "GE", "SI", "LU", "FO", "MD", "UA", "GI", "XK", "ME") ~ "Europe",
+      country_code %in% c("CO", "BR", "VE", "BO", "AR", "TT", "CL", "PE", "EC", "UY", "PA", "PY", "GY", "SR") ~ "South America",
+      country_code %in% c("ZA", "MA", "ZW", "AO", "MU", "LS", "NG", "EG", "CM", "UG", "KE", "DZ", "TD", "BW", "ZM", "TZ", "ET", "TN", "SN", "LY", "LR", "GH", "CV", "MW", "SZ") ~ "Africa",
+      TRUE ~ "Antratica"
+    )
+  )
+
+# Naming the country name from country_code
+places <- places %>%
+  mutate(
+    full_countryname = case_when(
+      country_code %in% c("US") ~ "United States",
+      country_code %in% c("MX") ~ "Mexico",
+      country_code %in% c("CA") ~ "Canada",
+      country_code %in% c("MX") ~ "Costa Rica",
+      country_code %in% c("GT") ~ "Guatemala",
+      country_code %in% c("BZ") ~ "Belize",
+      country_code %in% c("BS") ~ "The Bahamas",
+      country_code %in% c("DO") ~ "Dominican Republic",
+      country_code %in% c("HT") ~ "Haiti",
+      country_code %in% c("JM") ~ "Jamaica",
+      country_code %in% c("BM") ~ "Bermuda",
+      country_code %in% c("SX") ~ "Sint Maarten",
+      country_code %in% c("BB") ~ "Barbados",
+      country_code %in% c("MX") ~ "Honduras",
+      country_code %in% c("LC") ~ "St Lucia",
+      country_code %in% c("VI") ~ "U.S Virgin Islands",
+      country_code %in% c("CU") ~ "Cuba",
+      country_code %in% c("PR") ~ "Puerto Rico",
+      country_code %in% c("SV") ~ "El Salvador",
+      country_code %in% c("KN") ~ "St Kitts & Nevis",
+      country_code %in% c("KY") ~ "Cayman Islands",
+      country_code %in% c("AU") ~ "Australia",
+      country_code %in% c("NZ") ~ "New Zealand",
+      country_code %in% c("PW") ~ "Palau",
+      country_code %in% c("SB") ~ "Solomon Islands",
+      country_code %in% c("GU") ~ "Guam",
+      country_code %in% c("FJ") ~ "Fiji",
+      country_code %in% c("IN") ~ "India",
+      country_code %in% c("JP") ~ "Japan",
+      country_code %in% c("PK") ~ "Pakistan",
+      country_code %in% c("ID") ~ "Indonesia",
+      country_code %in% c("AM") ~ "Armenia",
+      country_code %in% c("MY") ~ "Malaysia",
+      country_code %in% c("PH") ~ "Philippines",
+      country_code %in% c("AE") ~ "United Arab Emirates",
+      country_code %in% c("MV") ~ "Maldives",
+      country_code %in% c("TH") ~ "Thailand",
+      country_code %in% c("LK") ~ "Sri Lanka",
+      country_code %in% c("CN") ~ "China",
+      country_code %in% c("KZ") ~ "Kazakhstan",
+      country_code %in% c("IQ") ~ "Iraq",
+      country_code %in% c("KR") ~ "South Korea",
+      country_code %in% c("OM") ~ "Oman",
+      country_code %in% c("JO") ~ "Jordan",
+      country_code %in% c("AF") ~ "Afghanistan",
+      country_code %in% c("TW") ~ "Taiwan",
+      country_code %in% c("IL") ~ "Israel",
+      country_code %in% c("VN") ~ "Vietnam",
+      country_code %in% c("IR") ~ "Iran",
+      country_code %in% c("BD") ~ "Bangladesh",
+      country_code %in% c("SA") ~ "Saudi Arabia",
+      country_code %in% c("KW") ~ "Kuwait",
+      country_code %in% c("HK") ~ "Hong Kong",
+      country_code %in% c("NP") ~ "Nepal",
+      country_code %in% c("BN") ~ "Brunei",
+      country_code %in% c("SG") ~ "Singapore",
+      country_code %in% c("QA") ~ "Qatar",
+      country_code %in% c("LA") ~ "Laos",
+      country_code %in% c("BH") ~ "Bahrain",
+      country_code %in% c("RU") ~ "Russia",
+      country_code %in% c("KH") ~ "Cambodia",
+      country_code %in% c("LB") ~ "Lebanon",
+      country_code %in% c("SY") ~ "Syria",
+      country_code %in% c("MM") ~ "Myanmar",
+      country_code %in% c("UZ") ~ "Uzbekistan",
+      country_code %in% c("KG") ~ "Kyrgyzstan",
+      country_code %in% c("TL") ~ "Timor-Leste",
+      country_code %in% c("TR") ~ "Turkey",
+      country_code %in% c("AZ") ~ "Azerbaijan",
+      country_code %in% c("FR") ~ "France",
+      country_code %in% c("GB") ~ "United Kingdom",
+      country_code %in% c("DE") ~ "Germany",
+      country_code %in% c("NO") ~ "Norway",
+      country_code %in% c("CH") ~ "Switzerland",
+      country_code %in% c("BG") ~ "Bulgaria",
+      country_code %in% c("ES") ~ "Spain",
+      country_code %in% c("LT") ~ "Lithuania",
+      country_code %in% c("HR") ~ "Croatia",
+      country_code %in% c("IE") ~ "Ireland",
+      country_code %in% c("NL") ~ "Netherlands",
+      country_code %in% c("IS") ~ "Iceland",
+      country_code %in% c("IT") ~ "Italy",
+      country_code %in% c("FI") ~ "Finland",
+      country_code %in% c("CZ") ~ "Czechia",
+      country_code %in% c("EE") ~ "Estonia",
+      country_code %in% c("HU") ~ "Hungary",
+      country_code %in% c("SE") ~ "Sweden",
+      country_code %in% c("PT") ~ "Portugal",
+      country_code %in% c("PL") ~ "Poland",
+      country_code %in% c("DK") ~ "Denmark",
+      country_code %in% c("CY") ~ "Cyprus",
+      country_code %in% c("BA") ~ "Bosnia and Herzegovina",
+      country_code %in% c("SK") ~ "Slovakia",
+      country_code %in% c("RS") ~ "Serbia",
+      country_code %in% c("RO") ~ "Romania",
+      country_code %in% c("MT") ~ "Malta",
+      country_code %in% c("BE") ~ "Belgium",
+      country_code %in% c("LV") ~ "Latvia",
+      country_code %in% c("AL") ~ "Albania",
+      country_code %in% c("AT") ~ "Austria",
+      country_code %in% c("MK") ~ "North Macedonia",
+      country_code %in% c("GR") ~ "Greece",
+      country_code %in% c("BY") ~ "Belarus",
+      country_code %in% c("GE") ~ "Georgia",
+      country_code %in% c("SI") ~ "Slovenia",
+      country_code %in% c("LU") ~ "Luxembourg",
+      country_code %in% c("FO") ~ "Faroe Islands",
+      country_code %in% c("MD") ~ "Moldova",
+      country_code %in% c("UA") ~ "Ukraine",
+      country_code %in% c("GI") ~ "Gibraltar",
+      country_code %in% c("XK") ~ "Kosovo",
+      country_code %in% c("ME") ~ "Montenegro",
+      country_code %in% c("CO") ~ "Colombia",
+      country_code %in% c("BR") ~ "Brazil",
+      country_code %in% c("VE") ~ "Venezuela",
+      country_code %in% c("BO") ~ "Bolivia",
+      country_code %in% c("AR") ~ "Argentina",
+      country_code %in% c("TT") ~ "Trinidad and Tobago",
+      country_code %in% c("CL") ~ "Chile",
+      country_code %in% c("PE") ~ "Peru",
+      country_code %in% c("EC") ~ "Ecuado",
+      country_code %in% c("UY") ~ "Ecuado",
+      country_code %in% c("PA") ~ "Panama",
+      country_code %in% c("PY") ~ "Paraguay",
+      country_code %in% c("GY") ~ "Guyana",
+      country_code %in% c("SR") ~ "Suriname",
+      country_code %in% c("ZA") ~ "South Africa",
+      country_code %in% c("MA") ~ "Morocco",
+      country_code %in% c("ZW") ~ "Zimbabwe",
+      country_code %in% c("AO") ~ "Angola",
+      country_code %in% c("MU") ~ "Mauritius",
+      country_code %in% c("LS") ~ "Lesotho",
+      country_code %in% c("NG") ~ "Nigeria",
+      country_code %in% c("EG") ~ "Egypt",
+      country_code %in% c("CM") ~ "Cameroon",
+      country_code %in% c("UG") ~ "Uganda",
+      country_code %in% c("KE") ~ "Kenya",
+      country_code %in% c("DZ") ~ "Algeria",
+      country_code %in% c("TD") ~ "Chad",
+      country_code %in% c("BW") ~ "Botswana",
+      country_code %in% c("ZM") ~ "Zambia",
+      country_code %in% c("TZ") ~ "Tanzania",
+      country_code %in% c("ET") ~ "Ethiopia",
+      country_code %in% c("TN") ~ "Tunisia",
+      country_code %in% c("SN") ~ "Senegal",
+      country_code %in% c("LY") ~ "Libya",
+      country_code %in% c("LR") ~ "Liberia",
+      country_code %in% c("GH") ~ "Ghana",
+      country_code %in% c("CV") ~ "Cabo Verde",
+      country_code %in% c("MW") ~ "Malawi",
+      country_code %in% c("SZ") ~ "Eswatini",
+      country_code %in% c("TV") ~ "Tuvalu",
+      TRUE ~ "Unknow Places"
+    )
+  )
+
+
+#Counting the occurrence of UFO sightings in across the region 
+region_count <- places |>
+  group_by( region) |>
+  summarise(region_ufo_sighting = n(), .groups = "drop") |>
+  ungroup()
+
+
+
+# Create the plot
+ggplot(region_count, aes(x = region, y = region_ufo_sighting, fill = region_ufo_sighting)) +
+  geom_bar(stat = "identity") +
+  scale_fill_gradient(low = "lightblue", high = "darkblue") +
+  geom_text(aes(label = region_ufo_sighting), vjust = -0.5, color = "black") +  # Corrected label variable
+  theme_minimal() +
+  labs(title = "UFO Sightings Count by Region",
+       x = "Region",
+       y = "Count") +
+
+theme(
+  plot.background = element_rect(fill = "white", color = NA),
+  panel.background = element_rect(fill = "lightgray", color = NA),
+  panel.grid.major = element_line(color = "gray", size = 0.5),
+  panel.grid.minor = element_blank(),
+  axis.line = element_line(color = "black"),
+  axis.text = element_text(color = "black"),
+  axis.title = element_text(color = "black"),
+  plot.title = element_text(hjust = 0.5, size = 20, color = "black")
+)
+
+
+
+```
+
+```{r}
+
+```
 
 ### Discussion
 
@@ -124,6 +429,50 @@ ufo_sightings$time_of_day <- sapply(hour_of_day, assign_time_bin)
 
 
 ```
+
+\# Group the data by time_of_day and summarize to calculate count of sightings
+
+ufo_summary \<- ufo_data %\>%
+
+group_by(time_of_day) %\>%
+
+summarize(count = n())
+
+\# Create the plot
+
+ggplot(ufo_summary, aes(x = time_of_day, y = count, fill = count)) +
+
+geom_bar(stat = "identity") +
+
+scale_fill_gradient(low = "lightblue", high = "darkblue") + \# Use a gradient scale from light blue to dark blue
+
+geom_text(aes(label = count), vjust = -0.5, color = "black") +
+
+theme_minimal() +
+
+labs(title = "UFO Sightings Count by Time of Day",
+
+x = "Time of Day",
+
+y = "Count") +
+
+theme(plot.background = element_rect(fill = "transparent", color = NA),
+
+panel.background = element_rect(fill = "transparent", color = NA),
+
+panel.grid.major = element_line(color = "gray", size = 0.5), \# Add major grid lines
+
+panel.grid.minor = element_blank(),
+
+axis.line = element_line(color = "black"),
+
+axis.text = element_text(color = "black"),
+
+axis.title = element_text(color = "black"),
+
+plot.title = element_text(hjust = 0.5, size = 20, color = "black"))
+
+})
 
 ```{r}
 suppressWarnings({
