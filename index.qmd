@@ -119,15 +119,9 @@ This graph overlays the individual UFO sightings as red points on top of the cho
 
 ### Discussion
 
-Analysis of the heat map and choropleth map shows most UFO sightings occur in the USA, especially in the West Bay area. This region has more sightings compared to others. While most sightings are in the West Bay, some are also seen in the northern and eastern USA. This suggests certain areas have more UFO activity.
+The heat map and choropleth map above show that most UFO sightings occur in the USA, especially in the West Bay area. While most sightings are in the West Bay, some are also seen in the northern and eastern USA.
 
-Factors that can affect:
-
-Population Density Influence: Higher population densities in the USA contribute to more reported UFO sightings, as there are more observers to witness and report such phenomena.
-
-Cultural Impact: The USA's rich history of UFO-related media, including movies and TV shows, may influence public perception and reporting behavior, leading to increased awareness and reporting of UFO sightings.
-
-Military Presence and Experimental Technology: The presence of military installations in certain regions, coupled with the testing of experimental aircraft or other technology, may result in misidentifications and increased UFO sightings.
+We speculate that there are several reasons for such distribution of sightings. First, higher population densities in the USA contribute to more reported UFO sightings, as there are more observers to witness and report such phenomena. Second, the USA's rich history of UFO-related media, including movies and TV shows, may influence public perception and reporting behavior, leading to increased awareness and reporting of UFO sightings. Third, the presence of military installations in certain regions, coupled with the testing of experimental aircraft or other technology, may result in misidentifications and increased UFO sightings.
 
 ## Question 2: Is there any specific time of the day when UFO sighting are more prevalent?
 
