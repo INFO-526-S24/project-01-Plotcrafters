@@ -12,6 +12,7 @@ Add project abstract here.
 
 ## Introduction
 
+
 ## Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
 
 ### Introduction
@@ -146,6 +147,7 @@ library(tidyverse)
 library(lubridate)
 library(viridis)
 library(png)
+
 # Read the data
 ufo_sightings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-06-25/ufo_sightings.csv", show_col_types = FALSE)
 
