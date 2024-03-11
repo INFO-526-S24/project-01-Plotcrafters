@@ -1,17 +1,23 @@
 ---
-title: "Project title"
-subtitle: "INFO 526 - Project 1"
-author: "Team name"
+title: "Revealing UFO Sighting Pattern"
+subtitle: "A Data-Driven Investigation into Global UFO Sightings"
+author: "Plot Crafters"
 format: html
 editor: visual
 ---
 
 ## Abstract
 
-Add project abstract here.
+The project delves into the realm of UFO sightings by conducting a data-driven investigation into a comprehensive dataset comprising over 80,000 records dating back to 1949. Leveraging information such as latitude, longitude, date, and detailed descriptions of each sighting, the analysis aims to unravel temporal, spatial, and descriptive patterns associated with these unidentified flying objects. The dataset, originating from NUFORC, provides a robust foundation for exploring global UFO activities, and the project employs data wrangling, exploratory data analysis, and statistical approaches to answer key questions about the frequency and distribution of sightings worldwide.
+
+Utilizing statistical approaches like geospatial clustering and spatial autocorrelation, the project aims to provide a comprehensive understanding of the worldwide prevalence of UFO sightings. Beyond the analytical aspects, the project emphasizes the broader impact on public perception, scientific inquiry, and the potential for future research. The dissemination of findings holds the promise of not only contributing to scientific discourse but also fostering public engagement and education, thereby enhancing awareness and knowledge about UFO sightings.
+
 
 ## Introduction
 
+The dataset under investigation is drawn from the TidyTuesday project, presenting a comprehensive compilation of records documenting encounters with unidentified flying objects (UFOs). With origins tracing back to diverse temporal, spatial, and descriptive dimensions, this dataset unfolds as a multifaceted exploration of the mysterious world of UFO sightings. Imbued with details such as precise date and time stamps, geographical coordinates, and intricate descriptions of each reported incident, this dataset forms a robust foundation for a thorough examination. As we embark on this data-driven journey, our objective is to discern latent patterns and unveil nuanced insights, contributing to a heightened comprehension of the intricate temporal and spatial dynamics characterizing UFO encounters on a global scale.
+
+This repository of UFO sightings serves as a captivating reservoir for exploration, providing researchers, data enthusiasts, and the wider public with an opportunity to dissect the enigmatic phenomena surrounding unidentified flying objects. By delving into the layers of information embedded within this dataset, we aim to demystify the patterns and intricacies that define these sightings, fostering a deeper understanding of the uncharted territories within the UFO phenomenon.
 
 ## Question 1 : How many UFO sightings have been reported worldwide, and are there particular regions where these sightings occur more frequently?
 
