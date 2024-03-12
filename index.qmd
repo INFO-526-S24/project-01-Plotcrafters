@@ -135,7 +135,7 @@ For this question we want to visualize any temporal trends in UFO sightings thro
 
 We loaded the dataset `ufo_sightings` from the "TidyTuesday" source using the `read.csv` function in R. We verified the `date_time` column to ensure if it is the correct data type. After that we created a new variable under the name `time_of_day`, and upon extracting time from `date_time` variable we created the following time bins: morning_hours (6:00 AM - 11:59 AM), afternoon_hours(12:00 PM - 17:59 PM), evening_hours(18:00 PM - 21:59 PM), and night_hours(22:00 PM - 5:59 AM). We analyzed sighting patterns within each bin.
 
-Lastly, we grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under the name \_\_\_\_\_\_\_\_. We then plotted the \_\_\_\_\_\_\_ dataset using horizontal bar chart with count of ufo_sightings at x-axis and different time bins at y-axis.
+Lastly, we grouped the data for each bin and counted the number of ufo sightings and saved it in dataset under the name ufo_sightings_with_time_of_day.csv. We then plotted the ufo_sightings_with_time_of_day.csv dataset using horizontal bar chart with different time bins at x-axis and count of ufo_sightings at y-axis.
 
 ### Analysis
 
