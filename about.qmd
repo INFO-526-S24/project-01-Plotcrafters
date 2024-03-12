@@ -8,12 +8,12 @@ This project was developed by **Plotcrafters** For [INFO 526 - Data Analysis and
 
 -   Alexander Berliner: Graduate student in statistics and data science.
 
--   Ajay Kumar: Graduate student in data science.
+-   Ajay Kumar: Graduate student in information science.
 
--   Eeshaan Ace: Graduate student in data science.
+-   Eeshaan Ace: Graduate student in information science.
 
 -   Maheedhar Kolli: Graduate student in statistics and data science.
 
 -   Nandhini Anne: Graduate student in data science.
 
--   Tushar Kant Singh: Graduate student in data science.
+-   Tushar Kant Singh: Graduate student in information science.
